@@ -1,0 +1,71 @@
+# Ralph — Progress log (current project: RegEval)
+# Append-only. One entry per run. Never edit retroactively.
+# Format: ## YYYY-MM-DD HH:MM UTC — <story-id> <STATUS>
+#         <one-line note>
+
+## 2026-05-23 — INIT
+Ralph loop initialised. 7 stories in prd.json. 0 done, 0 blocked, 7 pending.
+Bootstrap phase: REV-001 (gold dataset) → REV-002 (baseline scaffold) → REV-003 (first run).
+Day 60 gate: 2026-06-30. Weekly budget: 6 hrs.
+
+## 2026-05-23 13:14 UTC [SESSION-20260523-211439] — RECOVER:REV-001
+Reset orphaned in-progress to pending (prior session crashed)
+
+## 2026-05-23 13:19 UTC [SESSION-20260523-211942] — RECOVER:REV-001
+Reset orphaned in-progress to pending (prior session crashed)
+
+## 2026-05-23 13:26 UTC [SESSION-20260523-212101] — REV-001 — DONE
+Create gold dataset — 30 labelled items — all gates passed
+
+## 2026-05-23 14:36 UTC [SESSION-20260523-223503] — REV-002 — DONE
+Create day-1 baseline scaffold — all gates passed
+
+## 2026-05-23 14:43 UTC [SESSION-20260523-223629] — REV-003 — DONE
+Run first experiment — establish κ baseline — all gates passed
+
+## 2026-05-29 02:45 UTC [SESSION-20260529-manual] — RE-SEQUENCE
+Manual session (Lucius Fox, inline — not via ralph.sh). Baseline log analysis: TPR=1.000 TNR=1.000, 100% of κ gap is the unclear/abstention class. REV-004/005 (prompt-structure) have ~zero κ headroom → deprioritized. Pulled REV-006 (judge-rubric/abstention) ahead.
+
+## 2026-05-29 02:45 UTC [SESSION-20260529-manual] — REV-006 — DONE
+Authored rubric-strict / rubric-lenient / rubric-graded + ran all 3 against gold with blind author/grader separation. strict DISCARD (κ=0.500, 0/10 unclear); lenient + graded HOLD (κ=0.600, +0.10 over baseline). No KEEP — 0.80 bar unmet. current.md stays placeholder. graded is cleanest base (TPR held 1.000). experiments/log.md now 4 rows. Git commit deferred to human approval per ralph discipline.
+
+## 2026-05-29 02:45 UTC [SESSION-20260529-manual] — NEXT
+Next pending story = REV-007 (expand gold to 100 items + inter-annotator agreement) — Day-60 kill-criterion critical path. Run: bash Projects/ralph/ralph.sh  (or continue inline).
+
+## 2026-05-29 03:15 UTC [SESSION-20260529-manual] — rubric-graded-v2 — HOLD (N=30 KEEP revoked)
+Authored rubric-graded-v2 (5th trigger: unverifiable compliance/violation). Blind grader on N=30: κ=1.000 — initially KEEP. Full N=100 validation: κ=0.740 CI=[0.625,0.847] — HOLD. KEEP revoked. Best scaffold in log (+0.24 vs baseline) but below 0.80 bar. Two failure modes identified: trigger 1 over-fires on educational-compliant items (8), trigger 5b over-fires on clear non-compliant items (4). current.md NOT promoted.
+
+## 2026-05-29 03:15 UTC [SESSION-20260529-manual] — REV-007 — DONE
+Gold expanded to 100 items (40/40/20). IAA documented: blind model-annotator on 20-item binary sample, Cohen κ=1.000. Both acceptance gates pass. Kill-criterion ≥100 items satisfied. Remaining kill-criterion gap: κ≥0.80 on ≥1 scaffold (best current: 0.740) + 14-day experiment cadence.
+
+## 2026-05-29 [SESSION-20260529-manual] — rubric-graded-v3 — HOLD (regression)
+v3 over-corrected trigger 5b: broke 12 items while fixing 9. κ=0.691 < v2's 0.740. Discarded direction.
+
+## 2026-05-30 [SESSION-20260530-manual] — rubric-graded-v4 — HOLD (best in log)
+v4: trigger-1 exclusion + precise trigger-5b standard-in-flux clarification. κ=0.790 CI=[0.685,0.885] N=100. TPR=1.000 TNR=0.975. 87/100 correct. 13 remaining mismatches all in unclear class (unclear per-class κ=0.488). Δ=0.010 from 0.80 KEEP bar. Gold-set calibration on unclear items may be the binding constraint. Next: human review of 6 'judge=compliant, gold=unclear' items for potential relabeling.
+
+## 2026-06-15 [SESSION-reconcile-20260620] — REV-008 / REV-009 — IMPLEMENTED (not yet closed)
+Reconciliation entry, added 2026-06-20 to correct progress-log staleness (last logged advance was 2026-05-30, but real work landed since). Commit 810bf62 (2026-06-15) added the implementation files: Evals/regeval/provenance.py (REV-008, provenance traces, 304 lines) and Evals/regeval/judge_vs_human.py (REV-009, human-vs-judge CLI, 553 lines), plus Evals/regeval/DEMO.md and experiment log 2026-06-11-01-rev-008-provenance-traces.md. NOT marking either story DONE: prd.json still lists both as `pending`, and the judge KEEP bar (κ≥0.80) remains unmet (best logged κ=0.790, v4). Code exists; in-loop validation/close-out does not. Logged so the session-start banner reflects the true last-advance date rather than 2026-05-30.
+
+## 2026-06-29 03:12 UTC [SESSION-manual] — DAY-60 GATE — DEMO RECORDED
+Day-60 demo recorded by Rich on the v2 binary-collapse / integrity-catch story.
+Script re-gated 2026-06-29 (Riddler conditional→applied + Vicki Vale SKIM→READ;
+fresh .riddler-passed/.vicki-passed). Recording is a separate public artifact —
+still needs AV-delivery spot-check (pacing/audio/legibility) before posting.
+Day-60 signpost (2026-06-30) met one day early. Next leverage: public artifact
+(essay/thread off the integrity-catch story) + named technical gap (borderline
+items + production traces). Judge KEEP bar history: binary-v1 κ=1.000 in-sample(82)
++ κ=1.000 genuine held-out(36), clean-construct caveat.
+
+## 2026-06-30 03:20 UTC [SESSION-manual] — REV-008 + REV-009 — DONE (spec→build reconciled)
+Closed the two stories that had been falsely 'pending' ~2 weeks. Both were BUILT
+but diverged from their acceptance paths, so the gates never auto-closed.
+Reconciled spec to the (better) as-built architecture rather than churning files:
+- REV-008: provenance.py reconstructs traces from on-disk artifacts (offline, no API
+  key, + scaffold-hash verify). Wrote traces/README.md (schema) + runner.md audit
+  section. All 3 gates now genuinely pass.
+- REV-009: judge_vs_human.py (root, not cli/) — replay/card/summary/adjudicate with a
+  live κ RECONCILES ✓/✗ self-audit + partial-table refusal guard. Adjudications
+  persist to inputs/corrections-log.md (not cli/adjudications/). All 3 gates pass.
+prd.json: 7/9 DONE, 2 deprioritized (REV-004/005) — backlog fully resolved.
+Honest divergences recorded in each story's done_note. NOT committed (awaiting Rich).

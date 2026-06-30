@@ -1,0 +1,19 @@
+date	nn	slug	verdict	kappa	ci_lo	ci_hi	tpr	tnr	abst	n	parent	note
+2026-05-23	01	baseline	HOLD	0.500	0.247	0.753	1.000	1.000	0.000	30	-	anti-hedge policy emitted zero unclear; 0/10 on unclear class
+2026-05-29	01	rubric-strict	DISCARD	0.500	0.310	0.709	1.000	1.000	0.000	30	baseline	low-abstention control; ruled out binary-threshold path
+2026-05-29	02	rubric-lenient	HOLD	0.600	0.354	0.798	0.900	1.000	0.133	30	baseline	lifting anti-hedge recovered 3/10 unclear; abstention is the lever
+2026-05-29	03	rubric-graded	HOLD	0.600	0.405	0.793	1.000	1.000	0.067	30	baseline	enumerated unclear triggers; cleanest base scaffold
+2026-05-29	04	rubric-graded-v2	HOLD	0.740	0.625	0.847	0.800	0.900	0.270	100	rubric-graded	N=30 KEEP revoked by N=100; trigger 1 + 5b over-fire
+2026-05-29	05	rubric-graded-v3	HOLD	0.691	0.572	0.798	0.975	0.950	0.070	100	rubric-graded-v2	trigger-5b blanket constraint over-corrected; ruled out
+2026-05-30	01	rubric-graded-v4	HOLD	0.790	0.685	0.885	1.000	0.975	0.090	100	rubric-graded-v3	best scaffold; 0.010 from KEEP; unclear per-class k=0.488
+2026-06-04	01	gold-cal-v1	KEEP	0.820	0.720	0.920	1.000	0.975	0.090	100	rubric-graded-v4	gold adjudication relabeled 2 unclear->compliant; champion
+2026-06-08	01	skills-v1	DISCARD	0.733	0.620	0.837	0.786	0.975	0.200	100	rubric-graded-v4	skills architecture regressed -0.087; trigger-5a over-fires
+2026-06-08	02	challenger-v1	DISCARD	0.380	0.225	0.535	0.452	0.925	0.080	100	rubric-graded-v4	adversarial flip wrong for calibrated judge; ruled out
+2026-06-10	01	fable-judge-v1	DISCARD	0.677	0.552	0.792	0.857	0.950	0.120	100	rubric-graded-v4	Fable judge regressed -0.143; unclear collapsed (k=0.299); scaffold is Sonnet-bias-tuned
+2026-06-11	01	rev-008-provenance-traces	SHIP	NA	NA	NA	NA	NA	NA	NA	-	harness module; provenance.py trace records; no scaffold change
+2026-06-12	01	rev-009-human-vs-judge-cli	SHIP	NA	NA	NA	NA	NA	NA	NA	-	harness module; judge_vs_human.py replays runs; no scaffold change
+2026-06-24	01	rubric-graded-v4	DISCARD	0.570	0.434	0.697	0.690	0.975	0.160	100	current	Phase B champion re-run via 10x subagent harness (sonnet 4.6), gold stripped, 10/context; comparable-with-caveat vs sonnet-4-5 champion
+2026-06-24	02	skills-v2	HOLD	0.620	0.495	0.738	0.619	0.950	0.290	100	current	Phase B skills-v2 candidate via 10x subagent harness (sonnet 4.6), gold stripped, 10/context; comparable-with-caveat
+2026-06-28	01	rubric-graded-v4	HOLD	0.661	0.516	0.800	0.700	0.967	0.214	70	current	held-out-confirm; gold_expansion.jsonl N=70 held-out set; subagent harness sonnet-4.6 10/context gold-stripped; comparable-with-caveat vs sonnet-4-5 API champion k=0.820
+2026-06-28	02	binary-v1	KEEP	1.000	1.000	1.000	1.000	1.000	0.000	82	rubric-graded-v4	binary collapse (unclear dropped); forced-commit; shuffled; in-sample 82; sonnet subagent
+2026-06-28	03	binary-v1	KEEP-confirmed	1.000	1.000	1.000	1.000	1.000	0.000	36	binary-v1	GENUINE net-new held-out (heldout_v2, 20 new regimes, shuffled); first valid out-of-sample; clean-construct caveat

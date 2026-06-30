@@ -1,0 +1,21 @@
+Gate:     peer-review
+File:     Evals/regeval/experiments/2026-06-10-01-fable-judge-v1.md
+Date:     2026-06-11
+Verdict:  PASS
+
+| Layer | Check | Status |
+|---|---|---|
+| L1 — Runner (Lucius Fox) | Hypothesis one-sentence, falsifiable | ✅ |
+| L1 — Runner (Lucius Fox) | Scaffold delta vs current.md documented | ✅ |
+| L1 — Runner (Lucius Fox) | Full diagnostics (κ, per-class κ, TPR, TNR, abst, N, 95% CI) | ✅ |
+| L1 — Runner (Lucius Fox) | Wall clock under 8-min kill threshold (5:40) | ✅ |
+| L1 — Runner (Lucius Fox) | Verdict rule applied correctly (κ 0.677 < champion 0.820 → DISCARD) | ✅ |
+| L1 — Runner (Lucius Fox) | Raw outputs collapsible, N=100 complete | ✅ |
+| L1 — Runner (Lucius Fox) | log.md DISCARD row appended, not edited | ✅ |
+| L1 — Runner (Lucius Fox) | budget.md session entry recorded (~6 min) | ✅ |
+| L1 — Runner (Lucius Fox) | Harness deviation disclosed (subagent batching confound) | ✅ |
+| L2 — Ground truth | Structure & completeness | ✅ |
+| L2 — Ground truth | Clarity & writing quality | ✅ |
+| L2 — Ground truth | Strategic alignment | ✅ |
+| L2 — Ground truth | Actionability | ✅ |
+| L2 — Ground truth | External reviewer comments | N/A |

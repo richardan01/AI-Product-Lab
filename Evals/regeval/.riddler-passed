@@ -1,0 +1,16 @@
+# .riddler-passed — Evals/regeval/DEMO.md
+Gated: 2026-06-29 (v2 integrity-catch / binary-collapse script)
+Verdict: CONDITIONAL PASS — 3 conditions, all confirmed applied before this marker was written.
+Supersedes: the VOID 2026-06-26 markers (gated the retired 3-class script; do not honor).
+Factual spine verified on disk: gold∩gold_expansion=70/70 (defect real); heldout_v2∩gold=0
+  (id+text); score.py --binary κ=1.000 in-sample(82)+holdout(36); 100−18 unclear=82 reconciles;
+  unclear-pred forced-to-error confirmed (score.py:289-295).
+Conditions applied:
+  1. Beat 5 worksheet-on-retired-set: now narrated explicitly ("deliberately on the retired 3-class
+     set to show the tool; clean binary set has zero mismatches"). Closes the load-bearing gap.
+  2. Beat 2 "two humans" corrected to "second blind annotator (a model), human re-run queued" in-body.
+  3. Beat 4 centrepiece now opens with the "be suspicious / clear-cut by construction, not production"
+     caveat inline, before the reproducibility point.
+Standing caveats the recording must NOT drop: κ=1.000 is clean-construct not production;
+  second annotator is a model; held-out is author-constructed clear-cut items.
+Next gate: recorded video is a separate public artifact — re-run Riddler + Vicki Vale on the recording.

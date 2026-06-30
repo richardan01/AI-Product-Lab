@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(/Users/you/Documents/ProductManager-OS/**)",
+      "Read(/Users/you/.claude/**)",
+      "Read(/tmp/**)",
+      "Bash(git status)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git rev-parse *)",
+      "Bash(gh pr *)",
+      "Bash(bash Projects/ralph/ralph.sh)",
+      "Bash(bash Projects/ralph/ralph.sh --status)",
+      "Bash(bash /Users/you/.claude/scripts/batcave-status.sh)",
+      "Skill(schedule)",
+      "Skill(schedule:*)",
+      "mcp__scheduled-tasks__list_scheduled_tasks",
+      "mcp__mcp-registry__list_connectors",
+      "mcp__mcp-registry__search_mcp_registry"
+    ]
+  }
+}
