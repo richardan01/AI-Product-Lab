@@ -36,7 +36,7 @@ A fixture is a dated `[LASTRUN → TODAY]` window with known content + a gold ex
 
 ## Last run
 
-**2026-06-20** · `claude-opus-4-8` · **PASS** (3/5 PASS + 2 PARTIAL; 01+02 mandatory ✅) · Precision 100% (23/23), Recall 95.2% (20/21), F1 97.5% — *provisional-measured*, gold DRAFT pending Rich. First fixture `2026-06-20-heavy-day`. See `results/2026-06-20_claude-opus-4-8.md`.
+**2026-06-20** · `claude-opus-4-8` · **PASS** (3/5 PASS + 2 PARTIAL; 01+02 mandatory ✅) · Precision 100% (23/23), Recall 95.2% (20/21), F1 97.5% — *provisional-measured*, gold DRAFT pending [Your Name]. First fixture `2026-06-20-heavy-day`. See `results/2026-06-20_claude-opus-4-8.md`.
 
 ## Related
 

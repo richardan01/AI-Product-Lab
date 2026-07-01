@@ -1,7 +1,7 @@
 # Q3 2026 — Bruce Wayne Thesis
 
 **Period:** May 1 – July 31, 2026 (90 days)
-**Operator:** Richard
+**Operator:** [Your Name]
 **Mission (24-month arc):** AI PM at a frontier lab — Anthropic primary, DeepMind / Microsoft AI secondary — by mid-2027
 **This quarter's role in the arc:** establish the technical-depth artifact and the public voice that warm intros will compound through. Q4 is for interviewing.
 
@@ -90,10 +90,10 @@ If a week goes over 15 hrs total: cut network and depth first; never cut RegEval
 | Field | Value |
 |-------|-------|
 | Drafted | 2026-04-26 |
-| Approved by Rich | 2026-04-29 |
+| Approved by [Your Name] | 2026-04-29 |
 | Last reviewed | 2026-06-02 (Day-30 retroactive — 2026-05-31) |
 | Next review | Day 60 — 2026-06-30 (invalidation gate) |
-| Bruce Wayne signature | ✓ Richard — 2026-06-02 |
+| Bruce Wayne signature | ✓ [Your Name] — 2026-06-02 |
 
 **Day-30 retroactive note (2026-06-02):** The 100-trace signpost was HIT (REV-007, 2026-05-29). Gold at 100/100 (40/40/20), IAA κ=1.000. The κ≥0.80 kill-criterion is the remaining open condition — best scaffold v4 at κ=0.790, Δ=0.010 from bar, 28 days to gate. Thesis on track.|
 

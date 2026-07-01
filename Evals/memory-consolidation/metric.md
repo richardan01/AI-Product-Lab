@@ -26,7 +26,7 @@ You don't define TP/TN/FP/FN directly — they fall out once you fix the unit, t
 - **Precision = TP / (TP + FP)** — faithfulness / trust. Target **≥ 0.98**. Fabrication is the cardinal sin → near-zero tolerance. Measured **exactly**: the routine writes a small set, so audit every written claim against the window.
 - **Recall = TP / (TP + FN)** — completeness / anti-context-rot. Target **≥ 0.85**. Measured by **sampling**: draw 10–15 high-signal items from the window's sources, check how many reached memory. (Enumerating "everything that should have been written" is too costly; sample instead.)
 - **F1 = 2·P·R / (P + R)** — single headline only. Keep watching P and R **separately**: the costs are asymmetric — a *wrong* memory is worse than a *missing* one (the missing fact still lives in the transcript and is recoverable).
-- **Cadence:** weekly — aggregate ~5–7 daily runs to reach N ≥ 30 claims for a stable number. Aligns with the Sunday `myos-weekly-operating-loop`.
+- **Cadence:** weekly — aggregate ~5–7 daily runs to reach N ≥ 30 claims for a stable number.
 
 ## Accuracy — explicitly EXCLUDED
 Not used anywhere in this suite. Three reasons:

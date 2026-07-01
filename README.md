@@ -15,7 +15,7 @@ Built on Claude Code + Claude API, structured around a Batman/Bruce Wayne dual-p
 | Repo | Public role | Use it when |
 | --- | --- | --- |
 | [`Product-Management_OS`](https://github.com/richardan01/Product-Management_OS) | Reusable Product Management OS template | You want a forkable PM operating system for workflows, memory, knowledge, quality gates, and evals. |
-| [`AIPM-OS`](https://github.com/richardan01/AIPM-OS) | Richard's personal AI PM portfolio lab | You want to inspect the applied proof-of-work: RegEval, public artifact gates, AI PM craft, and frontier-lab preparation. |
+| [`AIPM-OS`](https://github.com/richardan01/AIPM-OS) | Personal AI PM portfolio lab | You want to inspect the applied proof-of-work: RegEval, public artifact gates, AI PM craft, and frontier-lab preparation. |
 
 In short: **Product Management OS is the reusable system**. `AIPM-OS` is the personal proof-of-work lab built with that operating-system discipline.
 
@@ -49,6 +49,8 @@ The Batman layer is the default. Day-job layer is opt-in.
 | The Riddler | Adversarial review (pre-publish gate) |
 | Henri Ducard | Technical-depth coaching and drilling |
 | Vicki Vale | Reader-voice review (pre-publish gate) |
+
+The full design has 12 agents; 4 (network/negotiation/execution-mode/parallel-drafting specialists) are left out of this public template. See the note in `Agents/agent-system-architecture.md` for how leftover references to them are handled.
 
 ### RegEval — the flagship project (`Projects/ralph/`, `Evals/regeval/`)
 
