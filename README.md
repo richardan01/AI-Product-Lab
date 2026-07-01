@@ -1,12 +1,28 @@
 # AI PM Portfolio Lab (AIPM-OS)
 
-A public personal portfolio lab for developing AI PM craft, shipping proof-of-work, and compounding toward a frontier-lab PM path.
+A public portfolio lab for developing AI PM craft through measurable proof-of-work: eval discipline, RegEval, quality gates, Claude Code loops, and public run logs.
 
-This is **not** the reusable Product Management OS template. If you want the forkable operating-system template for PM workflows, start with [`Product-Management_OS`](https://github.com/richardan01/Product-Management_OS). If you want to see one applied instance of that discipline, with a flagship project, public artifact gates, and career-positioning loops, this repo is the lab.
+This is **not** the reusable Product Management OS template. If you want the forkable operating-system template for PM workflows, start with [`Product-Management_OS`](https://github.com/richardan01/Product-Management_OS). If you want to see one applied instance of that discipline, with a flagship project, public artifact gates, eval loops, and career-positioning artifacts, this repo is the lab.
 
-Built on Claude Code + Claude API, structured around a Batman/Bruce Wayne dual-persona framework.
+The Batman/Bruce Wayne layer remains as a personal routing metaphor: Batman means focused execution mode; Bruce Wayne means multi-year strategy. It supports the work, but the value proposition is the professional proof-of-work system.
 
-**Batman = execution mode.** Bruce Wayne = multi-year strategy. The 24-month arc beats the 24-hour reaction.
+---
+
+## Start here
+
+- [`PROOF-OF-WORK.md`](PROOF-OF-WORK.md) — how this repo turns AI PM learning into inspectable portfolio evidence.
+- [`REPO-RELATIONSHIP.md`](REPO-RELATIONSHIP.md) — how `Product-Management_OS`, `AIPM-OS`, and RegEval fit together.
+- [`Evals/regeval/regeval-suite.md`](Evals/regeval/regeval-suite.md) — the flagship RegEval methodology and acceptance criteria.
+- [`Evals/run-log.md`](Evals/run-log.md) — chronological eval and gate run history.
+- [`Projects/ralph/brief.md`](Projects/ralph/brief.md) — the RegEval/Ralph project brief.
+
+## What this proves
+
+- I can design an eval loop.
+- I can define a falsifiable metric.
+- I can track failures and remediations.
+- I can use Claude Code as a workflow runtime.
+- I can turn AI PM learning into public proof-of-work.
 
 ---
 
