@@ -1,14 +1,29 @@
-# My-OS — An AI PM Operating System
+# AI PM Portfolio Lab (AIPM-OS)
 
-A personal operating system for building AI PM capability toward a frontier-lab role. Built on Claude Code + Claude API, structured around a Batman/Bruce Wayne dual-persona framework.
+A public personal portfolio lab for developing AI PM craft, shipping proof-of-work, and compounding toward a frontier-lab PM path.
+
+This is **not** the reusable Product Management OS template. If you want the forkable operating-system template for PM workflows, start with [`Product-Management_OS`](https://github.com/richardan01/Product-Management_OS). If you want to see one applied instance of that discipline, with a flagship project, public artifact gates, and career-positioning loops, this repo is the lab.
+
+Built on Claude Code + Claude API, structured around a Batman/Bruce Wayne dual-persona framework.
 
 **Batman = execution mode.** Bruce Wayne = multi-year strategy. The 24-month arc beats the 24-hour reaction.
 
 ---
 
+## Public repo map
+
+| Repo | Public role | Use it when |
+| --- | --- | --- |
+| [`Product-Management_OS`](https://github.com/richardan01/Product-Management_OS) | Reusable Product Management OS template | You want a forkable PM operating system for workflows, memory, knowledge, quality gates, and evals. |
+| [`AIPM-OS`](https://github.com/richardan01/AIPM-OS) | Richard's personal AI PM portfolio lab | You want to inspect the applied proof-of-work: RegEval, public artifact gates, AI PM craft, and frontier-lab preparation. |
+
+In short: **Product Management OS is the reusable system**. `AIPM-OS` is the personal proof-of-work lab built with that operating-system discipline.
+
+---
+
 ## What this is
 
-This OS treats AI augmentation the same way Karpathy treats autoresearch: one runner, one metric, fixed time budget, compounding log. Applied to career development.
+This lab treats AI PM capability development the same way Karpathy treats autoresearch: one runner, one metric, fixed time budget, compounding log. Applied to career development and public proof-of-work.
 
 The system runs on two layers:
 - **Batman Strategic Layer** — 8 agents in `Agents/Gotham/Computer/` for AI PM mission work (flagship build, public voice, network, technical depth).
@@ -22,7 +37,7 @@ The Batman layer is the default. Day-job layer is opt-in.
 
 ### Gotham agent suite (`Agents/Gotham/Computer/`)
 
-12 Batman-character agents, each with a distinct domain and voice:
+8 Batman-character agents, each with a distinct domain and voice:
 
 | Agent | Domain |
 |---|---|
@@ -62,14 +77,15 @@ Reusable skill files for recurring workflows: `/peer-review`, `/prd-readiness`, 
 
 ## How to adapt this
 
-To fork this OS for your own use, replace:
+To adapt this portfolio-lab pattern for your own use, start from the reusable [`Product-Management_OS`](https://github.com/richardan01/Product-Management_OS) template first, then replace the personal layer here:
+
 1. `Agents/Gotham/thesis-q3-2026.md` — your own quarterly thesis (mission, pillars, signposts)
 2. `CLAUDE.md` — your identity, routing rules, and quality gates
 3. `Agents/Gotham/Computer/` agent files — adapt voice samples to your own context
 4. `Projects/` — your flagship project (Ralph = RegEval here; name yours)
 5. `Evals/` — your own eval suites (keep the methodology; replace the domain)
 
-The Batman persona is the frame. The Karpathy compounding principle is the engine. Both are portable.
+The Batman persona is the frame. The Karpathy compounding principle is the engine. Both are portable, but this repo is intentionally personal and opinionated.
 
 ---
 
