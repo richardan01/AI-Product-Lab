@@ -38,11 +38,11 @@
 **Day 30 target:** BruceWayneOS public + launch post; LinkedIn About/headline rewritten in Nightwing voice.
 **Day 60 target:** essay draft v1 (~4,000 words) Riddler-reviewed.
 
-- [~] **Ship BruceWayneOS publicly + launch post** #p2 #ai-pm — DEPRIORITISED 2026-06-16, gate-passed 2026-06-04, awaiting Rich to publish
-  - RegEval launch README drafted (Nightwing), Riddler PASS + Vicki Vale PASS. Final staged at `Artifacts/strategy-docs/2026-06-04_regeval-readme_gate-passed.md`. Remaining: Rich pushes to public repo / posts. Gate markers cleared after staging (gate re-armed).
+- [~] **Ship BruceWayneOS publicly + launch post** #p2 #ai-pm — DEPRIORITISED 2026-06-16, gate-passed 2026-06-04, awaiting [Your Name] to publish
+  - RegEval launch README drafted (Nightwing), Riddler PASS + Vicki Vale PASS. Final staged at `Artifacts/strategy-docs/2026-06-04_regeval-readme_gate-passed.md`. Remaining: [Your Name] pushes to public repo / posts. Gate markers cleared after staging (gate re-armed).
 
-- [~] **Rewrite LinkedIn About + headline in Nightwing voice** #p2 #ai-pm — DEPRIORITISED 2026-06-16, gate-passed 2026-06-04, awaiting Rich to publish
-  - Drafted, Riddler PASS + Vale PASS. Final staged at `Artifacts/strategy-docs/2026-06-04_linkedin-rewrite_gate-passed.md`. Remaining: Rich updates LinkedIn headline + About. Prep note: have the discovery-synthesis eval suite ready if an interviewer asks to see it.
+- [~] **Rewrite LinkedIn About + headline in Nightwing voice** #p2 #ai-pm — DEPRIORITISED 2026-06-16, gate-passed 2026-06-04, awaiting [Your Name] to publish
+  - Drafted, Riddler PASS + Vale PASS. Final staged at `Artifacts/strategy-docs/2026-06-04_linkedin-rewrite_gate-passed.md`. Remaining: [Your Name] updates LinkedIn headline + About. Prep note: have the discovery-synthesis eval suite ready if an interviewer asks to see it.
 
 - [ ] **Canonical essay — draft v1 (~4,000 words), RegEval topic only** #p2 #ai-pm
   - Day 60 milestone. No essay-writing on any other topic until v1 published (thesis constraint).
@@ -65,7 +65,7 @@ Gordon runs warm-intro path-finding only *after* the artifacts exist. The artifa
 > Source: full OS audit 2026-06-10. Gate machinery fixed same day (markers now written by `/riddler` + `/vale`, gate-merge disarms, `disable-model-invocation` flags added, Lark creds purged from settings). Remaining queue:
 
 - [ ] **Apply gate-group remediations + re-run the suite** #p1 — Vale persona (schema verbatim + no-naming-siblings), dispatcher-owned `verdict_file`, inline F2 fixture. First run 2026-06-10: 6/8 provisional fail; C2/C4 core passed. See `Evals/gate-group/results/2026-06-10_claude-fable-5.md`.
-- [ ] **Rotate the Lark app secret** #p1 — it sat in plaintext in `.claude/settings.local.json` allowlist until 2026-06-10; removed, but the secret should be rotated in the Lark dev console. (Manual — Rich.)
+- [ ] **Rotate the Lark app secret** #p1 — it sat in plaintext in `.claude/settings.local.json` allowlist until 2026-06-10; removed, but the secret should be rotated in the Lark dev console. (Manual — [Your Name].)
 - [ ] **Research-synthesis suite first run** #p2 — never run; 60-day cadence clock never started.
 - [ ] **`/wiki-lint` + re-verify the 5 stale [day-job] Knowledge pages** #p2 — People/Reference pages last verified 2026-05-07 (34 days).
 

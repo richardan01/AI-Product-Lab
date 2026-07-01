@@ -1,6 +1,6 @@
 # Project Brief: Ralph — RegEval autonomous build loop
 
-**Owner:** Richard (Lucius Fox, build lead)
+**Owner:** [Your Name] (Lucius Fox, build lead)
 **Status:** Active — bootstrap phase complete (REV-001/002/003 done)
 **Started:** 2026-05-23
 **Target:** Drive RegEval to MVP for the Day 60 gate (2026-06-30)

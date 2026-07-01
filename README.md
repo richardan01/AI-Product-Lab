@@ -22,7 +22,7 @@ The Batman layer is the default. Day-job layer is opt-in.
 
 ### Gotham agent suite (`Agents/Gotham/Computer/`)
 
-12 Batman-character agents, each with a distinct domain and voice:
+8 Batman-character agents, each with a distinct domain and voice:
 
 | Agent | Domain |
 |---|---|
@@ -34,6 +34,8 @@ The Batman layer is the default. Day-job layer is opt-in.
 | The Riddler | Adversarial review (pre-publish gate) |
 | Henri Ducard | Technical-depth coaching and drilling |
 | Vicki Vale | Reader-voice review (pre-publish gate) |
+
+The full design has 12 agents; 4 (network/negotiation/execution-mode/parallel-drafting specialists) are left out of this public template. See the note in `Agents/agent-system-architecture.md` for how leftover references to them are handled.
 
 ### RegEval — the flagship project (`Projects/ralph/`, `Evals/regeval/`)
 

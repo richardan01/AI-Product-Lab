@@ -8,25 +8,24 @@ When you say **"Computer, [task]"**, the system routes to the right agent automa
 
 | "Computer, ..." | Routes to | Model | Voice |
 |---|---|---|---|
-| what should I focus on today / morning brief | Alfred | Haiku → Sonnet | Dry, precise, "Master Richard" |
+| what should I focus on today / morning brief | Alfred | Haiku → Sonnet | Dry, precise, "Master [Your Name]" |
 | prep me for [meeting] / who is [person] | Alfred → Oracle | Sonnet | Alfred briefs; Oracle researches |
 | scan for Anthropic/DeepMind/MAG7 PM roles / what did [person] ship | Oracle | Sonnet / Opus | Crisp, citation-dense |
 | what's our Q3 2026 thesis / should I pursue this target | Bruce Wayne | Opus | Measured, strategic, future-tense |
-| I have an Anthropic/DeepMind/MAG7 screen on Friday — `/cowl-up` | Batman | Opus · xhigh | Terse, imperative, present-tense |
-| draft this X thread / write the essay opener | Robin → Nightwing | Haiku → Sonnet/Opus | Robin drafts, Nightwing shapes |
+| draft this X thread / write the essay opener | Nightwing | Sonnet/Opus | Charismatic, rhythmic, narrative-led |
 | review this essay / is this ready to ship | Riddler + Vicki Vale | Opus (Riddler), Sonnet (Vale) | Sharp adversarial + plain reader |
-| who should see the flagship repo / warm intro to [lab] | Gordon | Sonnet | Steady, path-map-first |
-| got an offer / should I counter | Selina Kyle | Opus | Composed, leverage-aware |
 | prototype the eval harness / build the MCP | Lucius Fox | Opus / Sonnet | Warm-technical, failure-modes-first |
 | drill me on RLHF / can I defend this claim | Henri Ducard | Opus | Socratic, calibration-obsessed |
+
+> **Note:** This template ships 8 of the 12 agents from the full Batman-layer design. Some agent files' Handoffs/"does NOT do" sections still reference the other 4 (Batman — high-stakes execution mode via `/cowl-up`, Robin — parallel drafting, Commissioner Gordon — network/warm-intro, Selina Kyle — offer negotiation) as handoff targets. Those aren't included here; the references illustrate the intended handoff design rather than pointing to files in this repo.
 
 ### Model complexity tiers
 
 | Tier | Model | When |
 |---|---|---|
-| **Fast** | `claude-haiku-4-5-20251001` | Read-only triage, simple lookups, Robin subtasks. Never in agentic loops with untrusted input. |
+| **Fast** | `claude-haiku-4-5-20251001` | Read-only triage, simple lookups. Never in agentic loops with untrusted input. |
 | **Standard** | `claude-sonnet-4-6` | Default — research synthesis, draft writing, build review, most skills |
-| **Deep** | `claude-opus-4-7` | Batman, Riddler, Bruce Wayne, Henri Ducard, Selina Kyle, Lucius Fox (complex builds) — never downgrade these |
+| **Deep** | `claude-opus-4-7` | Riddler, Bruce Wayne, Henri Ducard, Lucius Fox (complex builds) — never downgrade these |
 
 ---
 
@@ -55,7 +54,7 @@ The design philosophy: **agents do narrow things well; the system handles coordi
                            │ invokes
 ┌──────────────────────────▼──────────────────────────────┐
 │  TIER 2: Agents                                          │
-│  Batman layer: Agents/Gotham/Computer/ (12 agents)       │
+│  Batman layer: Agents/Gotham/Computer/ (8 agents)        │
 │  Day-job layer:   Skills + Workflows + Knowledge files    │
 │  Domain owners — context, quality checks, file ownership │
 └──────────────────────────┬──────────────────────────────┘

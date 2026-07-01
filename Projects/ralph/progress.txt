@@ -48,7 +48,7 @@ v4: trigger-1 exclusion + precise trigger-5b standard-in-flux clarification. κ=
 Reconciliation entry, added 2026-06-20 to correct progress-log staleness (last logged advance was 2026-05-30, but real work landed since). Commit 810bf62 (2026-06-15) added the implementation files: Evals/regeval/provenance.py (REV-008, provenance traces, 304 lines) and Evals/regeval/judge_vs_human.py (REV-009, human-vs-judge CLI, 553 lines), plus Evals/regeval/DEMO.md and experiment log 2026-06-11-01-rev-008-provenance-traces.md. NOT marking either story DONE: prd.json still lists both as `pending`, and the judge KEEP bar (κ≥0.80) remains unmet (best logged κ=0.790, v4). Code exists; in-loop validation/close-out does not. Logged so the session-start banner reflects the true last-advance date rather than 2026-05-30.
 
 ## 2026-06-29 03:12 UTC [SESSION-manual] — DAY-60 GATE — DEMO RECORDED
-Day-60 demo recorded by Rich on the v2 binary-collapse / integrity-catch story.
+Day-60 demo recorded by [Your Name] on the v2 binary-collapse / integrity-catch story.
 Script re-gated 2026-06-29 (Riddler conditional→applied + Vicki Vale SKIM→READ;
 fresh .riddler-passed/.vicki-passed). Recording is a separate public artifact —
 still needs AV-delivery spot-check (pacing/audio/legibility) before posting.
@@ -68,4 +68,4 @@ Reconciled spec to the (better) as-built architecture rather than churning files
   live κ RECONCILES ✓/✗ self-audit + partial-table refusal guard. Adjudications
   persist to inputs/corrections-log.md (not cli/adjudications/). All 3 gates pass.
 prd.json: 7/9 DONE, 2 deprioritized (REV-004/005) — backlog fully resolved.
-Honest divergences recorded in each story's done_note. NOT committed (awaiting Rich).
+Honest divergences recorded in each story's done_note. NOT committed (awaiting [Your Name]).

@@ -12,7 +12,6 @@ Executable process specs. Each workflow defines trigger, inputs, steps, and outp
 | [[Workflows/gate-merge\|gate-merge]] | After gate-dispatch returns 2-3 verdicts | gate-dispatch orchestrator | [[Agents/Gotham/Computer/riddler]], [[Agents/Gotham/Computer/vicki-vale]] |
 | [[Workflows/quarterly-planning/workflow-spec\|quarterly-planning]] | Quarter start or thesis needs revision | Bruce Wayne, Alfred | [[Agents/Gotham/Computer/bruce-wayne]], [[Agents/Gotham/Computer/alfred]] |
 | [[Workflows/roadmap-review/workflow-spec\|roadmap-review]] | Weekly Sunday review | Bruce Wayne | [[Agents/Gotham/Computer/bruce-wayne]] |
-| [[Workflows/weekly-operating-loop\|weekly-operating-loop]] | Weekly My-OS cockpit hygiene | Alfred, Lucius Fox | [[Agents/Gotham/Computer/alfred]], [[Agents/Gotham/Computer/lucius-fox]] |
 | [[Workflows/user-research-synthesis/workflow-spec\|user-research-synthesis]] | After ≥3 research sources collected | Oracle | [[Agents/Gotham/Computer/oracle]] |
 | [[Workflows/interactive-onboarding\|interactive-onboarding]] | Fresh clone of OS | New user | — |
 
@@ -27,7 +26,6 @@ Executable process specs. Each workflow defines trigger, inputs, steps, and outp
 | Workflow | Purpose |
 |---|---|
 | [[Workflows/github-account-switch\|github-account-switch]] | Switch between personal and work GitHub |
-| [[Workflows/weekly-operating-loop-checklist\|weekly-operating-loop-checklist]] | Deterministic checklist for the weekly cockpit loop |
 
 ---
 

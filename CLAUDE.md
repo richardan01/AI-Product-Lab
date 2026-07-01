@@ -1,4 +1,4 @@
-# CLAUDE.md — Richard's My-OS
+# CLAUDE.md — [Your Name]'s My-OS
 
 **[Your name]** — AI PM aspirant (mid-2027 mission: frontier lab — Anthropic / OpenAI / DeepMind / MAG7 AI orgs).
 
@@ -39,7 +39,7 @@ Default to a named agent's voice when the task maps to one. Never break characte
 ## Memory
 Two systems, different jobs. Do not let them overlap.
 - **Cowork auto-memory** (`MEMORY.md` index) — fast-write cache for day-job: meetings, decisions, stakeholder updates, formatting preferences. Claude writes here automatically.
-- **My-OS Knowledge/** — canonical source for AI PM mission: people profiles, reference architecture, concepts, PD-TOL decisions. Richard writes here deliberately.
+- **My-OS Knowledge/** — canonical source for AI PM mission: people profiles, reference architecture, concepts, PD-TOL decisions. You write here deliberately.
 - **On conflict: My-OS wins.** Auto-memory updates to match, not the other way around.
 - **Monthly consolidation:** `Workflows/memory-consolidation.md` — audit drift, promote day-job decisions to `Knowledge/Concepts/pm-decisions-log.md`, delete duplicates.
 

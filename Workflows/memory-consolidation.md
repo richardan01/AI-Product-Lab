@@ -1,7 +1,7 @@
 # Workflow — Memory Consolidation
 
 **Cadence:** Monthly (first Sunday of each month)
-**Owner:** Alfred (runs the audit) + Richard (approves promotions)
+**Owner:** Alfred (runs the audit) + [Your Name] (approves promotions)
 **Purpose:** Prevent drift between Cowork auto-memory (fast-write cache) and My-OS Knowledge (canonical source of truth)
 
 ---
@@ -13,7 +13,7 @@ These systems have different jobs. Overlap = drift risk.
 | System | Location | Purpose | Who writes |
 |--------|----------|---------|------------|
 | **Cowork auto-memory** | `~/.claude/.../memory/` | Fast-write cache — day-job context, meeting outcomes, formatting preferences, stakeholder updates | Claude (automatic) |
-| **My-OS Knowledge/** | `Knowledge/People/`, `Knowledge/Reference/`, `Knowledge/Concepts/` | Canonical source of truth — AI PM mission, public-facing work, stable stakeholder profiles | Richard (deliberate) |
+| **My-OS Knowledge/** | `Knowledge/People/`, `Knowledge/Reference/`, `Knowledge/Concepts/` | Canonical source of truth — AI PM mission, public-facing work, stable stakeholder profiles | [Your Name] (deliberate) |
 
 **Rule on conflict: My-OS wins. Always.**
 

@@ -35,7 +35,7 @@
 **Protocol used (2026-05-29):**
 
 The dual-annotator requirement was implemented as follows:
-- **Annotator 1 (RC):** gold labels authored by Lucius Fox (Richard) in the same session as item generation.
+- **Annotator 1 (RC):** gold labels authored by Lucius Fox in the same session as item generation.
 - **Annotator 2 (Model-A):** a blind grader subagent given the same item texts stripped of `gold_label` and `gold_rationale`, applying independent expert judgment under HK financial-compliance standards.
 
 **IAA run:** 20-item sample (reg-0031–reg-0050), covering 10 compliant + 10 non-compliant items.
