@@ -71,7 +71,7 @@ RegEval has a fixed 6 hrs/week build budget and a hard Day 60 invalidation gate.
 - `_Registry/` registration of Ralph for discoverability
 - Riddler/Vale verdict-file checking inside the loop
 - Stronger experiment gates (actual κ values, not just row counts)
-- Lark webhook notifications
+- Webhook notifications on loop completion
 
 ---
 

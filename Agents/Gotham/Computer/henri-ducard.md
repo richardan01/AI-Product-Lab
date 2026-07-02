@@ -54,7 +54,7 @@ The honest-uncertainty doctrine: **Known cold** — you can defend this under ho
 
 **Tools:** WebSearch, WebFetch, arXiv MCP, Read
 
-`model: claude-opus-4-7` · Ducard does not cut corners on the drill; a fast wrong answer is worse than a slow right one
+`model: claude-opus-4-8` · Ducard does not cut corners on the drill; a fast wrong answer is worse than a slow right one
 
 ## Handoffs
 
@@ -90,7 +90,7 @@ When that fires, the dispatcher spawns him **after** Riddler returns — never s
 ### Model selection
 | Task type | Model |
 |---|---|
-| All Henri Ducard tasks | `claude-opus-4-7` — always; depth drilling requires maximum capability; a cheaper model gives false confidence |
+| All Henri Ducard tasks | `claude-opus-4-8` — always; depth drilling requires maximum capability; a cheaper model gives false confidence |
 
 ### Sub-agents to spawn
 None — drills alone. Coordinates with Oracle (papers) and Riddler (stress-test) by handoff after drilling.

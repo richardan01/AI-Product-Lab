@@ -2,14 +2,14 @@
 
 **Period:** May 1 – July 31, 2026 (90 days)
 **Operator:** [Your Name]
-**Mission (24-month arc):** AI PM at a frontier lab — Anthropic primary, DeepMind / Microsoft AI secondary — by mid-2027
+**Mission (24-month arc):** AI PM at a frontier AI lab by mid-2027
 **This quarter's role in the arc:** establish the technical-depth artifact and the public voice that warm intros will compound through. Q4 is for interviewing.
 
 ---
 
 ## Thesis in one sentence
 
-*By July 31, RegEval is publicly shipped, the canonical essay is published, and at least 2 frontier-lab employees have engaged with the work — turning the Anthropic Singapore application from cold to warm.*
+*By July 31, RegEval is publicly shipped, the canonical essay is published, and at least 2 frontier-lab employees have engaged with the work — turning the frontier-lab application from cold to warm.*
 
 ---
 
@@ -17,7 +17,7 @@
 
 ### Pillar 1 — Technical depth credibility
 
-The centerpiece is **RegEval** — an open-source LLM evaluation framework built for regulated fintech. Three modules: provenance traces, abstention scored as a first-class class, and a CLI for human-vs-judge alignment math. Origin story = anonymized lessons across CLAIRE GPT and Axicorp.
+The centerpiece is **RegEval** — an open-source LLM evaluation framework built for regulated fintech. Three modules: provenance traces, abstention scored as a first-class class, and a CLI for human-vs-judge alignment math. Origin story = anonymized lessons from prior regulated-fintech product work.
 
 | Signpost | Day 30 (May 31) | Day 60 (Jun 30) | Day 90 (Jul 31) |
 |----------|------------------|------------------|------------------|
@@ -37,7 +37,7 @@ Gordon runs warm-intro path-finding only *after* the artifacts exist. The artifa
 
 | Signpost | Day 30 | Day 60 | Day 90 |
 |----------|---------|---------|---------|
-| Reach state | Notion CRM seeded — 30 named target contacts, 2-degree paths to Anthropic Singapore mapped | 3 warm-intro paths executed off the BruceWayneOS launch | 2+ frontier-lab employees have engaged publicly with RegEval; 1 Anthropic Singapore application submitted via warm intro |
+| Reach state | Target-contact CRM seeded; 2-degree warm-intro paths to the primary lab mapped | 3 warm-intro paths executed off the BruceWayneOS launch | 2+ frontier-lab employees have engaged publicly with RegEval; 1 frontier-lab application submitted via warm intro |
 
 ---
 
@@ -46,7 +46,7 @@ Gordon runs warm-intro path-finding only *after* the artifacts exist. The artifa
 **At Day 60 (June 30): can I record a 5-minute RegEval demo I'd show a frontier-lab hiring manager without flinching?**
 
 - **Yes** → thesis on track. Push the canonical essay. Network engagement starts compounding.
-- **No** → the flagship is theatre without substance. Pivot: shrink to BruceWayneOS-only, downshift target to B+ tier MAG7 role (Microsoft Singapore Copilot Platform). Reassess full thesis in 30 days.
+- **No** → the flagship is theatre without substance. Pivot: shrink to BruceWayneOS-only, downshift to a B+ tier target (large-tech AI platform PM role). Reassess full thesis in 30 days.
 
 Other signposts can slip. This one cannot. The flagship is the spine.
 
@@ -54,22 +54,20 @@ Other signposts can slip. This one cannot. The flagship is the spine.
 
 ## Weekly sprint budget (fixed — Karpathy principle: unbounded effort dilutes all pillars)
 
-| Pillar | Weekly budget | When |
-|---|---|---|
-| RegEval build | 6 hrs | Sat morning (3 hr deep) + 1 weeknight (3 hr) |
-| Technical depth | 2 hrs | Sun morning — paper + Henri Ducard drill |
-| Public artifact / writing | 3 hrs | 1 weeknight — Nightwing sessions only |
-| Network / Gordon | 1 hr | Friday — DMs, CRM update, warm-intro prep |
-| **Total** | **12 hrs** | |
+The weekly time budget is fixed, with a hard priority order when a week runs over: cut network first, then technical depth — never cut RegEval build. Alfred tracks weekly actuals at each session start.
 
-If a week goes over 15 hrs total: cut network and depth first; never cut RegEval build. Alfred tracks weekly actuals at each session start.
+| Priority | Pillar |
+|---|---|
+| 1 (never cut) | RegEval build |
+| 2 | Public artifact / writing |
+| 3 | Technical depth |
+| 4 (cut first) | Network |
 
 ---
 
 ## Operating constraints
 
-- **Time budget:** 10–15 hrs/week outside the day job. Weekend mornings + 2 weeknight blocks.
-- **Day-job containment:** day-job stays at < 40 hrs/week. If it spikes for > 2 consecutive weeks, thesis enters orange — Alfred runs the audit.
+- **Fixed weekly budget:** the total is capped and tracked; overruns trigger the cut order above, not scope creep.
 - **Riddler gate:** no public artifact ships without an adversarial pass. No exceptions.
 - **No cold applications.** Ever.
 - **Lean cave:** CLAUDE.md ≤ 200 lines, ≤ 6 always-on MCPs, new session at 59% context.

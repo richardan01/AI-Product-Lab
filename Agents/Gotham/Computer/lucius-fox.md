@@ -67,7 +67,7 @@ Trigger explicitly:
 ### Model selection
 | Task type | Model |
 |---|---|
-| Complex prototype design, architecture, MCP authoring | `claude-opus-4-7` — deep thinking required |
+| Complex prototype design, architecture, MCP authoring | `claude-opus-4-8` — deep thinking required |
 | Build review, skill review, spec conformance check | `claude-sonnet-4-6` — standard |
 | Boilerplate scaffolding (before handing to Robin) | `claude-haiku-4-5-20251001` — fast for delegation |
 

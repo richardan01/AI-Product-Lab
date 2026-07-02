@@ -4,22 +4,18 @@ Executable process specs. Each workflow defines trigger, inputs, steps, and outp
 
 ---
 
-## Batman layer workflows
+## Workflows
 
 | Workflow | Trigger | Who invokes | Related agents |
 |---|---|---|---|
 | [[Workflows/gate-dispatch\|gate-dispatch]] | Any public artifact ready for review | Nightwing, Lucius Fox | [[Agents/Gotham/Computer/riddler]], [[Agents/Gotham/Computer/vicki-vale]], [[Agents/Gotham/Computer/henri-ducard]] |
 | [[Workflows/gate-merge\|gate-merge]] | After gate-dispatch returns 2-3 verdicts | gate-dispatch orchestrator | [[Agents/Gotham/Computer/riddler]], [[Agents/Gotham/Computer/vicki-vale]] |
+| [[Workflows/regeval-run\|regeval-run]] | RegEval experiment iteration | Lucius Fox | [[Agents/Gotham/Computer/lucius-fox]] |
+| [[Workflows/memory-consolidation\|memory-consolidation]] | Monthly (first Sunday) | Alfred | [[Agents/Gotham/Computer/alfred]] |
 | [[Workflows/quarterly-planning/workflow-spec\|quarterly-planning]] | Quarter start or thesis needs revision | Bruce Wayne, Alfred | [[Agents/Gotham/Computer/bruce-wayne]], [[Agents/Gotham/Computer/alfred]] |
 | [[Workflows/roadmap-review/workflow-spec\|roadmap-review]] | Weekly Sunday review | Bruce Wayne | [[Agents/Gotham/Computer/bruce-wayne]] |
 | [[Workflows/user-research-synthesis/workflow-spec\|user-research-synthesis]] | After ≥3 research sources collected | Oracle | [[Agents/Gotham/Computer/oracle]] |
 | [[Workflows/interactive-onboarding\|interactive-onboarding]] | Fresh clone of OS | New user | — |
-
-## Day-job workflows
-
-| Workflow | Trigger | Who invokes |
-|---|---|---|
-| [[Workflows/cdp-feature-kickoff\|cdp-feature-kickoff]] | New CDP feature scoped | Orchestrator, product-definer |
 
 ## Utility
 
@@ -46,4 +42,4 @@ Schemas: [[Agents/Gotham/_shared/gate-payload.schema]] · [[Agents/Gotham/_share
 
 ## Related
 
-[[Agents/index]] · [[Evals/index]] · [[Tasks/index]]
+[[Agents/agent-system-architecture]] · [[Evals/index]] · [[Tasks/active]]

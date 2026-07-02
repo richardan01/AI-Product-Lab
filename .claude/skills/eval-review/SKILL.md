@@ -59,7 +59,7 @@ Reviews an eval suite, run, or single experiment against the methodology bar req
 **Required fixes (Conditional Pass / Block):**
 - <fix>
 
-**Citable as:** <e.g. "κ = 0.83 (95% CI [0.74, 0.91], N=104, judge: claude-opus-4-7)"> — or "not citable until fixes land"
+**Citable as:** <e.g. "κ = 0.83 (95% CI [0.74, 0.91], N=104, judge: claude-opus-4-8)"> — or "not citable until fixes land"
 
 **Overall:** <one sentence>
 ```

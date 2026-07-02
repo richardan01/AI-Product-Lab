@@ -55,7 +55,7 @@ Patterns feed future story prompts and help the loop avoid repeating mistakes.
 - `_Registry/` registration of Ralph for discoverability
 - Riddler/Vale verdict file checking (currently the loop just exits and tells the human to run them)
 - Stronger gates on experiment stories — check actual κ values, not just row counts
-- Lark webhook notifications
+- Webhook notifications on loop completion
 
 ## Related
 

@@ -52,7 +52,7 @@ Or manually: `/riddler <artifact>` + `/vicki-vale <artifact>` run in parallel.
 ## When NOT to use
 
 - Internal drafts, `_temp/` working files, private notes
-- Day-job deliverables (use `/peer-review` and `/prd-readiness` instead)
+- Internal PM deliverables (use `/peer-review` and `/prd-readiness` instead)
 
 ---
 

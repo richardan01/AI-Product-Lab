@@ -106,4 +106,4 @@ Evals/regeval/
 - [Karpathy autoresearch](https://github.com/karpathy/autoresearch)
 - [model-eval-design skill](../../.claude/skills/model-eval-design/) — judge-alignment methodology
 - [run-evals skill](../../.claude/skills/run-evals/) — author/grader separation enforcement
-- discovery-synthesis suite — day-job-layer eval (different harness, same discipline; not included in this public repo)
+- discovery-synthesis suite — private companion eval (different harness, same discipline; not included in this public repo)

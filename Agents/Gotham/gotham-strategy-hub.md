@@ -2,7 +2,7 @@
 
 This folder is Bruce Wayne's domain — the multi-year career strategy, quarterly theses, narrative architecture, and target-list management.
 
-It is operationally separate from day-job work, which stays in private working context outside this public repo. Bruce Wayne thinks about the 24-month arc to a frontier-lab AI PM role. Alfred thinks about whether the Tuesday meeting prep is done.
+Private working context (personal contacts, employer-specific material) stays outside this public repo. Bruce Wayne thinks about the 24-month arc to a frontier-lab AI PM role. Alfred thinks about whether the Tuesday meeting prep is done.
 
 ## What lives here
 
@@ -10,7 +10,7 @@ It is operationally separate from day-job work, which stays in private working c
 |------|---------|
 | `thesis-q3-2026.md` | Active quarterly thesis — three pillars, signposts at 30/60/90, invalidation criterion |
 | `master-narrative.md` *(coming soon)* | The one-paragraph career story; surface-specific compressions for resume / LinkedIn / essay bio / interview opener |
-| `target-list.md` *(coming soon)* | Frontier lab and MAG7 ranking with current intel; refreshed each quarter |
+| `target-list.md` *(coming soon)* | Frontier-lab and large-tech target ranking with current intel; refreshed each quarter |
 | `monthly-retros/` *(coming soon)* | What compounded, what stalled, what to kill, what to double down on |
 
 ## Operating principles

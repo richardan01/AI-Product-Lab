@@ -1,12 +1,6 @@
 # Proof of Work
 
-AIPM-OS is the applied proof-of-work companion to [`Product-Management_OS`](https://github.com/richardan01/Product-Management_OS).
-
-## Relationship to Product-Management_OS
-
-`Product-Management_OS` is the reusable framework: the forkable operating system for product-management workflows, memory, knowledge, quality gates, and eval discipline.
-
-`AIPM-OS` is the applied portfolio lab: a public instance of that framework used to build artifacts, run evals, record failures, and show how the operating system performs under real project pressure.
+AIPM-OS is an applied AI PM portfolio lab: a public operating system for product-management craft used to build artifacts, run evals, record failures, and show how the system performs under real project pressure.
 
 ## Flagship measurable project: RegEval
 

@@ -11,7 +11,7 @@ Record before the run starts:
 | Field | Value |
 |---|---|
 | Date | YYYY-MM-DD |
-| Model | e.g. `claude-opus-4-7` |
+| Model | e.g. `claude-opus-4-8` |
 | Workflow commit SHA | `git rev-parse HEAD` against this repo at run time |
 | Runner agent | Identifier of the agent or session that will execute the workflow |
 | Grader agent | Identifier of the **separate** agent or session that will grade |

@@ -1,8 +1,6 @@
 {
   "permissions": {
     "allow": [
-      "Read(/Users/you/Documents/ProductManager-OS/**)",
-      "Read(/Users/you/.claude/**)",
       "Read(/tmp/**)",
       "Bash(git status)",
       "Bash(git add *)",
@@ -13,12 +11,25 @@
       "Bash(gh pr *)",
       "Bash(bash Projects/ralph/ralph.sh)",
       "Bash(bash Projects/ralph/ralph.sh --status)",
-      "Bash(bash /Users/you/.claude/scripts/batcave-status.sh)",
+      "Bash(bash Tools/gate-check.sh)",
       "Skill(schedule)",
       "Skill(schedule:*)",
       "mcp__scheduled-tasks__list_scheduled_tasks",
       "mcp__mcp-registry__list_connectors",
       "mcp__mcp-registry__search_mcp_registry"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/Tools/gate-check.sh\""
+          }
+        ]
+      }
     ]
   }
 }

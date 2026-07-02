@@ -68,7 +68,7 @@ Score 1–5 per axis per sample. Average → axis score for the artifact.
 
 ## Anti-patterns this gate catches
 
-- Generic-assistant phrasing ("I hope this helps", "let me know if you have any questions") in any day-job-layer output
+- Generic-assistant phrasing ("I hope this helps", "let me know if you have any questions") in any agent-voiced output
 - Voice swap mid-document
 - Character cosplay (saying "Riddle me this" once and reverting to neutral)
 - Public artifacts shipped with no voice attribution

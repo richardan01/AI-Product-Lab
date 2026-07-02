@@ -1,16 +1,9 @@
-# Day-job / company-private — never include
+# Local / personal-private — never include
 Knowledge/People/
-Knowledge/Reference/your-company.md
-Knowledge/Reference/martech-stack.md
-Knowledge/Reference/cdp.md
-Knowledge/Reference/risk-register.md
+Knowledge/Reference/
 Knowledge/Concepts/pm-decisions-log.md
 Meetings/
-Projects/cdp-implementation/
-Tasks/dayjob-active.md
 Tasks/follow-ups.md
-Agents/cdp-specialist/
-Agents/analytics-metrics/
 Agents/_archive/
 
 # Auto-memory (may contain private session facts)

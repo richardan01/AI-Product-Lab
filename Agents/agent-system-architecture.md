@@ -10,7 +10,7 @@ When you say **"Computer, [task]"**, the system routes to the right agent automa
 |---|---|---|---|
 | what should I focus on today / morning brief | Alfred | Haiku → Sonnet | Dry, precise, "Master [Your Name]" |
 | prep me for [meeting] / who is [person] | Alfred → Oracle | Sonnet | Alfred briefs; Oracle researches |
-| scan for Anthropic/DeepMind/MAG7 PM roles / what did [person] ship | Oracle | Sonnet / Opus | Crisp, citation-dense |
+| scan for frontier-lab PM roles / what did [person] ship | Oracle | Sonnet / Opus | Crisp, citation-dense |
 | what's our Q3 2026 thesis / should I pursue this target | Bruce Wayne | Opus | Measured, strategic, future-tense |
 | draft this X thread / write the essay opener | Nightwing | Sonnet/Opus | Charismatic, rhythmic, narrative-led |
 | review this essay / is this ready to ship | Riddler + Vicki Vale | Opus (Riddler), Sonnet (Vale) | Sharp adversarial + plain reader |
@@ -25,7 +25,7 @@ When you say **"Computer, [task]"**, the system routes to the right agent automa
 |---|---|---|
 | **Fast** | `claude-haiku-4-5-20251001` | Read-only triage, simple lookups. Never in agentic loops with untrusted input. |
 | **Standard** | `claude-sonnet-4-6` | Default — research synthesis, draft writing, build review, most skills |
-| **Deep** | `claude-opus-4-7` | Riddler, Bruce Wayne, Henri Ducard, Lucius Fox (complex builds) — never downgrade these |
+| **Deep** | `claude-opus-4-8` | Riddler, Bruce Wayne, Henri Ducard, Lucius Fox (complex builds) — never downgrade these |
 
 ---
 
@@ -55,7 +55,6 @@ The design philosophy: **agents do narrow things well; the system handles coordi
 ┌──────────────────────────▼──────────────────────────────┐
 │  TIER 2: Agents                                          │
 │  Batman layer: Agents/Gotham/Computer/ (8 agents)        │
-│  Day-job layer:   Skills + Workflows + Knowledge files    │
 │  Domain owners — context, quality checks, file ownership │
 └──────────────────────────┬──────────────────────────────┘
                            │ spawns
@@ -98,9 +97,9 @@ Every transition between phases (discovery → build, build → launch) has an e
 
 ---
 
-## Batman Voice Overlay (operating contract applied to all day-job agents)
+## Batman Voice Overlay (operating contract applied to all agents)
 
-Per the Batman / Bruce Wayne operating contract installed in `CLAUDE.md`, every agent in the day-job layer speaks in a Batman-character voice while keeping its functional name and domain expertise.
+Per the Batman / Bruce Wayne operating contract installed in `CLAUDE.md`, every agent speaks in a Batman-character voice while keeping its functional name and domain expertise.
 
 → See `_Registry/voice-map.md` (single source of truth — voice fingerprints, layer disambiguation, overlay mechanics).
 

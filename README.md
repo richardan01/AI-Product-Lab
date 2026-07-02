@@ -2,16 +2,14 @@
 
 A public portfolio lab for developing AI PM craft through measurable proof-of-work: eval discipline, RegEval, quality gates, Claude Code loops, and public run logs.
 
-This is **not** the reusable Product Management OS template. If you want the forkable operating-system template for PM workflows, start with [`Product-Management_OS`](https://github.com/richardan01/Product-Management_OS). If you want to see one applied instance of that discipline, with a flagship project, public artifact gates, eval loops, and career-positioning artifacts, this repo is the lab.
-
-The Batman/Bruce Wayne layer remains as a personal routing metaphor: Batman means focused execution mode; Bruce Wayne means multi-year strategy. It supports the work, but the value proposition is the professional proof-of-work system.
+This repo is a live, opinionated instance of an AI PM operating system — a flagship project, public artifact gates, eval loops, and career-positioning artifacts, all built and run in the open. The Batman/Bruce Wayne layer is the routing metaphor: Batman means focused execution mode; Bruce Wayne means multi-year strategy. It supports the work, but the value proposition is the professional proof-of-work system.
 
 ---
 
 ## Start here
 
 - [`PROOF-OF-WORK.md`](PROOF-OF-WORK.md) — how this repo turns AI PM learning into inspectable portfolio evidence.
-- [`REPO-RELATIONSHIP.md`](REPO-RELATIONSHIP.md) — how `Product-Management_OS`, `AIPM-OS`, and RegEval fit together.
+- [`HOW-IT-WORKS.md`](HOW-IT-WORKS.md) — the architecture: agents, gates, evals, and how they compose.
 - [`Evals/regeval/regeval-suite.md`](Evals/regeval/regeval-suite.md) — the flagship RegEval methodology and acceptance criteria.
 - [`Evals/run-log.md`](Evals/run-log.md) — chronological eval and gate run history.
 - [`Projects/ralph/brief.md`](Projects/ralph/brief.md) — the RegEval/Ralph project brief.
@@ -26,26 +24,11 @@ The Batman/Bruce Wayne layer remains as a personal routing metaphor: Batman mean
 
 ---
 
-## Public repo map
-
-| Repo | Public role | Use it when |
-| --- | --- | --- |
-| [`Product-Management_OS`](https://github.com/richardan01/Product-Management_OS) | Reusable Product Management OS template | You want a forkable PM operating system for workflows, memory, knowledge, quality gates, and evals. |
-| [`AIPM-OS`](https://github.com/richardan01/AIPM-OS) | Personal AI PM portfolio lab | You want to inspect the applied proof-of-work: RegEval, public artifact gates, AI PM craft, and frontier-lab preparation. |
-
-In short: **Product Management OS is the reusable system**. `AIPM-OS` is the personal proof-of-work lab built with that operating-system discipline.
-
----
-
 ## What this is
 
 This lab treats AI PM capability development the same way Karpathy treats autoresearch: one runner, one metric, fixed time budget, compounding log. Applied to career development and public proof-of-work.
 
-The system runs on two layers:
-- **Batman Strategic Layer** — 8 agents in `Agents/Gotham/Computer/` for AI PM mission work (flagship build, public voice, network, technical depth).
-- **Day-Job Operations Layer** — separate layer for current employment context (not included in this public repo).
-
-The Batman layer is the default. Day-job layer is opt-in.
+The system runs on a single layer: the **Batman Strategic Layer** — 8 agents in `Agents/Gotham/Computer/` for AI PM mission work (flagship build, public voice, network, technical depth).
 
 ---
 
@@ -66,7 +49,7 @@ The Batman layer is the default. Day-job layer is opt-in.
 | Henri Ducard | Technical-depth coaching and drilling |
 | Vicki Vale | Reader-voice review (pre-publish gate) |
 
-The full design has 12 agents; 4 (network/negotiation/execution-mode/parallel-drafting specialists) are left out of this public template. See the note in `Agents/agent-system-architecture.md` for how leftover references to them are handled.
+The full design has 12 agents; 4 (network/negotiation/execution-mode/parallel-drafting specialists) are left out of this public repo. See the note in `Agents/agent-system-architecture.md` for how leftover references to them are handled.
 
 ### RegEval — the flagship project (`Projects/ralph/`, `Evals/regeval/`)
 
@@ -79,23 +62,27 @@ Three modules:
 
 **Current status (2026-06-29):** Binary judge (`binary-v1`) at κ=1.000 in-sample (N=82) + κ=1.000 genuine held-out (N=36, 20 unseen regimes). Clean-construct result — not yet production-validated. See `Evals/regeval/regeval-suite.md` for methodology and `Evals/run-log.md` for the full run history.
 
-### Quality gate pipeline (`Workflows/`)
+### Quality gate pipeline (`Workflows/`, `Tools/`)
 
 Every public artifact goes through two mandatory gates before shipping:
 - **Riddler** — adversarial review: "find every way this could be wrong or misleading"
 - **Vicki Vale** — reader-voice review: "would a stranger stick with this past the first paragraph"
 
-Both must pass. The gate hook in `.claude/settings.json` blocks writes to `Artifacts/` without `.riddler-passed` + `.vicki-passed` markers.
+Both must pass. A PreToolUse hook in `.claude/settings.json` runs `Tools/gate-check.sh`, which blocks writes to `Artifacts/` without `.riddler-passed` + `.vicki-passed` markers. The gate verdicts themselves are committed (see `Evals/regeval/.riddler-passed`) so the review trail is inspectable.
 
-### Skill library (`.claude/skills/`, `.agents/skills/`)
+### Eval discipline layer (`Evals/`, `.claude/agents/`)
 
-Reusable skill files for recurring workflows: `/peer-review`, `/prd-readiness`, `/regeval-run`, `/gate-dispatch`, `/memory-consolidation`, and more. Each skill is a SKILL.md file with frontmatter, procedure, and output shape.
+Beyond the flagship: 8+ eval suites with planted-flaw inputs and answer keys, a severity taxonomy, an eval-CI regression sentinel, judge-calibration (TPR/TNR ≥ 0.9 before a judge is trusted), Hamel/Shankar-style error analysis, and author/grader-separated sub-agents (`eval-runner` may never read the answer keys `eval-grader` grades against).
+
+### Skill library (`.claude/skills/`)
+
+Reusable skill files for recurring workflows: `/peer-review`, `/prd-readiness`, `/regeval-run`, `/judge-calibration`, `/error-analysis`, `/eval-ci`, `/memory-consolidation`, and more. Each skill is a SKILL.md file with frontmatter, procedure, and output shape.
 
 ---
 
 ## How to adapt this
 
-To adapt this portfolio-lab pattern for your own use, start from the reusable [`Product-Management_OS`](https://github.com/richardan01/Product-Management_OS) template first, then replace the personal layer here:
+This repo is intentionally personal and opinionated, but the pattern is portable:
 
 1. `Agents/Gotham/thesis-q3-2026.md` — your own quarterly thesis (mission, pillars, signposts)
 2. `CLAUDE.md` — your identity, routing rules, and quality gates
@@ -103,7 +90,7 @@ To adapt this portfolio-lab pattern for your own use, start from the reusable [`
 4. `Projects/` — your flagship project (Ralph = RegEval here; name yours)
 5. `Evals/` — your own eval suites (keep the methodology; replace the domain)
 
-The Batman persona is the frame. The Karpathy compounding principle is the engine. Both are portable, but this repo is intentionally personal and opinionated.
+The Batman persona is the frame. The Karpathy compounding principle is the engine.
 
 ---
 
@@ -111,7 +98,6 @@ The Batman persona is the frame. The Karpathy compounding principle is the engin
 
 - **Claude Code** (CLI + agent SDK) — primary runtime
 - **Claude API** — `claude-sonnet-4-6` for most tasks; `claude-opus-4-8` for strategic depth
-- **MCP servers** (always-on): FatHippo (shared memory), Lark (comms), Apple Notes (report fallback)
 - **Local git** — all OS files versioned; eval result files gitignored
 
 ---

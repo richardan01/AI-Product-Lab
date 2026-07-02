@@ -5,7 +5,7 @@ Five fixtures chosen to exercise every verdict path and the escalation branch. E
 | ID | Artifact (type) | Stresses | Designed path |
 |----|-----------------|----------|---------------|
 | F1 | `auditlog` library README (`readme`) | SHIP path; Riddler strictness on overclaims | SHIP (or REVISE if overclaims caught) |
-| F2 | Martech CDP demo README (`readme`) | Standard 2-agent gate, mild disagreement | REVISE |
+| F2 | Data-pipeline demo README (`readme`) | Standard 2-agent gate, mild disagreement | REVISE |
 | F3 | Speculative-decoding LinkedIn post (`post`) | **Flag discipline** — block on sourcing, NOT depth | REVISE/BLOCK, `depth_gap_flag: false`, **no Ducard** |
 | F4 | Faked-depth eval interview answer (`interview_answer`) | **Depth-escalation** — genuine faked depth | BLOCK + `depth_gap_flag: true` → **Ducard spawns** |
 | F5 | Jargon-dense essay opener (`essay`) | **Disagreement** — defensible argument, lost reader | REVISE/BLOCK; Riddler ≠ Vale |
@@ -27,9 +27,9 @@ Install: pip install auditlog. The 2-minute quickstart is below.
 
 **Stresses:** whether Riddler can return a clean `pass` on a strong artifact, vs. catching the latent overclaims ("regulated workflow", "append-only", "any model call"). Vale should `read` (strong opener).
 
-## F2 — Martech CDP demo README
+## F2 — Data-pipeline demo README
 
-Source: `examples/martech-cdp-demo/README.md` (verbatim). A thin, generic demo README.
+A thin, generic demo README (fictional fixture, inline below the suite's inputs).
 
 **Stresses:** the standard 2-agent gate with mild disagreement — argument is reviewable but the opener is generic.
 

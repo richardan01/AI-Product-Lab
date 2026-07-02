@@ -13,7 +13,7 @@ Each item is a binary check. A suite with any **P0** fail is not citable. **P1**
 
 - [ ] **Author / grader separation.** Runner agent and grader agent are different contexts. No self-grading.
 - [ ] **Transcript captured** for every eval that grades temporal behavior (e.g., order of confirmations, batch-write detection). The grader works from the transcript, not the runner's memory.
-- [ ] **Model + commit SHA pinned** in the run log header. Both the model ID (e.g., `claude-opus-4-7`) and `git rev-parse HEAD`.
+- [ ] **Model + commit SHA pinned** in the run log header. Both the model ID (e.g., `claude-opus-4-8`) and `git rev-parse HEAD`.
 - [ ] **All applicable fixtures run.** No cherry-picking. Per-fixture results reported separately before any aggregate.
 - [ ] **Negative results visible.** Every ❌ named in the log with introspection ("why did the model do this?"). A 7/7 run with no introspection is suspicious — re-read the transcript.
 - [ ] **Pass-rate target stated up front.** Not adjusted after seeing results.
