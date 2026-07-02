@@ -7,14 +7,14 @@ Final, gate-passed public artifacts are staged here before they ship (repo push,
 
 ## How the gate is enforced
 
-A PreToolUse hook in `.claude/settings.json` runs `Tools/gate-check.sh` on every Write/Edit. Writes into `Artifacts/` are **blocked** unless both global gate markers are armed:
+A PreToolUse hook in `.claude/settings.json` runs `Tools/gate-check.sh` on every Write/Edit. The hook gates any write that resolves under `Artifacts/`, or whose filename contains `-essay`, `-post`, or `-thread` (so a draft doesn't slip past the gate just by living outside this folder). A gated write is **blocked** unless both global gate markers are armed **and fresh**:
 
 ```
 _Registry/.riddler-passed
 _Registry/.vicki-passed
 ```
 
-The markers are written by the reviewer skills on PASS/CONDITIONAL (per `_Registry/reviewer-verdict-schema.md`) and deleted by `Workflows/gate-merge.md` after the artifact is staged — so a stale pass can never ship the next artifact.
+"Fresh" means the marker's mtime is within `GATE_TTL_SECONDS` (default 21600s / 6h) of the write attempt — an expired marker is treated the same as a missing one. The markers are written by the reviewer skills on PASS/CONDITIONAL (per `_Registry/reviewer-verdict-schema.md`) and deleted by `Workflows/gate-merge.md` after the artifact is staged — so a stale pass can never ship the next artifact.
 
 ## Conventions
 
