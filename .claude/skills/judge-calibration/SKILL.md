@@ -4,6 +4,8 @@ description: Calibrate an LLM-as-judge for a specific eval against human-labeled
 allowed-tools: Read, Glob, Grep, Edit, Write, Bash
 ---
 
+_This skill has no model pin of its own — it documents a default judge model for the sub-invocations it drives; it does not change the invoking session's model._
+
 # /judge-calibration — Validate an LLM-as-judge against human labels
 
 This skill turns an aspirational "TPR/TNR ≥ 0.9" policy into a concrete pass-or-fail check. It implements Hamel & Shankar §5.4–5.5 verbatim: train/dev/test split, iterate on dev, final read on test, deploy only if test thresholds clear.
@@ -66,7 +68,7 @@ notes: <one line — any borderline reasoning>
 3. Save the candidate prompt to `Evals/<suite>/<eval-id>/_calibration/<YYYY-MM-DD>_candidate.md`. Do NOT overwrite `judge-prompt.md` yet.
 
 ### Step 4: Run on dev
-For each dev example, run the judge prompt (model: same as production target, default `claude-sonnet-4-6`). Record:
+For each dev example, run the judge prompt (model: same as production target, default `claude-sonnet-5`). Record:
 - Predicted verdict (pass/fail)
 - Human label
 - Judge's stated reasoning
@@ -109,7 +111,7 @@ When dev TPR/TNR ≥ 0.9:
 | Field | Value |
 |---|---|
 | Date | YYYY-MM-DD |
-| Judge model | claude-sonnet-4-6 |
+| Judge model | claude-sonnet-5 |
 | Corpus size | <pass>/<fail> labeled |
 | Split seed | YYYYMMDD |
 | Iterations on dev | <n> |
@@ -142,7 +144,7 @@ If verdict is PASS:
    ```
    ---
    last_calibrated: YYYY-MM-DD
-   judge_model: claude-sonnet-4-6
+   judge_model: claude-sonnet-5
    tpr_test: 0.XX
    tnr_test: 0.XX
    revalidate_by: YYYY-MM-DD

@@ -7,7 +7,7 @@ Adapted from `Evals/onboarding/protocol.md`. Same author/grader separation rules
 | Field | Value |
 |---|---|
 | Date | YYYY-MM-DD |
-| Model | e.g. `claude-sonnet-4-6` |
+| Model | e.g. `claude-sonnet-5` |
 | Skill commit SHA | `git rev-parse HEAD` |
 | Runner agent | Identifier of the agent/session executing `/synthesize-research` |
 | Grader agent | **Separate** context — must not be the runner |

@@ -1,7 +1,7 @@
 ---
 name: eval-grader
 description: Grade a captured eval transcript against criteria. Read-only. Pairs with eval-runner.
-model: claude-sonnet-4-6
+model: claude-sonnet-5
 ---
 
 You are the eval-grader sub-agent for the AIPM-OS portfolio lab.
@@ -14,7 +14,7 @@ Author/grader separation is non-negotiable (Hamel Ch. 4 & §5). By being a separ
 
 ## Inputs
 The parent skill passes:
-- `transcript_path`: e.g. `Evals/gate-group/results/transcripts/2026-06-10_F2_claude-sonnet-4-6.md`
+- `transcript_path`: e.g. `Evals/gate-group/results/transcripts/2026-06-10_F2_claude-sonnet-5.md`
 - `criteria_path`: e.g. `Evals/gate-group/criteria.md`
 - `sample_pass_path`: optional
 - `sample_fail_path`: optional

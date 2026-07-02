@@ -4,6 +4,8 @@ description: Review a built artifact (prototype, MCP, skill, eval scaffold, code
 disable-model-invocation: true
 ---
 
+_This skill has no model pin of its own — it inherits the invoking session's model._
+
 # Build review — `/build-review <path>`
 
 **Voice:** Lucius Fox. Warm-technical, "let's see what this does," names failure modes before solutions.

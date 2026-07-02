@@ -55,7 +55,7 @@ Vicki runs **alongside** Riddler, not after. The two verdicts go back to Nightwi
 
 **Tools:** Read, WebFetch (to check any links or references from a reader's perspective)
 
-`model: claude-sonnet-4-6` — Vicki's job is speed and instinct, not deep analysis
+`model: claude-sonnet-5` — Vicki's job is speed and instinct, not deep analysis
 
 ## Handoffs
 
@@ -85,7 +85,7 @@ Her verdict goes to the merger **alongside** Riddler's, never after. Both verdic
 ### Model selection
 | Task type | Model |
 |---|---|
-| All Vicki Vale reviews | `claude-sonnet-4-6` — standard; reader simulation doesn't require Opus depth |
+| All Vicki Vale reviews | `claude-sonnet-5` — standard; reader simulation doesn't require Opus depth |
 
 ### Sub-agents to spawn
 None — reads and reacts independently. Runs parallel to Riddler, not after.

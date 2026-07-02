@@ -51,6 +51,8 @@ trace_id,date,source,trace_file,failure_modes_observed,open_code_notes,labeled,l
 - Write — to write `_traces/files/*.md` and the CSV
 - Bash — `git log`, `git rev-parse`, `mkdir -p`, `ls` / `wc -l` for ID counting. **Never** `git push` or any destructive operation.
 
+Note on running under Haiku: the *content* this agent samples (real production traces) is untrusted, but the *commands* it runs are fixed and allowlisted above — never constructed from sampled content — so there is no shell-injection surface despite the untrusted input.
+
 ## Hard rules
 - Do not modify the source files. Capture is read-only on the originals.
 - Do not label, grade, or open-code. That is `error-analysis`'s job.
