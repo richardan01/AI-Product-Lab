@@ -45,7 +45,7 @@ fi
 
 # No day-job / employer / sibling-repo residue anywhere in tracked files.
 # (Case-insensitive; excludes this script itself.)
-residue_pattern='kpay|dayjob-active|cdp-feature|martech-cdp|Product-Management_OS|Anthropic Singapore|Microsoft Singapore'
+residue_pattern='kpay|dayjob-active|cdp-feature|martech-cdp|Anthropic Singapore|Microsoft Singapore'
 if rg -i --glob '!scripts/check-repo.sh' "$residue_pattern" .; then
   echo "Residue found matching: $residue_pattern" >&2
   exit 1

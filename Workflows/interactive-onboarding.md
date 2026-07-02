@@ -1,6 +1,6 @@
 # Workflow: Interactive Onboarding
 
-Use this workflow when a user first downloads, forks, or clones ProductManagement-OS and asks to set it up.
+Use this workflow when a user first downloads, forks, or clones AI Product Lab and asks to set it up.
 
 This workflow is harness-neutral. It runs the same way in **Claude Code** (entry point: `CLAUDE.md`), **Codex CLI** (entry point: `AGENTS.md`), and **Gemini CLI** (entry point: `GEMINI.md`). Each entry-point file points back here. The configuration the workflow writes — persona, tone, routing, quality gates, privacy boundaries — lives in `CLAUDE.md` and is respected by all three harnesses regardless of which one ran the setup. The filename is historical; do not duplicate the file per harness.
 

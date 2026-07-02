@@ -1,8 +1,18 @@
-# AI PM Portfolio Lab (AIPM-OS)
+# AI Product Lab
 
-A public portfolio lab for developing AI PM craft through measurable proof-of-work: eval discipline, RegEval, quality gates, Claude Code loops, and public run logs.
+![AI Product Management](https://img.shields.io/badge/AI%20Product%20Management-Proof%20of%20Work-blue)
+![LLM Evals](https://img.shields.io/badge/LLM-Evals-purple)
+![RegEval](https://img.shields.io/badge/RegEval-Flagship%20Project-green)
+![Agentic Workflows](https://img.shields.io/badge/Agentic-Workflows-orange)
+![Status](https://img.shields.io/badge/status-active-brightgreen)
 
-This repo is a live, opinionated instance of an AI PM operating system — a flagship project, public artifact gates, eval loops, and career-positioning artifacts, all built and run in the open. The Batman/Bruce Wayne layer is the routing metaphor: Batman means focused execution mode; Bruce Wayne means multi-year strategy. It supports the work, but the value proposition is the professional proof-of-work system.
+A public proof-of-work lab for AI Product Management, evals, agents, and measurable AI product artifacts.
+
+AI Product Lab is a personal portfolio lab for building AI PM craft through AI product strategy, LLM evals, RegEval, quality gates, agentic workflows, Claude Code loops, public run logs, and measurable product artifacts.
+
+This is not the reusable PM workflow template. For that, use [PM Command Center](https://github.com/richardan01/PM-Command-Center). This repo is the applied lab: a flagship project, public artifact gates, eval loops, and career-positioning artifacts built and run in the open.
+
+The Batman/Bruce Wayne layer is the routing metaphor: Batman means focused execution mode; Bruce Wayne means multi-year strategy. It supports the work, but the value proposition is the professional proof-of-work system.
 
 ---
 
@@ -26,9 +36,15 @@ This repo is a live, opinionated instance of an AI PM operating system — a fla
 
 ## What this is
 
-This lab treats AI PM capability development the same way Karpathy treats autoresearch: one runner, one metric, fixed time budget, compounding log. Applied to career development and public proof-of-work.
+AI Product Lab treats AI PM capability development the same way Karpathy treats autoresearch: one runner, one metric, fixed time budget, compounding log. Applied here, that means public AI product work gets built, measured, reviewed, logged, and improved over time.
+
+It is a lab, portfolio, and proof-of-work system. It is not primarily a generic operating system.
 
 The system runs on a single layer: the **Batman Strategic Layer** — 8 agents in `Agents/Gotham/Computer/` for AI PM mission work (flagship build, public voice, network, technical depth).
+
+## Naming clarification
+
+This repo was formerly named AIPM-OS. The new name better reflects its purpose: a public AI Product Management lab focused on proof-of-work, evals, agents, and measurable artifacts.
 
 ---
 
@@ -90,7 +106,7 @@ This repo is intentionally personal and opinionated, but the pattern is portable
 4. `Projects/` — your flagship project (Ralph = RegEval here; name yours)
 5. `Evals/` — your own eval suites (keep the methodology; replace the domain)
 
-The Batman persona is the frame. The Karpathy compounding principle is the engine.
+The Batman persona is the frame. The Karpathy compounding principle is the engine. For a reusable PM workspace rather than a personal portfolio lab, start from [PM Command Center](https://github.com/richardan01/PM-Command-Center).
 
 ---
 
@@ -98,7 +114,7 @@ The Batman persona is the frame. The Karpathy compounding principle is the engin
 
 - **Claude Code** (CLI + agent SDK) — primary runtime
 - **Claude API** — `claude-sonnet-4-6` for most tasks; `claude-opus-4-8` for strategic depth
-- **Local git** — all OS files versioned; eval result files gitignored
+- **Local git** — lab files versioned; eval result files gitignored
 
 ---
 

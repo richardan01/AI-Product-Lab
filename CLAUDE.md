@@ -1,4 +1,4 @@
-# CLAUDE.md — AIPM-OS portfolio lab
+# CLAUDE.md — AI Product Lab
 
 **[Your name]** — AI PM aspirant (mid-2027 mission: AI PM at a frontier AI lab).
 
@@ -35,8 +35,8 @@ All AI PM mission work (flagship project, canonical essay, frontier-lab intervie
 ## Memory
 Two systems, different jobs. Do not let them overlap.
 - **Runtime auto-memory** (`MEMORY.md` index) — fast-write cache: session facts, formatting preferences, short-term project state. Claude writes here automatically.
-- **AIPM-OS Knowledge/** — canonical source for AI PM mission: people profiles, reference architecture, concepts, PD-TOL decisions. You write here deliberately.
-- **On conflict: AIPM-OS wins.** Auto-memory updates to match, not the other way around.
+- **AI Product Lab Knowledge/** — canonical source for AI PM mission: people profiles, reference architecture, concepts, PD-TOL decisions. You write here deliberately.
+- **On conflict: AI Product Lab wins.** Auto-memory updates to match, not the other way around.
 - **Monthly consolidation:** `Workflows/memory-consolidation.md` — audit drift, promote durable decisions to `Knowledge/Concepts/pm-decisions-log.md`, delete duplicates.
 
 ## Quality gates

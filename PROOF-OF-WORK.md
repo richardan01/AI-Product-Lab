@@ -1,6 +1,6 @@
 # Proof of Work
 
-AIPM-OS is an applied AI PM portfolio lab: a public operating system for product-management craft used to build artifacts, run evals, record failures, and show how the system performs under real project pressure.
+AI Product Lab is an applied AI PM portfolio lab: a public proof-of-work system for product-management craft used to build artifacts, run evals, record failures, and show how the work performs under real project pressure.
 
 ## Flagship measurable project: RegEval
 
@@ -38,4 +38,4 @@ The eval suites and run logs are the longitudinal evidence layer. They make the 
 - what improved;
 - what remains uncertain.
 
-This is the portfolio claim AIPM-OS is meant to support: AI PM learning should become public, measurable proof-of-work rather than private notes or vague positioning.
+This is the portfolio claim AI Product Lab is meant to support: AI PM learning should become public, measurable proof-of-work rather than private notes or vague positioning.
