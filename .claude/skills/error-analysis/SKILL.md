@@ -4,6 +4,8 @@ description: Open code + axial code real captured traces to surface failure mode
 allowed-tools: Read, Glob, Grep, Edit, Write, Bash
 ---
 
+_This skill has no model pin of its own — it inherits the invoking session's model._
+
 # /error-analysis — Find failure modes from real traces
 
 This skill turns a pile of captured traces into a named failure-mode taxonomy. It is the missing **Analyze** step in AIPM-OS's eval discipline. Without it, every eval is designed top-down against imagined failures.

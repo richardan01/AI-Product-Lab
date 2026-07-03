@@ -1,6 +1,8 @@
-# Local / personal-private — never include
-Knowledge/People/
-Knowledge/Reference/
+# Local / personal-private — never include (folder READMEs are tracked; contents are not)
+Knowledge/People/*
+!Knowledge/People/README.md
+Knowledge/Reference/*
+!Knowledge/Reference/README.md
 Knowledge/Concepts/pm-decisions-log.md
 Meetings/
 Tasks/follow-ups.md

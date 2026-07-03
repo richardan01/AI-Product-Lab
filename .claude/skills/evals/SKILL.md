@@ -278,6 +278,8 @@ When asked to run an eval suite, this skill orchestrates **two dedicated sub-age
 8. **Update `Evals/run-log.md`** with the summary row.
 9. **Clear pending re-runs** — call `/eval-ci clear <suite>` to mark any pending rows resolved by this run.
 
+_A design for codifying this protocol as an executable Workflow (deterministic pipeline/parallel/aggregate) exists but is deferred — see the 2026-07 model + workflow review. The steps above remain the canonical spec._
+
 ### Result file schema (extended)
 
 `Evals/<suite>/results/YYYY-MM-DD_<model>.md`:

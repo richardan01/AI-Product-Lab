@@ -2,6 +2,8 @@
 
 Append new entries below. Do not edit past runs — they are the historical record. For full result files and transcripts, see `<suite>/results/`.
 
+> **2026-07 model-currency note:** entries before this date may cite `claude-sonnet-4-6` (real, was current at the time) or older models — these are accurate historical records and are not being retroactively corrected. `eval-runner`/`eval-grader` were re-pinned to `claude-sonnet-5` on 2026-07-02; new entries should reflect that.
+
 > **Public template note**
 > Run result files and transcripts are intentionally gitignored (`Evals/*/results/*`).
 > The public repo stores suite structure and protocol only.

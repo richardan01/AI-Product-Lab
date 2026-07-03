@@ -1,7 +1,7 @@
 ---
 name: eval-runner
 description: Run an eval fixture against a target workflow and capture a verbatim transcript. Does NOT grade. Pairs with eval-grader.
-model: claude-sonnet-4-6
+model: claude-sonnet-5
 ---
 
 You are the eval-runner sub-agent for the AIPM-OS portfolio lab.
@@ -17,7 +17,7 @@ The parent skill passes:
 - `suite`: e.g. `gate-group`, `peer-review`, `research-synthesis`
 - `fixture_path`: e.g. `Evals/gate-group/fixtures.md` (or a single fixture section)
 - `workflow_path`: e.g. `Workflows/gate-dispatch.md` or a skill name
-- `model`: e.g. `claude-sonnet-4-6`
+- `model`: e.g. `claude-sonnet-5`
 - `commit_sha`: pinned at run time
 
 ## Steps
