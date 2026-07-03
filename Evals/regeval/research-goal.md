@@ -35,7 +35,7 @@ Scoring (κ, CI, TPR/TNR, abstention, per-class κ) is computed from the subagen
 
 The champion was tuned on the 100-item `inputs/gold.jsonl`. The 70-item **`inputs/gold_expansion.jsonl`** (30 compliant / 30 non-compliant / 10 unclear, same schema) was **never used for tuning** — it is the held-out validation set.
 
-**Promotion rule:** a candidate that scores KEEP on the 100-item tuning set is **not** promoted to champion until it also scores **κ ≥ 0.70 on the held-out 70**. 
+**Promotion rule:** a candidate that scores KEEP on the 100-item tuning set is **not** promoted to champion until it also scores **κ ≥ 0.70 on the held-out 70**.
 - Passes both → status `KEEP-confirmed` (still requires a human nod to overwrite `current.md` — see Forbidden actions).
 - Passes tuning, fails held-out → status `KEEP-overfit-flag`. Logged, surfaced, **not** promoted. This is the demo-defensible answer to "how do you know it didn't overfit your 100?"
 

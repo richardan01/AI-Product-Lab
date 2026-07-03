@@ -1,0 +1,8 @@
+node_modules/
+# Eval run evidence is verbatim capture — transcripts embed the reviewed
+# documents (including their own H1s), so prose lint rules don't apply.
+# Fixture inputs and experiment logs are frozen evidence for the same reason.
+Evals/*/results/
+Evals/*/inputs/
+Evals/regeval/experiments/
+Evals/regeval/discovery-pass-2026-06-28.md
