@@ -29,4 +29,4 @@ Private working context (personal contacts, employer-specific material) stays ou
 
 ## Related
 
-[[Agents/index]] · [[Agents/Gotham/thesis-q3-2026]] · [[Agents/Gotham/master-narrative]] · [[Agents/Gotham/Computer/bruce-wayne]] · [[Agents/Gotham/Computer/alfred]] · [[Projects/ralph/brief]]
+[[Agents/agent-system-architecture]] · [[Agents/Gotham/thesis-q3-2026]] · [[Agents/Gotham/Computer/bruce-wayne]] · [[Agents/Gotham/Computer/alfred]] · [[Projects/ralph/brief]]

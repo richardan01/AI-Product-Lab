@@ -61,11 +61,12 @@ cmd_status() {
   require_jq
   log "RegEval story status:"
   echo ""
-  jq -r '.stories[] | "\(.status | ascii_upcase | .[0:8] | ltrimstr(" ")) \(.id) — \(.title)"' "$PRD_FILE" | \
+  jq -r '.stories[] | "\((.status | ascii_upcase) + "        " | .[0:8]) \(.id) — \(.title)"' "$PRD_FILE" | \
     sed 's/^PENDING /  ⬜ /' | \
     sed 's/^IN_PROGR/  🔄 /' | \
     sed 's/^DONE    /  ✅ /' | \
-    sed 's/^BLOCKED /  🔴 /'
+    sed 's/^BLOCKED /  🔴 /' | \
+    sed 's/^DEPRIORI/  ⏸️ /'
   echo ""
   local total done blocked
   total=$(jq '.stories | length' "$PRD_FILE")

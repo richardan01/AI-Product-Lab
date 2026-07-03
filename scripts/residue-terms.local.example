@@ -1,0 +1,9 @@
+# Private residue term list — copy to scripts/residue-terms.local (gitignored).
+# One case-insensitive extended-regex pattern per line. check-repo.sh scans the
+# repo for these and fails if any match — without the terms themselves ever
+# being committed. Typical entries: employer names, target companies, personal
+# identifiers, internal product names, sibling-repo names.
+#
+# example-employer-name
+# example-target-company
+# example-internal-product

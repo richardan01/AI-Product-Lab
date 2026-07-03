@@ -13,7 +13,7 @@ These systems have different jobs. Overlap = drift risk.
 | System | Location | Purpose | Who writes |
 |--------|----------|---------|------------|
 | **Runtime auto-memory** | `~/.claude/.../memory/` | Fast-write cache — session facts, formatting preferences, short-term project state | Claude (automatic) |
-| **AI Product Lab Knowledge/** | `Knowledge/People/`, `Knowledge/Reference/`, `Knowledge/Concepts/` | Canonical source of truth — AI PM mission, public-facing work, stable contact profiles | [Your Name] (deliberate) |
+| **AI Product Lab Knowledge/** | `Knowledge/People/`, `Knowledge/Reference/` (both local/gitignored), `Knowledge/Concepts/` | Canonical source of truth — AI PM mission, public-facing work, stable contact profiles | [Your Name] (deliberate) |
 
 **Rule on conflict: AI Product Lab wins. Always.**
 
@@ -49,7 +49,7 @@ Read all entries in `MEMORY.md`. Flag any entry that:
 
 ### Step 2 — Scan AI Product Lab Knowledge (10 min)
 - [ ] `Knowledge/People/` — do profiles match auto-memory? Update if diverged.
-- [ ] `Knowledge/Concepts/pm-decisions-log.md` — are recent durable decisions logged here in PD-TOL? Promote from auto-memory if not.
+- [ ] `Knowledge/Concepts/pm-decisions-log.md` (local, gitignored) — are recent durable decisions logged here in PD-TOL? Promote from auto-memory if not.
 - [ ] `Knowledge/Reference/` — is anything out of date?
 
 ### Step 3 — Promote durable decisions (10 min)

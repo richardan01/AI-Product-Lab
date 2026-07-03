@@ -60,7 +60,7 @@ Gordon runs warm-intro path-finding only *after* the artifacts exist. The artifa
 
 ## OS hygiene — loop-closure backlog (from 2026-06-10 OS audit) #p1
 
-> Source: full OS audit 2026-06-10. Gate machinery fixed same day (markers now written by `/riddler` + `/vale`, gate-merge disarms, `disable-model-invocation` flags added, plaintext credentials purged from local settings). Remaining queue:
+> Source: full OS audit 2026-06-10. Gate machinery fixed same day (markers now written by `/riddler` + `/vale`, gate-merge disarms, `disable-model-invocation` flags added). Remaining queue:
 
 - [ ] **Apply gate-group remediations + re-run the suite** #p1 — Vale persona (schema verbatim + no-naming-siblings), dispatcher-owned `verdict_file`, inline F2 fixture. First run 2026-06-10: 6/8 provisional fail; C2/C4 core passed. See `Evals/gate-group/results/2026-06-10_claude-fable-5.md`.
 - [ ] **Research-synthesis suite first run** #p2 — never run; 60-day cadence clock never started.
@@ -93,4 +93,4 @@ Gordon runs warm-intro path-finding only *after* the artifacts exist. The artifa
 
 ## Related
 
-[[Projects/ralph/brief]] · [[Agents/Gotham/Computer/bruce-wayne]] · [[Agents/Gotham/Computer/lucius-fox]] · [[Agents/Gotham/Computer/alfred]] · [[Evals/regeval/regeval-suite]] · [[Tasks/index]]
+[[Projects/ralph/brief]] · [[Agents/Gotham/Computer/bruce-wayne]] · [[Agents/Gotham/Computer/lucius-fox]] · [[Agents/Gotham/Computer/alfred]] · [[Evals/regeval/regeval-suite]]

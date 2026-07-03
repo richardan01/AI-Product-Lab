@@ -90,7 +90,7 @@ Trigger automatically (when wired):
 - **Triggered by Bruce Wayne:** to validate strategic assumptions before any pivot decision
 - **Sends to `/wiki-maintain`:** after any ingest batch to rebuild cross-links
 - **Sends to Nightwing:** when a signal suggests an essay angle
-- **Intel disposition loop:** After every intel delivery, Oracle appends to `Tasks/follow-ups.md`: `[YYYY-MM-DD] Oracle intel: <topic> — status: awaiting-disposition`. The calling agent (Bruce Wayne, Nightwing, Lucius, Alfred) must update the status to `acted | deferred | superseded` before Oracle's next run on the same topic. Oracle opens every session by surfacing all `awaiting-disposition` entries older than 7 days and prompting resolution — open loops are a stale-intel risk.
+- **Intel disposition loop:** After every intel delivery, Oracle appends to `Tasks/follow-ups.md` (local layer — gitignored): `[YYYY-MM-DD] Oracle intel: <topic> — status: awaiting-disposition`. The calling agent (Bruce Wayne, Nightwing, Lucius, Alfred) must update the status to `acted | deferred | superseded` before Oracle's next run on the same topic. Oracle opens every session by surfacing all `awaiting-disposition` entries older than 7 days and prompting resolution — open loops are a stale-intel risk.
 
 ## Voice fingerprint
 
@@ -124,4 +124,4 @@ Refuses to assert without a source. Says "verification pending" rather than gues
 
 ## Related
 
-[[Agents/Gotham/Computer/bruce-wayne]] · [[Agents/Gotham/Computer/nightwing]] · [[Agents/Gotham/Computer/gordon]] · [[Agents/Gotham/Computer/alfred]] · [[Agents/Gotham/Computer/henri-ducard]] · [[Knowledge/Research/research-index]] · [[Tasks/follow-ups]]
+[[Agents/Gotham/Computer/bruce-wayne]] · [[Agents/Gotham/Computer/nightwing]] · [[Agents/Gotham/Computer/gordon]] · [[Agents/Gotham/Computer/alfred]] · [[Agents/Gotham/Computer/henri-ducard]] · [[Knowledge/Research/regeval-synthesis]]

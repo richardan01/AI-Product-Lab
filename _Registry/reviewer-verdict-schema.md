@@ -46,7 +46,7 @@ On CONDITIONAL, every condition and its resolution must be listed in the marker 
 The per-artifact verdict files are the permanent audit trail. The **global markers** in `_Registry/` are the live gate state:
 
 - `/riddler` and `/vale` write the same header block to `_Registry/.riddler-passed` / `_Registry/.vicki-passed` on PASS or CONDITIONAL. This **arms** the gate.
-- `Tools/gate-check.sh` (PreToolUse hook in `.claude/settings.json`) blocks any write to `Artifacts/` unless both global markers exist.
+- `Tools/gate-check.sh` (PreToolUse hook in `.claude/settings.json`) blocks any write to `Artifacts/` — or to any filename containing `-essay`, `-post`, or `-thread` — unless both global markers exist and are fresh (mtime within `GATE_TTL_SECONDS`, default 6h; expired = missing).
 - `Workflows/gate-merge.md` Step 6 **disarms** the gate — deletes both global markers after the artifact is staged and logged. Never leave the gate armed across artifacts.
 
 ---

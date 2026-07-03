@@ -1,10 +1,10 @@
 # RegEval — wall-clock budget tracker
 
-**Weekly cap:** 6 hr (per Q3 thesis allocation)
+**Weekly cap:** fixed (per Q3 thesis allocation)
 **Session cap:** 60 min / 12 experiments
 **Per-experiment cap:** 5 min target, 8 min hard kill
 
-The runner refuses new experiments once the session cap is hit. Weekly cap is enforced by you; if a week's row crosses 6 hr, RegEval is closed for the week — go work the canonical essay or technical depth.
+The runner refuses new experiments once the session cap is hit. Weekly cap is enforced by you; if a week's row crosses the cap, RegEval is closed for the week — go work the canonical essay or technical depth.
 
 ## Week log
 

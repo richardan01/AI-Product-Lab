@@ -51,7 +51,7 @@ Vicki runs **alongside** Riddler, not after. The two verdicts go back to Nightwi
 
 **Reads:** The artifact under review, any prior version for comparison
 
-**Writes:** Verdict inline in response (no file output needed — the verdict is short)
+**Writes:** The review inline, plus the mandatory verdict persistence on pass — `<artifact>.vicki-passed` next to the artifact and the `_Registry/.vicki-passed` gate marker (per `.claude/skills/vale/SKILL.md` and `_Registry/reviewer-verdict-schema.md`)
 
 **Tools:** Read, WebFetch (to check any links or references from a reader's perspective)
 

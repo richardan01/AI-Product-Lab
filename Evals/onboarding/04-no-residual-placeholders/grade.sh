@@ -2,6 +2,9 @@
 # Programmatic grader for eval 04 — no-residual-placeholders
 # Usage: grade.sh <repo-root> [--strict]
 #
+# --strict disables the annotated-deferral allowlist: deferred placeholders
+# ("# TODO: ask user" / "Unknown / TBD" lines) count as residue too.
+#
 # Exits 0 if all criteria pass; non-zero if any fail.
 # Prints one line per criterion in the form:
 #   C<N>: PASS|FAIL — <one-line reason>
@@ -25,6 +28,10 @@ MEM_OPCTX_MD="$ROOT/Memory/OPERATING_CONTEXT.md"
 # match the broader pattern (e.g. annotated deferrals, the literal
 # "# TODO: ask user" marker).
 ALLOWLIST_RE='# TODO: ask user|Unknown / TBD'
+if [ "$STRICT" = "--strict" ]; then
+  # Never-matching pattern: strict mode counts annotated deferrals as residue.
+  ALLOWLIST_RE='^\x01NEVER-MATCH\x01$'
+fi
 
 count_placeholders () {
   local file="$1"
@@ -54,7 +61,7 @@ count_placeholders () {
 PASS_ALL=0
 
 # C1 — CLAUDE.md placeholders
-PATTERN_C1='\[YOUR_[A-Z_]+\]|\[HEAD_OF_DEPT\]|\[STAKEHOLDER_[0-9]+\]|\[METRIC_[A-Z_0-9]+\]|\[PRIMARY_PURPOSE\]|\[YOUR_ANCHOR_PROJECT\]|\[YOUR_ROLE\]|\[YOUR_COMPANY\]|\[YOUR_MANAGER\]|\[YOUR_NAME\]|\[TARGET_COMPANY_INTERVIEWERS\]|\[your-[a-z-]+\]'
+PATTERN_C1='\[YOUR_[A-Z_]+\]|\[HEAD_OF_DEPT\]|\[STAKEHOLDER_[0-9]+\]|\[METRIC_[A-Z_0-9]+\]|\[PRIMARY_PURPOSE\]|\[YOUR_ANCHOR_PROJECT\]|\[YOUR_ROLE\]|\[YOUR_COMPANY\]|\[YOUR_MANAGER\]|\[YOUR_NAME\]|\[TARGET_COMPANY_INTERVIEWERS\]|\[your-[a-z0-9-]+\]'
 C1=$(count_placeholders "$CLAUDE_MD" "$PATTERN_C1")
 if [ "$C1" = "MISSING" ]; then
   echo "C1: FAIL — CLAUDE.md not found at $CLAUDE_MD"
@@ -109,7 +116,10 @@ fi
 # This is satisfied by definition of count_placeholders (the allowlist).
 # If any bare placeholder remains without "# TODO: ask user" or "Unknown / TBD"
 # nearby, it's a C1-C4 failure already. We surface C5 as PASS when C1-C4 pass.
-TOTAL_REMAIN=$(( C1 + C2 + C3 + C4 ))
+# A MISSING file counts as 1 (it is a failure, and bare "MISSING" would be
+# treated as an unset variable name by bash arithmetic — aborting under set -u).
+as_count () { case "$1" in MISSING) echo 1 ;; *) echo "$1" ;; esac; }
+TOTAL_REMAIN=$(( $(as_count "$C1") + $(as_count "$C2") + $(as_count "$C3") + $(as_count "$C4") ))
 if [ "$TOTAL_REMAIN" -eq 0 ]; then
   echo "C5: PASS — all surviving deferrals are annotated"
 else

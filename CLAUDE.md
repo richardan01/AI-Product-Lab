@@ -37,14 +37,14 @@ Two systems, different jobs. Do not let them overlap.
 - **Runtime auto-memory** (`MEMORY.md` index) — fast-write cache: session facts, formatting preferences, short-term project state. Claude writes here automatically.
 - **AI Product Lab Knowledge/** — canonical source for AI PM mission: people profiles, reference architecture, concepts, PD-TOL decisions. You write here deliberately.
 - **On conflict: AI Product Lab wins.** Auto-memory updates to match, not the other way around.
-- **Monthly consolidation:** `Workflows/memory-consolidation.md` — audit drift, promote durable decisions to `Knowledge/Concepts/pm-decisions-log.md`, delete duplicates.
+- **Monthly consolidation:** `Workflows/memory-consolidation.md` — audit drift, promote durable decisions to `Knowledge/Concepts/pm-decisions-log.md` (local, private — gitignored), delete duplicates.
 
 ## Quality gates
 - After PRD / business case / research → `/peer-review [file]`
 - Before engineering handoff → `/prd-readiness [file]`
 - Before decision from research → `/research-sufficiency [file]`
 - Before launch → `/go-nogo [project]`
-- **Before any AI PM public artifact ships** → invoke `Workflows/gate-dispatch.md` (runs Riddler + Vicki Vale in parallel) → then merge via `Workflows/gate-merge.md`. Both passes mandatory. PreToolUse hook in `.claude/settings.json` (→ `Tools/gate-check.sh`) blocks Write to `Artifacts/` without `.riddler-passed` + `.vicki-passed`.
+- **Before any AI PM public artifact ships** → invoke `Workflows/gate-dispatch.md` (runs Riddler + Vicki Vale in parallel) → then merge via `Workflows/gate-merge.md`. Both passes mandatory. PreToolUse hook in `.claude/settings.json` (→ `Tools/gate-check.sh`) blocks Write to `Artifacts/` (and to any `-essay`/`-post`/`-thread` filename) without fresh `.riddler-passed` + `.vicki-passed` markers (TTL 6h).
 
 ## Output defaults
 - Push back when I'm wrong. Sycophancy is anti-signal.
@@ -56,7 +56,7 @@ Two systems, different jobs. Do not let them overlap.
 ## DO NOT
 - Commit, push, or delete files without approval
 - Create `Projects/` files without a `brief.md`
-- Edit `Knowledge/People/` profiles without confirming
+- Edit `Knowledge/People/` profiles (local, private — gitignored) without confirming
 - Create new top-level folders — extend existing
 - Apply for any frontier-lab role cold (Gordon runs warm-intro path-finding first)
 - Ship any AI PM public artifact without both Riddler + Vicki Vale passes

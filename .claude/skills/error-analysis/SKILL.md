@@ -6,7 +6,7 @@ allowed-tools: Read, Glob, Grep, Edit, Write, Bash
 
 # /error-analysis — Find failure modes from real traces
 
-This skill turns a pile of captured traces into a named failure-mode taxonomy. It is the missing **Analyze** step in AIPM-OS's eval discipline. Without it, every eval is designed top-down against imagined failures.
+This skill turns a pile of captured traces into a named failure-mode taxonomy. It is the missing **Analyze** step in AI Product Lab's eval discipline. Without it, every eval is designed top-down against imagined failures.
 
 ## When to run
 - After `trace-collector` has accumulated ≥ 20 real traces for a suite
@@ -103,7 +103,7 @@ Update the CSV: for each trace included in this pass, fill `open_code_notes` wit
 
 ## Hard rules
 - Do NOT read existing eval criteria or sample-pass/fail files during open coding. They will bias the categories you invent.
-- Do NOT borrow taxonomies from outside AIPM-OS (no "hallucination/verbosity/refusal" lists).
+- Do NOT borrow taxonomies from outside AI Product Lab (no "hallucination/verbosity/refusal" lists).
 - Do NOT label or judge fix priorities during open coding. Saturation first, then planning.
 - A pass that produces zero failure modes is a valid result — write it up as "no failures observed in N traces" and propose making the suite harder, not easier.
 

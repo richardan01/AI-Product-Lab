@@ -43,12 +43,26 @@ if rg --fixed-strings "[Your name]" "${placeholder_files[@]}"; then
   exit 1
 fi
 
-# No day-job / employer / sibling-repo residue anywhere in tracked files.
-# (Case-insensitive; excludes this script itself.)
-residue_pattern='kpay|dayjob-active|cdp-feature|martech-cdp|Anthropic Singapore|Microsoft Singapore'
-if rg -i --glob '!scripts/check-repo.sh' "$residue_pattern" .; then
-  echo "Residue found matching: $residue_pattern" >&2
+# Generic residue guard (non-revealing patterns only — the private term list
+# lives in scripts/residue-terms.local, which is gitignored and never ships).
+# Note: "Day-job PM" personas in onboarding eval fixtures are intentional
+# fictional test data, so the pattern targets the private-layer file names,
+# not the generic phrase.
+generic_pattern='dayjob-active|cdp-implementation|cdp-specialist'
+if rg -i --glob '!scripts/*' "$generic_pattern" .; then
+  echo "Generic residue found matching: $generic_pattern" >&2
   exit 1
+fi
+
+# Private residue terms (optional, local-only): one extended-regex pattern per
+# line; blank lines and #-comments ignored. See scripts/residue-terms.local.example.
+local_terms_file="scripts/residue-terms.local"
+if [[ -f "$local_terms_file" ]]; then
+  local_pattern="$(grep -Ev '^\s*(#|$)' "$local_terms_file" | paste -sd'|' -)"
+  if [[ -n "$local_pattern" ]] && rg -i --glob '!scripts/*' "$local_pattern" .; then
+    echo "Private residue term matched (see $local_terms_file)." >&2
+    exit 1
+  fi
 fi
 
 echo "Repo proof-of-work checks passed."

@@ -3,32 +3,33 @@
 **Format:** `gold.jsonl` — one JSON object per line.
 
 ```json
-{"id": "reg-0001", "input": "<scenario text>", "gold_label": "accept|reject|abstain", "gold_rationale": "<one sentence>", "annotators": ["RC", "X"], "agreement": "unanimous|majority|tied"}
+{"id": "reg-0001", "input": "<scenario text>", "gold_label": "compliant|non-compliant|unclear", "gold_rationale": "<one sentence>"}
 ```
 
-**Domain:** regulated-fintech LLM output decisions (the RegEval thesis domain). Each item is a scenario where a downstream LLM is asked to produce a customer-facing answer, and the gold label is whether the *scaffold* should let the answer ship (`accept`), block it (`reject`), or refuse to decide (`abstain`).
+**Domain:** regulated-fintech LLM output decisions (the RegEval thesis domain). Each item is a scenario where a downstream LLM is asked to produce a customer-facing answer, and the gold label is whether the answer complies (`compliant`), violates (`non-compliant`), or cannot be decided from the scenario (`unclear`).
 
-## Day-30 target
+> **Label-vocabulary note:** the original Day-30 spec used `accept|reject|abstain`. The build settled on `compliant|non-compliant|unclear` (see experiments REV-006/REV-007); all shipped snapshots, the scorer, and the run log use the current vocabulary.
 
-- N ≥ 100 items
-- Annotators: 2 minimum, with documented inter-annotator agreement (Cohen's κ ≥ 0.70 between annotators before any item enters gold)
-- Item distribution: 40% accept · 40% reject · 20% abstain (do not over-weight the easy class)
-- Adversarial planted items: ≥ 10% of total (analogous to discovery-synthesis fixture practice)
+## Status (post-build — current as of 2026-06-28)
 
-## Build protocol
+- **Gold set exists since 2026-06-04** at N=100 (40 compliant / 40 non-compliant / 20 unclear), expanded via REV-007 from the original 30-item seed.
+- **Binary split (2026-06-28):** the 18 reconciled `unclear` items are quarantined by `score.py --binary`, leaving **82 binary in-sample items**; a separate **36-item author-constructed held-out set** (`heldout_v2.jsonl`, 20 unseen regimes) gates out-of-sample claims.
+- **What ships in this public repo:** the snapshots under `snapshots/` (including the full 100-item `2026-06-28_gold_pre-split.jsonl`) and the IAA sample under `iaa/`. The live working files (`gold.jsonl`, `heldout_v2.jsonl`) are local working copies — predictions against them ship in `experiments/.preds/`.
 
-1. Draft items in `_drafts/` (not in this folder until labelled).
-2. Two annotators label independently. Disagreements adjudicated by a third reader; if still tied, the item is excluded from gold (logged in `_excluded.md`).
-3. Promote labelled items into `gold.jsonl` only after κ ≥ 0.70 between annotators on the batch.
-4. Snapshot `gold.jsonl` weekly into `snapshots/YYYY-MM-DD.jsonl` so experiment lineage is reproducible.
+## Build protocol (as executed)
+
+1. Items drafted and labelled per batch; disagreements adjudicated (see `corrections-log.md` for the gold-cal-v1 relabels).
+2. IAA gate before promotion: Cohen's κ ≥ 0.70 between annotators on the batch.
+3. `gold.jsonl` snapshotted into `snapshots/YYYY-MM-DD*.jsonl` before any mid-week change, so experiment lineage stays reproducible.
+4. Held-out integrity: `heldout_v2` verified disjoint from the tuning set by item ID **and** text before any out-of-sample κ is cited (the FM-11 lesson — see `Evals/regeval/regeval-suite.md`).
 
 ## Files
 
-- `gold.jsonl` — the live gold set (does not yet exist; Day-30 deliverable)
-- `test_kappa.jsonl` — small fixture for verifying the κ implementation produces 0.40 ± 0.01 (see metric.md)
-- `_drafts/` — unlabelled candidates
-- `_excluded.md` — items rejected from gold, with reason
-- `snapshots/` — weekly snapshots for lineage
+- `snapshots/` — dated gold snapshots for lineage (**shipped**; `2026-06-28_gold_pre-split.jsonl` is the full 100-item set)
+- `iaa/` — inter-annotator agreement sample + protocol (**shipped**)
+- `corrections-log.md` — gold relabels with adjudication reasoning (**shipped**)
+- `gold.jsonl` — 100-item in-sample gold set (**shipped**; identical content to `snapshots/2026-06-28_gold_pre-split.jsonl` — the shipped file is the canonical working copy)
+- `heldout_v2.jsonl` — 36-item genuine held-out set (**local, not shipped**; labels stay local to prevent contamination; predictions ship in `experiments/.preds/`)
 
 ## Inter-annotator agreement
 
@@ -49,13 +50,12 @@ The dual-annotator requirement was implemented as follows:
 
 **Limitation:** The IAA sample covered only the binary classes (compliant / non-compliant). The `unclear` class was not represented in the 20-item sample. A follow-up IAA run on a mixed sample including `unclear` items is recommended before citing the gold set for external publication.
 
-**Items promoted to gold.jsonl:** All 70 expansion items passed the binary-class IAA gate. Items are tracked with `gold_label` and `gold_rationale` fields; `annotators` and `agreement` schema fields will be added in a future revision.
-
 ## Anti-patterns
 
 - Adding to `gold.jsonl` mid-week without a snapshot first (breaks lineage)
 - Single-annotator labels (Riddler will block any claim built on these)
 - Reusing draft items the scaffold author has already seen as labelled gold (leakage)
+- Citing out-of-sample κ before verifying held-out/tuning disjointness by ID + text (FM-11)
 
 ## Related
 

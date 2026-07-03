@@ -1,6 +1,6 @@
 # Evals
 
-This directory contains **offline audit suites** for the PM OS. They are not real-time response graders — there are no inline graders that automatically evaluate output as it's produced. This is intentional: grading in the same context window as authoring violates author/grader separation, which the eval protocol enforces as a hard requirement.
+This directory contains **offline audit suites** for AI Product Lab. They are not real-time response graders — there are no inline graders that automatically evaluate output as it's produced. This is intentional: grading in the same context window as authoring violates author/grader separation, which the eval protocol enforces as a hard requirement.
 
 ---
 

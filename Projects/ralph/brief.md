@@ -18,7 +18,7 @@ This is build infrastructure for Q3 thesis Pillar 1 (RegEval), not a standalone 
 
 ## Why it exists
 
-RegEval has a fixed 6 hrs/week build budget and a hard Day 60 invalidation gate. Hand-driving every build story burns that budget on orchestration overhead. Ralph automates the bootstrap and scaffold-variant stories so the scarce human hours go to judgment calls (labelling, gate review, kill/continue) rather than loop-running.
+RegEval has a fixed weekly build budget and a hard Day 60 invalidation gate. Hand-driving every build story burns that budget on orchestration overhead. Ralph automates the bootstrap and scaffold-variant stories so the scarce human hours go to judgment calls (labelling, gate review, kill/continue) rather than loop-running.
 
 ---
 

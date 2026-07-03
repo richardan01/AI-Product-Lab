@@ -45,8 +45,8 @@ Merge `issues[]` across all responses. When two agents flag the same location, k
 
 ```
 SHIP    →  Riddler == pass   AND  Vale == read
-REVISE  →  any conditional  OR  skim  OR  (issues present but all minor)
-BLOCK   →  any block  OR  bounce  OR  Riddler.depth_gap_flag == true
+REVISE  →  any conditional  OR  skim  OR  bounce  OR  (issues present but all minor)
+BLOCK   →  any block  OR  Riddler.depth_gap_flag == true
 ```
 
 Evaluate in precedence **BLOCK > REVISE > SHIP** — any BLOCK condition wins regardless of other verdicts.

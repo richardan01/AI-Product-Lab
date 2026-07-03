@@ -2,7 +2,7 @@
 
 ## What this tests
 
-The interactive onboarding workflow (`Workflows/interactive-onboarding.md`) is the first thing a new user runs after downloading the PM OS. If it produces a coherent, persona-appropriate, placeholder-free configuration, the rest of the OS works. If it doesn't, the user gets stuck on day 1.
+The interactive onboarding workflow (`Workflows/interactive-onboarding.md`) is the first thing a new user runs after downloading AI Product Lab. If it produces a coherent, persona-appropriate, placeholder-free configuration, the rest of the OS works. If it doesn't, the user gets stuck on day 1.
 
 This suite tests both:
 - The **outputs** of onboarding (`CLAUDE.md`, `GOALS.md`, `Tasks/active.md`, etc.) against pass criteria that catch the failure modes most likely to block a fresh-clone user.

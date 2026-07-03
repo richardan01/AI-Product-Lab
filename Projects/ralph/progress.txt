@@ -6,7 +6,7 @@
 ## 2026-05-23 — INIT
 Ralph loop initialised. 7 stories in prd.json. 0 done, 0 blocked, 7 pending.
 Bootstrap phase: REV-001 (gold dataset) → REV-002 (baseline scaffold) → REV-003 (first run).
-Day 60 gate: 2026-06-30. Weekly budget: 6 hrs.
+Day 60 gate: 2026-06-30. Weekly budget: fixed cap (per thesis).
 
 ## 2026-05-23 13:14 UTC [SESSION-20260523-211439] — RECOVER:REV-001
 Reset orphaned in-progress to pending (prior session crashed)

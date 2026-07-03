@@ -1,12 +1,12 @@
 ---
 name: eval-ci
-description: Lightweight regression sentinel for AIPM-OS. When workflows or skills mapped to an eval suite are edited, this skill registers a pending re-run and blocks /peer-review and /go-nogo from passing for artifacts citing that suite until a fresh eval run lands. Trigger on "register an eval rerun", "what suites need re-running", "is suite X stale", or automatically after edits to mapped files.
+description: Lightweight regression sentinel for AI Product Lab. When workflows or skills mapped to an eval suite are edited, this skill registers a pending re-run and blocks /peer-review and /go-nogo from passing for artifacts citing that suite until a fresh eval run lands. Trigger on "register an eval rerun", "what suites need re-running", "is suite X stale", or automatically after edits to mapped files.
 allowed-tools: Read, Glob, Grep, Edit, Write, Bash
 ---
 
-# /eval-ci — Regression sentinel for AIPM-OS
+# /eval-ci — Regression sentinel for AI Product Lab
 
-A real CI pipeline runs evals automatically on every change. AIPM-OS has no build server. This skill is the next best thing: a markdown ledger that tracks which suites are out of date and a contract that gates whose results are citable.
+A real CI pipeline runs evals automatically on every change. AI Product Lab has no build server. This skill is the next best thing: a markdown ledger that tracks which suites are out of date and a contract that gates whose results are citable.
 
 ## When to run
 - After editing a workflow or skill that maps to an eval suite (manual trigger; see "Automating registration with a hook" below to make this mechanical)

@@ -5,7 +5,7 @@ Append new entries below. Do not edit past runs — they are the historical reco
 > **Public template note**
 > Run result files and transcripts are intentionally gitignored (`Evals/*/results/*`).
 > The public repo stores suite structure and protocol only.
-> Private working copies should track the latest run evidence in Notion STATE or local result files.
+> Private working copies should track the latest run evidence in local result files.
 
 ---
 
@@ -94,7 +94,7 @@ Confidence interval: bootstrap with B = 20000 resamples over the labeled example
 
 ---
 
-*The entry above is a worked sample, not the latest run. In a private working copy, the next run fires on the 60-day cadence or the next model upgrade, whichever comes first; current run evidence is tracked locally / in Notion STATE per the public template note above.*
+*The entry above is a worked sample, not the latest run. In a private working copy, the next run fires on the 60-day cadence or the next model upgrade, whichever comes first; current run evidence is tracked locally per the note above.*
 
 ---
 
@@ -189,7 +189,7 @@ Confidence interval: bootstrap with B = 20000 resamples over the labeled example
 - P1: severity guidance (Must Fix = blocks stated purpose) + explicit cross-section quantity-consistency pass
 - P2: checklist items state what added content must contain
 
-**Result file:** `peer-review/results/2026-06-11_claude-sonnet-4-6.md` *(committed despite results gitignore — run evidence, private working copy)*
+**Result file:** `peer-review/results/2026-06-11_claude-sonnet-4-6.md` *(local, not shipped — results/ is gitignored in this public repo)*
 
 ---
 
@@ -239,7 +239,7 @@ Confidence interval: bootstrap with B = 20000 resamples over the labeled example
 - P1: Clean-fixture threshold — extend information-presence principle to Should Fix (information present under different heading = Nice to Fix, not Should Fix)
 - P2: Flag unsourced quantified claims ("78% of X" with no data source)
 
-**Result file:** `peer-review/results/2026-06-12_claude-sonnet-4-6_r2.md` *(committed per private working copy policy)*
+**Result file:** `peer-review/results/2026-06-12_claude-sonnet-4-6_r2.md` *(local, not shipped — results/ is gitignored in this public repo)*
 
 ---
 

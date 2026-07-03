@@ -84,7 +84,7 @@ Every public artifact goes through two mandatory gates before shipping:
 - **Riddler** — adversarial review: "find every way this could be wrong or misleading"
 - **Vicki Vale** — reader-voice review: "would a stranger stick with this past the first paragraph"
 
-Both must pass. A PreToolUse hook in `.claude/settings.json` runs `Tools/gate-check.sh`, which blocks writes to `Artifacts/` without `.riddler-passed` + `.vicki-passed` markers. The gate verdicts themselves are committed (see `Evals/regeval/.riddler-passed`) so the review trail is inspectable.
+Both must pass. A PreToolUse hook in `.claude/settings.json` runs `Tools/gate-check.sh`, which blocks writes to `Artifacts/` — and to any filename containing `-essay`, `-post`, or `-thread` — unless `.riddler-passed` + `.vicki-passed` markers are present and fresh (6h TTL). The gate verdicts themselves are committed (see `Evals/regeval/.riddler-passed`) so the review trail is inspectable.
 
 ### Eval discipline layer (`Evals/`, `.claude/agents/`)
 
@@ -92,7 +92,7 @@ Beyond the flagship: 8+ eval suites with planted-flaw inputs and answer keys, a 
 
 ### Skill library (`.claude/skills/`)
 
-Reusable skill files for recurring workflows: `/peer-review`, `/prd-readiness`, `/regeval-run`, `/judge-calibration`, `/error-analysis`, `/eval-ci`, `/memory-consolidation`, and more. Each skill is a SKILL.md file with frontmatter, procedure, and output shape.
+Reusable skill files for recurring workflows: `/peer-review`, `/prd-readiness`, `/judge-calibration`, `/error-analysis`, `/eval-ci`, and more. Each skill is a SKILL.md file with frontmatter, procedure, and output shape. The RegEval experiment loop and monthly memory consolidation are workflow specs (`Workflows/regeval-run.md`, `Workflows/memory-consolidation.md`), invoked by name rather than as slash commands.
 
 ---
 

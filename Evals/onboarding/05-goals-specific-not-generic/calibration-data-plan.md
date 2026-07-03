@@ -1,6 +1,6 @@
 # Calibration data plan — eval 05 (goals-specific-not-generic)
 
-This is the first eval in the PM OS to receive a calibrated LLM-as-judge. The criterion is the most subjective in the onboarding suite (highest grading variance), so calibration pays off most here.
+This is the first eval in AI Product Lab to receive a calibrated LLM-as-judge. The criterion is the most subjective in the onboarding suite (highest grading variance), so calibration pays off most here.
 
 ## Target corpus
 - **30 Pass** labeled examples (30/60/90 outcomes that are specific, deliverable-named, derived from user input)

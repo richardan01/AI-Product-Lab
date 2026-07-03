@@ -12,6 +12,8 @@ Agents/_archive/
 # Eval results + primary datasets (private working copies — gitignored by design)
 Evals/*/results/
 Evals/*/inputs/*.jsonl
+# gold.jsonl ships (100-item in-sample set = same content as inputs/snapshots/2026-06-28_gold_pre-split.jsonl)
+!Evals/regeval/inputs/gold.jsonl
 Evals/memory-consolidation/inputs/*/
 
 # Python bytecode
@@ -23,3 +25,6 @@ __pycache__/
 *.local
 settings.local.json
 *.bak
+
+# Private residue term list for scripts/check-repo.sh — never commit
+scripts/residue-terms.local

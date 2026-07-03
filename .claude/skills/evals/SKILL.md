@@ -1,7 +1,7 @@
 ---
 name: evals
 description: >
-  Design, run, and iterate on eval suites for the AIPM-OS portfolio lab.
+  Design, run, and iterate on eval suites for AI Product Lab.
   Trigger whenever the operator asks to write evals, test a skill, benchmark a workflow,
   measure model+harness quality, build pass criteria, run regression tests after
   a model release, or quantify whether an automation is "100% there" (Cat Wu's
@@ -13,7 +13,7 @@ description: >
   and any repeatable AI workflow being hardened toward 100% reliability.
 ---
 
-# Evals Skill — AIPM-OS portfolio lab edition
+# Evals Skill — AI Product Lab edition
 
 ## Purpose
 
@@ -429,7 +429,7 @@ production users. Three deployment modes:
 | **Data** | Curated test cases | Sampled production traffic | 100% of live traffic |
 | **On failure** | Block merge | Trigger an alert | Block response, retry, or fallback to alternative |
 
-**For AIPM-OS workflows:**
+**For AI Product Lab workflows:**
 - **CI/CD**: Before pushing any skill update, run the full eval suite. A failed
   eval blocks the skill from being deployed to production prompts. This is what
   `/eval-ci` + `_pending-reruns.md` enforce — a mapped source-file edit blocks

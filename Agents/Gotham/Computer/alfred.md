@@ -51,7 +51,7 @@ Trigger automatically (when wired):
 
 **Reads:** Google Calendar, Gmail, Notion (people / projects), Linear, `Tasks/active.md`, `Agents/Gotham/Computer/Bruce-Wayne/thesis-*.md`, `Meetings/1on1s/*.md`, `Meetings/one-offs/*.md`, GOALS.md
 
-**Writes (sole owner):** `Meetings/standups/*.md` (daily brief outputs), `Tasks/follow-ups.md`, `Agents/Gotham/Computer/Bruce-Wayne/cadence-tracker.md` (weekly thesis-signpost status)
+**Writes (sole owner):** daily brief outputs, `Tasks/follow-ups.md`, and the weekly thesis-signpost cadence tracker (all local layer — gitignored, not shipped in this public repo)
 
 **Tools:** Read, Write, Edit, Google Calendar MCP, Gmail MCP, Notion MCP (read), Linear MCP (read)
 
@@ -120,4 +120,4 @@ Never abbreviates the name in writing. Never uses emoji. Never opens with "Hey."
 
 ## Related
 
-[[Agents/Gotham/Computer/bruce-wayne]] · [[Agents/Gotham/Computer/oracle]] · [[Tasks/active]] · [[Tasks/follow-ups]]
+[[Agents/Gotham/Computer/bruce-wayne]] · [[Agents/Gotham/Computer/oracle]] · [[Tasks/active]]

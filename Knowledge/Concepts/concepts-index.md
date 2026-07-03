@@ -11,16 +11,16 @@ Cross-cutting patterns and mental models that aren't a person, a domain artifact
 | File | Pattern | First seen | Related |
 |---|---|---|---|
 | [[Knowledge/Concepts/gate-pattern\|gate-pattern]] | Riddler + Vicki Vale + Henri Ducard pre-publish gate | Workflows/gate-dispatch | Riddler, Vicki Vale, all public artifacts |
-| [[Knowledge/Concepts/pm-decisions-log\|pm-decisions-log]] | PD-TOL decision log — AI PM judgment record (local, private) | Jun 2026 | [[Skills/principal-pm-writing]] |
+| [[Knowledge/Concepts/pm-decisions-log\|pm-decisions-log]] | PD-TOL decision log — AI PM judgment record (local, private) | Jun 2026 | — |
 
 ---
 
 ## Filing rules
 
 - One file per distinct pattern or concept
-- Link from every PRD, essay, or eval that uses the concept back to here (per `Knowledge/index.md` cross-reference rules)
+- Link from every PRD, essay, or eval that uses the concept back to here
 - Include: what the pattern is, where it came from, when to use it, tradeoffs
 
 ## Related
 
-[[Knowledge/index]] · [[Knowledge/Research/research-index]] · [[Agents/Gotham/Computer/oracle]] · [[Workflows/index]]
+[[Knowledge/Research/regeval-synthesis]] · [[Agents/Gotham/Computer/oracle]] · [[Workflows/index]]

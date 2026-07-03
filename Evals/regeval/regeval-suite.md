@@ -40,7 +40,7 @@ Definition + computation: see [metric.md](metric.md).
 |---|---|---|
 | Per experiment | ≤ 5 min wall clock end-to-end | hard kill at 8 min |
 | Per session | ≤ 60 min (12 experiments) | walk away after |
-| Per week | ≤ 6 hr (Q3 thesis allocation) | RegEval cannibalises nothing else |
+| Per week | fixed cap (Q3 thesis allocation) | RegEval cannibalises nothing else |
 
 If an experiment exceeds 8 min, it is *discarded as a failed experiment*, not extended. Karpathy principle: unbounded effort dilutes all pillars.
 
@@ -104,6 +104,6 @@ Evals/regeval/
 
 - [Q3 thesis — Day-30 signpost](../../Agents/Gotham/thesis-q3-2026.md)
 - [Karpathy autoresearch](https://github.com/karpathy/autoresearch)
-- [model-eval-design skill](../../.claude/skills/model-eval-design/) — judge-alignment methodology
-- [run-evals skill](../../.claude/skills/run-evals/) — author/grader separation enforcement
+- [judge-calibration skill](../../.claude/skills/judge-calibration/SKILL.md) — judge-alignment methodology
+- [eval-runner](../../.claude/agents/eval-runner.md) / [eval-grader](../../.claude/agents/eval-grader.md) — author/grader separation enforcement
 - discovery-synthesis suite — private companion eval (different harness, same discipline; not included in this public repo)

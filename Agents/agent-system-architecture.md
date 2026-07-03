@@ -141,22 +141,16 @@ All inter-agent coordination flows through shared files.
 
 Isolated workers that agents spawn for parallel data gathering and drafting.
 
+This public repo ships the eval trio (`.claude/agents/`); further general-purpose workers (task/meeting/metrics readers, profilers, drafters) live in the private local layer and are not committed.
+
 | Sub-Agent | Model | Spawned by | Purpose |
 |-----------|-------|-----------|---------|
-| task-analyzer | Haiku | `/today`, `/retro` | Parse tasks, calculate velocity |
-| meeting-scanner | Haiku | `/meeting-prep`, `/weekly-update` | Scan meetings, extract action items |
-| metrics-reader | Haiku | `/weekly-update` | Read metrics from files + MCPs |
-| risk-reader | Haiku | `/risk-register`, `/go-nogo` | Scan risks, fire escalation triggers |
-| research-worker | Sonnet | `/synthesize-research`, `/research-sufficiency` | Web and source research (isolated context) |
-| file-analyzer | Haiku | `/wiki-lint`, `/voice-conformance` | Validate file structure and quality |
-| project-scanner | Haiku | `/roadmap-review`, `/launch-plan` | Assess milestones and risks |
-| stakeholder-profiler | Sonnet | `/meeting-prep` | Build person context from history |
-| prd-drafter | Sonnet | `Templates/prd.md`, `/prd-readiness` | Draft and review structured documents |
-| tech-reviewer | Sonnet | `/build-review`, `/test-plan` | Analyze technical architecture |
-| notes-reader | Sonnet | `/retro`, `/wiki-maintain` | Read session notes and extract facts, decisions, untracked commitments |
+| eval-runner | Sonnet | `/evals` | Run a fixture, capture a verbatim transcript — never reads criteria or answer keys |
+| eval-grader | Sonnet | `/evals` | Grade a transcript against criteria only — never reads the workflow |
+| trace-collector | Haiku | `/evals`, `/error-analysis` | Sample recent outputs into `_traces/` for open coding |
 
 **Constraint:** Sub-agents are read-only. They return structured data to the parent skill. Only the parent skill decides what to write and where.
 
 ## Related
 
-[[Agents/index]] · [[HOW-IT-WORKS]] · [[CLAUDE]] · [[Workflows/index]] · [[Evals/index]] · [[_Registry/voice-map]]
+[[HOW-IT-WORKS]] · [[CLAUDE]] · [[Workflows/index]] · [[Evals/index]] · [[_Registry/voice-map]]

@@ -21,7 +21,7 @@ The design rationale, model selection, and the 4 agents deliberately left out of
 ### 2. Execution — Ralph, RegEval, and the eval suites
 
 - **Ralph** (`Projects/ralph/`) — the outer build loop: reads stories from `prd.json`, invokes Claude Code per story, enforces quality gates and HITL pauses (`ralph.sh`).
-- **RegEval** (`Evals/regeval/`) — the flagship: an LLM-as-judge framework for regulated-domain compliance classification. Real Python (`score.py`, `provenance.py`, `judge_vs_human.py`), a 100-item gold dataset, 20+ dated experiment write-ups, and a KEEP/HOLD/DISCARD log where the metric — not the author — is the reviewer. Inner loop spec: `Evals/regeval/runner.md` (`/regeval-run`).
+- **RegEval** (`Evals/regeval/`) — the flagship: an LLM-as-judge framework for regulated-domain compliance classification. Real Python (`score.py`, `provenance.py`, `judge_vs_human.py`), a 100-item gold snapshot (82 binary in-sample + 36 held-out after reconciliation), 17 dated experiment write-ups (18 log rows), and a KEEP/HOLD/DISCARD log where the metric — not the author — is the reviewer. Inner loop spec: `Evals/regeval/runner.md` (invoked via `Workflows/regeval-run.md`).
 - **Eval suites** (`Evals/`) — the meta-layer: the OS's own gates are eval'd with planted-flaw inputs and answer keys (`peer-review`, `prd-readiness`, `go-nogo`, `gate-group`, `onboarding`, …). Severity taxonomy, eval-CI staleness sentinel (`_ci-map.md`), and a bias-aware run log (`run-log.md`).
 
 Discipline rules that hold everywhere:
@@ -42,7 +42,7 @@ draft ready → Workflows/gate-dispatch.md
             → stage into Artifacts/ + log in _Registry/artifact-log.md
 ```
 
-The gate is **mechanical, not aspirational**: a PreToolUse hook (`.claude/settings.json` → `Tools/gate-check.sh`) blocks any write into `Artifacts/` unless both `_Registry/.riddler-passed` + `_Registry/.vicki-passed` markers are armed. The reviewer skills arm them on PASS; `gate-merge` disarms them after staging. Verdict format: `_Registry/reviewer-verdict-schema.md`.
+The gate is **mechanical, not aspirational**: a PreToolUse hook (`.claude/settings.json` → `Tools/gate-check.sh`) blocks any write into `Artifacts/` (or to any `-essay`/`-post`/`-thread` filename repo-wide) unless both `_Registry/.riddler-passed` + `_Registry/.vicki-passed` markers are armed and fresh (6h TTL). The reviewer skills arm them on PASS; `gate-merge` disarms them after staging. Verdict format: `_Registry/reviewer-verdict-schema.md`.
 
 ---
 
@@ -53,7 +53,7 @@ The lab runs on Karpathy's autoresearch shape: **one runner, one falsifiable met
 ## A typical loop, end to end
 
 1. Session starts → read thesis + `Tasks/active.md`.
-2. Lucius Fox runs `/regeval-run <candidate>` → experiment file + κ verdict → one line in `experiments/log.md`.
+2. Lucius Fox runs the regeval-run workflow on a candidate scaffold → experiment file + κ verdict → one line in `experiments/log.md`.
 3. A result worth publishing → Nightwing drafts → `gate-dispatch` → Riddler + Vale verdicts → `gate-merge` → staged in `Artifacts/`.
 4. Monthly: `Workflows/memory-consolidation.md` audits memory drift; `/retro` feeds the next thesis revision.
 

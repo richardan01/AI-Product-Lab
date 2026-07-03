@@ -23,7 +23,10 @@ eval was broken, and the discipline that caught it." Every beat serves that line
 ```bash
 python3 --version                                   # 1. python present
 python3 -c "import json; print('ok')"               # 2. stdlib only — no API key, no deps
-ls scaffolds/current.md inputs/heldout_v2.jsonl     # 3. binary champion + genuine held-out present
+ls scaffolds/current.md inputs/gold.jsonl           # 3a. champion scaffold + in-sample gold present
+                                                    #     (gold.jsonl ships in the public repo; 100 items, pre-split)
+ls inputs/heldout_v2.jsonl                          # 3b. genuine held-out present (local working file —
+                                                    #     not shipped; required for the held-out beats below)
 python3 score.py --slug binary-v1 \
   --pred experiments/.preds/2026-06-28-binary-v1-holdout.jsonl \
   --gold inputs/heldout_v2.jsonl --mode holdout --binary   # 4. dry-run the headline number
@@ -118,7 +121,10 @@ clear-cut cases is what you'd *expect* — this is not a production number, and 
 the close. What it *does* prove: binary judge, κ=1.000 in-sample on 82 items, and κ=1.000 on the
 genuine held-out — 36 scenarios it had never seen, across regimes it was never tuned on. And this is
 run by the *committed* scorer against the *committed* scaffold — `scaffolds/current.md` plus
-`score.py --binary` — so anyone can reproduce it from the repo. No number lives only in a slide.
+`score.py --binary`. The in-sample number is reproducible from the committed gold snapshot
+(`inputs/snapshots/2026-06-28_gold_pre-split.jsonl`); the held-out gold labels are a local working
+file (predictions ship in `experiments/.preds/`, the labels stay local), so the held-out run
+reproduces on my machine and on request, not from the public clone alone.
 Notice the scorer also drops the 18 quarantined items automatically and would penalise any hedge —
 there's no abstaining your way to a good score."
 
