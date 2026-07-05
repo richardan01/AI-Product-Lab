@@ -1,50 +1,50 @@
 # AI Product Lab
 
-![AI Product Management](https://img.shields.io/badge/AI%20Product%20Management-Proof%20of%20Work-blue)
+![AI Product Management](https://img.shields.io/badge/AI%20Product%20Management-Working%20Lab-blue)
 ![LLM Evals](https://img.shields.io/badge/LLM-Evals-purple)
 ![RegEval](https://img.shields.io/badge/RegEval-Flagship%20Project-green)
 ![Agentic Workflows](https://img.shields.io/badge/Agentic-Workflows-orange)
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 
-A public proof-of-work lab for AI Product Management, evals, agents, and measurable AI product artifacts.
+A working lab for practicing AI Product Management with real eval discipline — LLM evals, agentic workflows, quality gates, and measurable product artifacts, built and run in the open.
 
-AI Product Lab is a personal portfolio lab for building AI PM craft through AI product strategy, LLM evals, RegEval, quality gates, agentic workflows, Claude Code loops, public run logs, and measurable product artifacts.
+**The problem it works on.** AI products are easy to demo and hard to trust. The demo is the first 10%; the rest is a clear user problem, a falsifiable metric, quality gates, human review, and an honest log of what failed and what fixed it. This repo is where that after-the-demo discipline gets practiced on real work instead of described in the abstract.
 
-This is not the reusable PM workflow template. For that, use [PM Command Center](https://github.com/richardan01/PM-Command-Center). This repo is the applied lab: a flagship project, public artifact gates, eval loops, and career-positioning artifacts built and run in the open.
+This is not a reusable PM workflow template — for that, see [PM Command Center](https://github.com/richardan01/PM-Command-Center). This is the applied lab: a flagship eval project, artifact quality gates, and eval loops, built and run in the open.
 
-The Batman/Bruce Wayne layer is the routing metaphor: Batman means focused execution mode; Bruce Wayne means multi-year strategy. It supports the work, but the value proposition is the professional proof-of-work system.
+The Batman / Bruce Wayne layer is just the routing metaphor — Batman for focused execution, Bruce Wayne for long-range strategy. It organizes the work; it isn't the point of it. The substance is the eval and product work below.
 
 ---
 
 ## Start here
 
-- [`PROOF-OF-WORK.md`](PROOF-OF-WORK.md) — how this repo turns AI PM learning into inspectable portfolio evidence.
+- [`PROOF-OF-WORK.md`](PROOF-OF-WORK.md) — how the lab measures its own work: RegEval, the gates, and the run logs, and how they connect.
 - [`HOW-IT-WORKS.md`](HOW-IT-WORKS.md) — the architecture: agents, gates, evals, and how they compose.
 - [`Evals/regeval/regeval-suite.md`](Evals/regeval/regeval-suite.md) — the flagship RegEval methodology and acceptance criteria.
 - [`Evals/run-log.md`](Evals/run-log.md) — chronological eval and gate run history.
 - [`Projects/ralph/brief.md`](Projects/ralph/brief.md) — the RegEval/Ralph project brief.
 
-## What this proves
+## What's inside
 
-- I can design an eval loop.
-- I can define a falsifiable metric.
-- I can track failures and remediations.
-- I can use Claude Code as a workflow runtime.
-- I can turn AI PM learning into public proof-of-work.
+- An eval loop built on falsifiable metrics with explicit acceptance bars.
+- Failure-mode tracking, with logged remediations and reruns.
+- Two mandatory review gates on every public artifact.
+- Claude Code used as the workflow runtime.
+- A run log that keeps what was measured, what failed, and what changed visible over time.
 
 ---
 
 ## What this is
 
-AI Product Lab treats AI PM capability development the same way Karpathy treats autoresearch: one runner, one metric, fixed time budget, compounding log. Applied here, that means public AI product work gets built, measured, reviewed, logged, and improved over time.
+AI Product Lab treats AI PM practice the way Karpathy treats autoresearch: one runner, one metric, a fixed time budget, a compounding log. Applied here, that means AI product work gets built, measured, reviewed, logged, and improved over time.
 
-It is a lab, portfolio, and proof-of-work system. It is not primarily a generic operating system.
+It is a lab and a working log — not a generic operating system, and not a template to fork.
 
-The system runs on a single layer: the **Batman Strategic Layer** — 8 agents in `Agents/Gotham/Computer/` for AI PM mission work (flagship build, public voice, network, technical depth).
+The system runs on a single layer: the **Batman Strategic Layer** — 8 agents in `Agents/Gotham/Computer/` covering the day-to-day work (flagship build, writing, research, technical depth).
 
 ## Naming clarification
 
-This repo was formerly named AIPM-OS. The new name better reflects its purpose: a public AI Product Management lab focused on proof-of-work, evals, agents, and measurable artifacts.
+This repo was formerly named AIPM-OS. The new name better reflects what it is: an AI Product Management lab focused on evals, agents, and measurable artifacts.
 
 ---
 
@@ -69,7 +69,7 @@ The full design has 12 agents; 4 (network/negotiation/execution-mode/parallel-dr
 
 ### RegEval — the flagship project (`Projects/ralph/`, `Evals/regeval/`)
 
-An LLM-as-judge evaluation framework for regulated-domain compliance classification. The flagship proof that an AI PM can build and measure the thing they claim to understand.
+An LLM-as-judge evaluation framework for regulated-domain compliance classification. It's where the eval discipline in this repo is applied end to end — the thing the lab is built around.
 
 Three modules:
 1. **Provenance traces** — per-verdict run-lineage envelope (JSONL + human-readable cards)
@@ -106,7 +106,7 @@ This repo is intentionally personal and opinionated, but the pattern is portable
 4. `Projects/` — your flagship project (Ralph = RegEval here; name yours)
 5. `Evals/` — your own eval suites (keep the methodology; replace the domain)
 
-The Batman persona is the frame. The Karpathy compounding principle is the engine. For a reusable PM workspace rather than a personal portfolio lab, start from [PM Command Center](https://github.com/richardan01/PM-Command-Center).
+The Batman persona is the frame. The Karpathy compounding principle is the engine. For a reusable PM workspace rather than a personal working lab, start from [PM Command Center](https://github.com/richardan01/PM-Command-Center).
 
 ---
 
@@ -130,4 +130,4 @@ See `Knowledge/Research/regeval-synthesis.md` for the full research synthesis.
 
 ---
 
-*Built by an AI PM aspirant proving the thing they claim to understand.*
+*A personal working lab — updated as the work happens.*
