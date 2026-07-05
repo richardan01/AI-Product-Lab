@@ -22,6 +22,14 @@ Evals/memory-consolidation/inputs/*/
 __pycache__/
 *.pyc
 
+# Live publish-gate markers — runtime state, never commit. A committed marker
+# gets a fresh mtime on every checkout, permanently arming the gate.
+# (Per-artifact verdict files like Evals/regeval/.riddler-passed are audit
+# trail and DO ship — only the _Registry/ live markers are excluded.)
+_Registry/.riddler-passed
+_Registry/.vicki-passed
+_Registry/.vicki-bounced
+
 # Runtime / local
 .DS_Store
 *.local

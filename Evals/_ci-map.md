@@ -2,24 +2,19 @@
 
 Maps source files to eval suites. When a source file is edited, `/eval-ci register <suite> <source-file>` should be called to flag the suite as pending re-run. `/peer-review` and `/go-nogo` consult `_pending-reruns.md` before allowing any artifact to cite a suite's pass rate.
 
-Extend this table as new suites are added.
+Extend this table as new suites are added. Only map source files that actually exist — `Templates/` currently ships `experiment.md` and `public-artifact.md`; the doc-type templates (profile/synthesis/prd/research-summary) are not built yet, so they are not mapped.
 
 | Source file | Affected suite |
 |---|---|
 | Workflows/interactive-onboarding.md | onboarding |
-| Templates/profile.md | onboarding |
 | Evals/onboarding/04-no-residual-placeholders/grade.sh | onboarding |
 | .claude/skills/synthesize-research/SKILL.md | research-synthesis |
-| Templates/synthesis.md | research-synthesis |
 | .claude/skills/peer-review/SKILL.md | peer-review |
 | _Registry/reviewer-verdict-schema.md | peer-review |
 | Knowledge/Reference/ground-truth.md | peer-review |
 | .claude/skills/prd-readiness/SKILL.md | prd-readiness |
-| Templates/prd.md | prd-readiness |
-| Templates/prd-ai-feature.md | prd-readiness |
 | .claude/skills/go-nogo/SKILL.md | go-nogo |
 | .claude/skills/research-sufficiency/SKILL.md | research-sufficiency |
-| Templates/research-summary.md | research-sufficiency |
 | .claude/skills/build-review/SKILL.md | build-review |
 | Evals/severity-taxonomy.md | peer-review, prd-readiness, go-nogo, research-sufficiency, build-review |
 

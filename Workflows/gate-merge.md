@@ -73,7 +73,7 @@ Numbered, specific, each item assignable to Nightwing (rewrite) or Robin (mechan
 
 ### Step 6: Disarm the gate after staging (SHIP only)
 
-On SHIP, the reviewer skills have already armed the publish gate (`_Registry/.riddler-passed` + `_Registry/.vicki-passed` — written by `/riddler` and `/vale` per `_Registry/reviewer-verdict-schema.md`). After the final artifact is written into `Artifacts/`:
+On SHIP, the reviewer skills have already armed the publish gate (`_Registry/.riddler-passed` + `_Registry/.vicki-passed` — written by `/riddler` and `/vale` per `_Registry/reviewer-verdict-schema.md`). The hook binds each marker to the reviewed artifact: it reads the marker's `File:` line and blocks the write unless its basename matches the file being staged, so **the staged file must keep the exact filename that was reviewed** (rename before review, not after). If Vale returned her verdict inline only (`verdict_file: null`), re-run `/vale` so it writes `_Registry/.vicki-passed` — an inline `read` does not arm the gate. After the final artifact is written into `Artifacts/`:
 
 1. Confirm the per-artifact verdict files (`<artifact>.riddler-passed`, `<artifact>.vicki-passed`) sit next to the staged artifact — they are the permanent audit trail.
 2. Delete `_Registry/.riddler-passed` and `_Registry/.vicki-passed` to re-arm the gate for the next artifact. **Never leave the global markers in place** — an armed gate lets any file ship without review.

@@ -118,5 +118,5 @@ scaffold); neither calls the judge.
 
 - [regeval-suite.md](regeval-suite.md) — loop, budget, kill criteria
 - [Evals/regeval/metric.md](metric.md) — κ definition
-- [model-eval-design skill](../../.claude/skills/model-eval-design/) — judge-alignment methodology
+- [judge-calibration skill](../../.claude/skills/judge-calibration/) — judge-alignment methodology
 - [Q3 thesis Day-30 signpost](../../Agents/Gotham/thesis-q3-2026.md)

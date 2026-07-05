@@ -14,6 +14,8 @@ This directory contains **offline audit suites** for AI Product Lab. They are no
 | [`regeval/`](regeval/) | Varies | RegEval scaffold regressions and rubric quality drift | κ ≥ 0.80 |
 | [`gate-group/`](gate-group/) | Meta-eval | Gate-pipeline routing and reviewer-group failures | Defined in suite |
 
+_This is the curated primary set. Additional graded suites on disk (peer-review, prd-readiness, memory-consolidation, build-review, go-nogo, research-sufficiency) and the README-only `monitoring/` are in the canonical registry — see [`Evals/index.md`](index.md)._
+
 Each criterion folder contains:
 - `criteria.md` — the rubric (pass/fail/partial definitions)
 - `sample-pass.md` — anchored passing example

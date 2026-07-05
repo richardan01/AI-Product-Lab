@@ -20,6 +20,12 @@
 | peer-review (meta-eval) | 5 | CITABLE (0 ❌) | [[Agents/Gotham/Computer/riddler\|Riddler]] | [2026-06-23](Evals/run-log.md) · `opus-4-8` r2 · ✅ CITABLE (post-fix; synthesis 4/4, clean cleared, PRD recall fixed) |
 | prd-readiness (meta-eval) | 4 | CITABLE (0 ❌) | [[Agents/Gotham/Computer/lucius-fox\|Lucius Fox]] | [2026-06-23](Evals/run-log.md) · `opus-4-8` r2 · ✅ CITABLE (post-fix; AI gates added, clean→READY 12/12) |
 | [[Evals/memory-consolidation/memory-consolidation-suite\|memory-consolidation]] | 5 | ≥ 4/5 (01+02 mandatory) | [[Agents/Gotham/Computer/alfred\|Alfred]] | 2026-06-20 · `opus-4-8` · PASS · P 100% / R 95.2% (provisional-measured) _(result file local — results/ is gitignored)_ |
+| build-review (meta-eval) | on disk | — | [[Agents/Gotham/Computer/lucius-fox\|Lucius Fox]] | _not yet logged_ |
+| go-nogo (meta-eval) | on disk | — | [[Agents/Gotham/Computer/bruce-wayne\|Bruce Wayne]] | _not yet logged_ |
+| research-sufficiency (meta-eval) | on disk | — | [[Agents/Gotham/Computer/oracle\|Oracle]] | _not yet logged_ |
+| monitoring | README only — not yet a graded suite | — | — | — |
+
+This table is the canonical suite registry. `Evals/evals-hub.md` shows only the small curated set of primary/active suites.
 
 ---
 

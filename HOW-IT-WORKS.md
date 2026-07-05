@@ -42,7 +42,7 @@ draft ready → Workflows/gate-dispatch.md
             → stage into Artifacts/ + log in _Registry/artifact-log.md
 ```
 
-The gate is **mechanical, not aspirational**: a PreToolUse hook (`.claude/settings.json` → `Tools/gate-check.sh`) blocks any write into `Artifacts/` (or to any `-essay`/`-post`/`-thread` filename repo-wide) unless both `_Registry/.riddler-passed` + `_Registry/.vicki-passed` markers are armed and fresh (6h TTL). The reviewer skills arm them on PASS; `gate-merge` disarms them after staging. Verdict format: `_Registry/reviewer-verdict-schema.md`.
+The gate is **mechanical, not aspirational**: a PreToolUse hook (`.claude/settings.json` → `Tools/gate-check.sh`) blocks any Write/Edit/MultiEdit/NotebookEdit — and any Bash command that redirects/copies/moves — into `Artifacts/` (or to any `-essay`/`-post`/`-thread` filename repo-wide) unless both `_Registry/.riddler-passed` + `_Registry/.vicki-passed` markers are armed, fresh (6h TTL), and bound to the artifact being written (the marker's `File:` basename must match, and its `Verdict:` must be PASS/CONDITIONAL — an empty or mismatched marker never arms the gate). The reviewer skills arm them on PASS; `gate-merge` disarms them after staging. The hook fails closed on any internal error. Verdict format: `_Registry/reviewer-verdict-schema.md`.
 
 ---
 

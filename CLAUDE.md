@@ -34,7 +34,7 @@ All AI PM mission work (flagship project, canonical essay, frontier-lab intervie
 
 ## Memory
 Two systems, different jobs. Do not let them overlap.
-- **Runtime auto-memory** (`MEMORY.md` index) — fast-write cache: session facts, formatting preferences, short-term project state. Claude writes here automatically.
+- **Runtime auto-memory** (the harness `MEMORY.md` index — runtime-local, gitignored, not shipped in this repo) — fast-write cache: session facts, formatting preferences, short-term project state. Claude writes here automatically.
 - **AI Product Lab Knowledge/** — canonical source for AI PM mission: people profiles, reference architecture, concepts, PD-TOL decisions. You write here deliberately.
 - **On conflict: AI Product Lab wins.** Auto-memory updates to match, not the other way around.
 - **Monthly consolidation:** `Workflows/memory-consolidation.md` — audit drift, promote durable decisions to `Knowledge/Concepts/pm-decisions-log.md` (local, private — gitignored), delete duplicates.
@@ -44,7 +44,7 @@ Two systems, different jobs. Do not let them overlap.
 - Before engineering handoff → `/prd-readiness [file]`
 - Before decision from research → `/research-sufficiency [file]`
 - Before launch → `/go-nogo [project]`
-- **Before any AI PM public artifact ships** → invoke `Workflows/gate-dispatch.md` (runs Riddler + Vicki Vale in parallel) → then merge via `Workflows/gate-merge.md`. Both passes mandatory. PreToolUse hook in `.claude/settings.json` (→ `Tools/gate-check.sh`) blocks Write to `Artifacts/` (and to any `-essay`/`-post`/`-thread` filename) without fresh `.riddler-passed` + `.vicki-passed` markers (TTL 6h).
+- **Before any AI PM public artifact ships** → invoke `Workflows/gate-dispatch.md` (runs Riddler + Vicki Vale in parallel) → then merge via `Workflows/gate-merge.md`. Both passes mandatory. PreToolUse hook in `.claude/settings.json` (→ `Tools/gate-check.sh`) blocks Write/Edit/MultiEdit/NotebookEdit and Bash write-commands to `Artifacts/` (and to any `-essay`/`-post`/`-thread` filename) without `.riddler-passed` + `.vicki-passed` markers that are fresh (TTL 6h) and bound to that artifact (matching `File:` + PASS/CONDITIONAL verdict). Fails closed on error.
 
 ## Output defaults
 - Push back when I'm wrong. Sycophancy is anti-signal.
@@ -58,7 +58,7 @@ Two systems, different jobs. Do not let them overlap.
 - Create `Projects/` files without a `brief.md`
 - Edit `Knowledge/People/` profiles (local, private — gitignored) without confirming
 - Create new top-level folders — extend existing
-- Apply for any frontier-lab role cold (Gordon runs warm-intro path-finding first)
+- Apply for any frontier-lab role cold (warm-intro path-finding runs first — a manual step until the Gordon agent ships)
 - Ship any AI PM public artifact without both Riddler + Vicki Vale passes
 - Use Haiku in agentic loops with untrusted input
 

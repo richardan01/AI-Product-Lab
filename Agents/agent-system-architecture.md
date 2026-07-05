@@ -141,7 +141,7 @@ All inter-agent coordination flows through shared files.
 
 Isolated workers that agents spawn for parallel data gathering and drafting.
 
-This public repo ships the eval trio (`.claude/agents/`); further general-purpose workers (task/meeting/metrics readers, profilers, drafters) live in the private local layer and are not committed.
+This public repo ships all 14 worker sub-agents in `.claude/agents/` — the eval trio (eval-runner, eval-grader, trace-collector) plus the general-purpose workers (task/meeting/metrics/notes/risk readers, profilers, drafters, scanners, tech-reviewer, file-analyzer). Only the private local *layer* — the `Meetings/`, `Knowledge/People/`, and `Knowledge/Reference/` contents these workers read — is gitignored, not the workers themselves.
 
 | Sub-Agent | Model | Spawned by | Purpose |
 |-----------|-------|-----------|---------|
