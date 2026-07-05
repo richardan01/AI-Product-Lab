@@ -1,0 +1,49 @@
+name: Quality gates
+
+# Remote replay of the local quality gates. Each job is a thin wrapper around a
+# script in scripts/ so that CI runs exactly what the local hooks run (parity,
+# not a second implementation). See HOW-IT-WORKS.md and CLAUDE.md § Quality gates.
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  repo-hygiene:
+    name: Repo hygiene (residue / placeholders / required files)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ripgrep
+        run: sudo apt-get update && sudo apt-get install -y ripgrep
+      - name: Run check-repo.sh
+        run: bash scripts/check-repo.sh
+
+  artifact-gate:
+    name: Artifact gate (Riddler + Vicki Vale verdicts)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify every Artifacts/ file is gated
+        run: bash scripts/verify-artifact-gates.sh
+
+  eval-freshness:
+    name: Eval freshness (no stale citations)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check pending eval re-runs
+        run: bash scripts/check-eval-freshness.sh
+
+  markdownlint:
+    name: Markdown lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run markdownlint
+        run: npx --yes markdownlint-cli@0.39.0 "**/*.md" --ignore node_modules

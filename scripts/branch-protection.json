@@ -1,0 +1,20 @@
+{
+  "//": "Branch protection for main. Apply with: gh api -X PUT repos/richardan01/AI-Product-Lab/branches/main/protection --input scripts/branch-protection.json  (requires admin; GitHub Free cannot enforce protection on PRIVATE repos). The `contexts` strings must match the job `name:` fields in .github/workflows/quality-gates.yml exactly.",
+  "required_status_checks": {
+    "strict": true,
+    "contexts": [
+      "Repo hygiene (residue / placeholders / required files)",
+      "Artifact gate (Riddler + Vicki Vale verdicts)",
+      "Eval freshness (no stale citations)"
+    ]
+  },
+  "enforce_admins": true,
+  "required_pull_request_reviews": {
+    "required_approving_review_count": 1,
+    "dismiss_stale_reviews": true
+  },
+  "restrictions": null,
+  "required_linear_history": true,
+  "allow_force_pushes": false,
+  "allow_deletions": false
+}
