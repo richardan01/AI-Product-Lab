@@ -81,7 +81,7 @@ Smart Brevity for short-form. Specificity as the proxy for authority — not cla
 | Trigger | Skill | Condition |
 |---|---|---|
 | Any multi-agent-generated artifact before ship | `/voice-conformance` | Mandatory — confirm the assigned character voice held |
-| Any essay or post pre-ship | channel-format + distribution check _(no dedicated skill shipped — run inline)_ | For channel-specific format check and distribution plan |
+| Any essay or post pre-ship | channel-format + distribution check *(no dedicated skill shipped — run inline)* | For channel-specific format check and distribution plan |
 
 ### Hook triggers
 - **Pre-ship mandatory:** Riddler review (`.riddler-passed`) + Vicki Vale review (`.vicki-passed`) both required before any Write to a publishable path — enforced by the live `Tools/gate-check.sh` PreToolUse hook

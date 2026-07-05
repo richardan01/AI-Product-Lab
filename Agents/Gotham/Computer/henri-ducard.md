@@ -99,7 +99,7 @@ None — drills alone. Coordinates with Oracle (papers) and Riddler (stress-test
 | Trigger | Skill | Condition |
 |---|---|---|
 | Eval methodology review | `/eval-review <path>` | Before any eval run result is cited publicly or as a thesis signpost |
-| Technical depth session | inline drill _(no `/technical-depth-builder` skill shipped — run the drill directly)_ | On explicit "drill me on X" or when you're about to make a public technical claim |
+| Technical depth session | inline drill *(no `/technical-depth-builder` skill shipped — run the drill directly)* | On explicit "drill me on X" or when you're about to make a public technical claim |
 | Eval design session | `/evals` | When designing an eval suite from scratch or redesigning an existing one |
 
 ### Hook triggers
