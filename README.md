@@ -1,12 +1,11 @@
 # AI Product Lab
 
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
-![Focus](https://img.shields.io/badge/focus-AI%20Product%20Management-blue)
 ![Flagship](https://img.shields.io/badge/flagship-RegEval-green)
 
-AI Product Lab is a personal workshop for practising the craft of **AI product management** — the job of deciding what an AI product should do, and whether it's actually good enough to put in front of real people.
+AI Product Lab is a personal workshop for building small AI projects and finding out whether they actually work — not just whether they look impressive at first glance.
 
-Rather than just reading about that job, the work happens here in the open: small AI projects get built, tested properly to see whether they really work, and logged honestly — including what broke and how it got fixed.
+The real work starts after that first impression: measuring how often it gets things right, catching where it fails, and keeping an honest record of what broke and how it got fixed.
 
 New to this kind of repo? No problem. This page explains what it is and how it fits together, in plain language — no code required.
 
@@ -14,7 +13,7 @@ New to this kind of repo? No problem. This page explains what it is and how it f
 
 ## What this is, in one minute
 
-Most AI demos look amazing for five minutes and then fall apart the moment you trust them with something real. The interesting part of the job isn't the demo. It's everything after: *Is it right? How often is it wrong? Can it be proven? And what happens when it fails?*
+Most AI demos look amazing for five minutes and then fall apart the moment you trust them with something real. The interesting part isn't the demo. It's everything after: *Is it right? How often is it wrong? Can it be proven? And what happens when it fails?*
 
 This lab is where those questions get answered on real projects. Three things happen here, over and over:
 
@@ -108,7 +107,7 @@ And here's what lives in each main folder:
 
 ## A couple of notes
 
-- **It's a personal lab, not a product.** It's opinionated and shaped around one way of working, so it isn't meant to be installed or reused as-is — but you're welcome to look around and borrow ideas. For a reusable PM workspace instead, there's a companion project: [PM Command Center](https://github.com/richardan01/PM-Command-Center).
+- **It's a personal lab, not a product.** It's opinionated and shaped around one way of working, so it isn't meant to be installed or reused as-is — but you're welcome to look around and borrow ideas. For something built to be reused instead, there's a companion project: [PM Command Center](https://github.com/richardan01/PM-Command-Center).
 - **It used to be called AIPM-OS.** Same project, clearer name.
 
 ---
