@@ -105,11 +105,3 @@ And here's what lives in each main folder:
 | `Knowledge/` | Notes and research collected along the way |
 | `Templates/` | Reusable document skeletons |
 
-## A couple of notes
-
-- **It's a personal lab, not a product.** It's opinionated and shaped around one way of working, so it isn't meant to be installed or reused as-is — but you're welcome to look around and borrow ideas. For something built to be reused instead, there's a companion project: [PM Command Center](https://github.com/richardan01/PM-Command-Center).
-- **It used to be called AIPM-OS.** Same project, clearer name.
-
----
-
-*A personal working lab, updated as the work happens. Thanks for stopping by.*
