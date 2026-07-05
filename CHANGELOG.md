@@ -18,6 +18,26 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). This pr
 
 ### Changed
 - PM Command Center (`richardan01/PM-Command-Center`) consolidated into this repo and retired; AI Product Lab is now the single public PM-OS surface
+- Gate docs (`CLAUDE.md`, `HOW-IT-WORKS.md`, `Workflows/gate-merge.md`, reviewer skills) rewritten to describe the real hook behavior: all four write tools + Bash write-commands are gated, markers are per-artifact bound, and the hook fails closed
+- `Evals/index.md` is now the canonical suite registry (adds build-review / go-nogo / research-sufficiency / monitoring); `Evals/evals-hub.md` points at it instead of listing a divergent set
+
+### Fixed
+- **Adversarial review of the OS** (`/codex:adversarial-review`, 2026-07-05) — three parallel audits (structure, gate enforcement, skills/evals/memory). Reference/consistency fixes:
+  - Three wrong thesis paths (`alfred`, `nightwing`, `henri-ducard` pointed at a non-existent `Bruce-Wayne/` directory) and Nightwing's non-existent write dirs → corrected to real paths
+  - Vicki Vale model id `claude-sonnet-5` → `claude-sonnet-4-6` (matches the tier table)
+  - All 8 agent frontmatters normalized to `Batman Strategic Layer`
+  - Removed references to unshipped skills (`/technical-depth-builder`, `/model-eval-design`, `/public-artifact-publishing`) and broken `batman/` wikilinks
+  - Corrected the "ships only the eval trio" claim in `agent-system-architecture.md` (all 14 workers ship); reworded the Gordon and `MEMORY.md` lines to reflect what actually ships
+  - Removed 5 phantom `Templates/*` rows from `Evals/_ci-map.md`; pointed `concepts-index` at the shipped `pm-decisions-log.template.md`
+
+### Security
+- **Publish-gate hardening** (`Tools/gate-check.sh`, `.claude/settings.json`, `.gitignore`) — closed the bypasses the adversarial review found:
+  - Bash writes into gated paths (`cat > Artifacts/x.md`, `tee`, `cp`, `mv`, `sed -i`, `touch`) now blocked — the PreToolUse matcher previously excluded `Bash` entirely
+  - Markers are validated by content, not just mtime: a `touch`ed/empty marker no longer arms the gate; each marker is bound to the artifact filename it reviewed (`File:` basename + `Verdict: PASS|CONDITIONAL`), so one review can no longer ship a different unreviewed artifact
+  - Bash commands that create/modify the `_Registry` markers are blocked (the `rm` disarm stays allowed)
+  - Hook fails **closed** on malformed input, missing `file_path`, or any internal error; case-insensitive `Artifacts/` match; symlink-aware; `GATE_TTL_SECONDS` clamped to the 6h ceiling; no-`python3` shell fallback hardened to match
+  - Live `_Registry/.riddler-passed` / `.vicki-passed` / `.vicki-bounced` markers gitignored so a committed marker can't get a fresh mtime on checkout and permanently arm the gate
+  - Verified with a 15-case gate-check test matrix plus shell-fallback, fail-closed, and TTL-clamp cases
 
 ## [1.1.0] — 2026-07-02
 
