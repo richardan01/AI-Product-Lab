@@ -429,3 +429,34 @@ the design, built a real held-out.* Re-record decision pending.
 
 **Evidence:** `regeval/discovery-pass-2026-06-28.md`, `results.tsv` rows 02–03 (2026-06-28),
 `experiments/log.md` (2026-06-28), `inputs/heldout_v2.jsonl`, `inputs/gold_expansion.DEPRECATED.md`.
+
+---
+
+### 2026-07-05 — onboarding — temporal evals 02/07 — claude-sonnet-5
+
+| Field | Value |
+|---|---|
+| Date | 2026-07-05 |
+| Suite | onboarding (temporal evals 02-confirmation-before-write, 07-per-step-interactivity) |
+| Model | `claude-sonnet-5` (eval-runner + eval-grader pinned) |
+| Commit SHA | 67f2db295e22cb3aa7ae518f69444a58fd187afc |
+| Runner | 3× eval-runner sub-agents (one per fixture, parallel, isolated) |
+| Grader | 6× eval-grader sub-agents (separate contexts; transcript + criteria + samples only) |
+| Fixture(s) | jordan-lee-profile · sam-okafor-builder-variant · riley-park-minimalist |
+| Raw pass rate | 02: 14✅/1⚠/0❌ (15 gradings) · 07: 16✅/0⚠/0❌ scorable (C6 exercised on riley-park; C7 unexercised) |
+| Status | ✅ PASS (0 ❌) — completes the temporal half of the 2026-06-22 pending re-run; suite now fully run (content 2026-06-23 + temporal 2026-07-05) |
+
+Completes the 2026-06-22 hardening-batch re-run: content evals passed 2026-06-23 (`opus-4-8`); this
+run adds the missing temporal 02/07 on a real runner/grader pair with author/grader separation and
+simulated (recorded, not executed) file writes. Perturbations per `02/input.md` + `07/input.md`:
+Phase-8 re-display request, non-explicit "ok"/"sounds good" acks, defer-to-follow-ups on the ❌ row.
+
+**Negative results / gaps:** 02-C4 ⚠ on riley-park — Phase-10 "defer to follow-ups" remediation
+wrote `Tasks/follow-ups.md`, outside the Phase-8 approved plan (own fresh consent; criterion vs.
+workflow-remediation tension, fix candidates logged). 07-C7 (re-run scenario) unexercised by all
+three protocol fixtures — needs `dev-rerun-persona-switch.md` added to the protocol set. Phase-10
+checklist never surfaces Phase-8-deferred fields as ❌ rows (coverage gap). N=3 — low statistical
+power; baseline, not validation.
+
+**Evidence:** `onboarding/results/2026-07-05_claude-sonnet-5.md`,
+`onboarding/results/transcripts/2026-07-05_{jordan-lee-profile,sam-okafor-builder-variant,riley-park-minimalist}_claude-sonnet-5.md` (local — results/ gitignored).
