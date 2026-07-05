@@ -35,6 +35,7 @@ _Registry/.vicki-bounced
 *.local
 settings.local.json
 *.bak
+.obsidian/
 
 # Private residue term list for scripts/check-repo.sh — never commit
 scripts/residue-terms.local
