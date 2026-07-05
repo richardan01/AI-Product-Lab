@@ -104,4 +104,3 @@ And here's what lives in each main folder:
 | `Tools/` | The script that enforces those checks |
 | `Knowledge/` | Notes and research collected along the way |
 | `Templates/` | Reusable document skeletons |
-
