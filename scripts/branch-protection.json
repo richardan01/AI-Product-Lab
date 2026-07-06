@@ -1,11 +1,13 @@
 {
   "//": "Branch protection for main. Apply with: gh api -X PUT repos/richardan01/AI-Product-Lab/branches/main/protection --input scripts/branch-protection.json  (requires admin; GitHub Free cannot enforce protection on PRIVATE repos). The `contexts` strings must match the job `name:` fields in .github/workflows/quality-gates.yml exactly.",
-  "//required-checks-note": "'Eval freshness' is intentionally NOT required (2026-07-05): the onboarding suite's temporal evals (02/07) have been pending since 2026-06-23 and require a real eval-runner session to clear, not a code fix. Making it required would permanently block every future PR/merge until that separate task is done. It still runs and reports on every PR (see quality-gates.yml) -- add it back to `contexts` once Evals/_pending-reruns.md's onboarding row is cleared.",
+  "//required-checks-note": "As of 2026-07-06, eval freshness is expected to be required: the onboarding temporal eval gap called out on 2026-07-05 was cleared by the 2026-07-05 claude-sonnet-5 temporal run, and the gate-group rows were cleared by the 2026-07-06 post-remediation run. Keep this config in sync with .github/workflows/quality-gates.yml and Evals/_pending-reruns.md.",
   "required_status_checks": {
     "strict": true,
     "contexts": [
       "Repo hygiene (residue / placeholders / required files)",
-      "Artifact gate (Riddler + Vicki Vale verdicts)"
+      "Artifact gate (Riddler + Vicki Vale verdicts)",
+      "Eval freshness (no stale citations)",
+      "Markdown lint"
     ]
   },
   "enforce_admins": true,
