@@ -1,7 +1,8 @@
 # Active Tasks (Batman layer — AI PM mission)
 
-**Sprint:** Week of 2026-06-23
-**Focus:** Q3 thesis execution. The spine is RegEval. Day 30 review = DONE (2026-05-31, retroactive). Day 60 invalidation gate = 2026-06-30 (**tomorrow**). This gate cannot slip.
+**Snapshot updated:** 2026-07-06
+**Current focus:** RegEval proof packaging, public evidence clarity, and eval-loop closure.
+**Historical context:** This file previously tracked the week of 2026-06-23 and the Day 60 gate on 2026-06-30. That date has passed; unresolved items below are status-resolution and follow-up work, not "tomorrow" blockers.
 
 > Thesis: `Agents/Gotham/thesis-q3-2026.md`. Pillars below map 1:1 to it.
 
@@ -10,7 +11,7 @@
 ## Pillar 1 — RegEval (technical-depth flagship) #p0 #flagship
 
 **Day 30 target (2026-05-31):** scoping doc + 100-trace dataset hand-labeled.
-**Day 60 invalidation gate (2026-06-30):** record a 5-min demo you'd show a frontier-lab hiring manager without flinching. This one cannot slip.
+**Day 60 gate date (2026-06-30):** record a 5-minute RegEval demo worth showing a frontier-lab hiring manager.
 
 - [x] **Hand-label the trace dataset to 100 items** #p0 #flagship — 2026-05-29
   - Gold expanded to 100 items (40/40/20) via REV-007. IAA: blind model-annotator Cohen κ=1.000 on 20-item binary sample. Day-30 signpost HIT.
@@ -23,10 +24,10 @@
   - ALL THREE FUNCTIONAL. Abstention-as-class (v4 KEEP κ=0.820) · provenance traces (REV-008, `provenance.py`) · human-vs-judge CLI (REV-009, `judge_vs_human.py` — κ-live replay reconciles to logged κ=0.677 Δ=0.0002, all 12 acceptance checks PASS, partial-table refusal guard tested).
   - See: `Evals/regeval/experiments/2026-06-12-01-rev-009-human-vs-judge-cli.md`.
 
-- [ ] **Record the 5-minute RegEval demo (Day 60 gate artifact)** #p0 #flagship — ESCALATED 2026-06-23
-  - **Gate = 2026-06-30 (TOMORROW). This cannot slip.**
-  - **Worktree merge DONE** — commit 0b2c88e on branch `claude/eval-fixes-regeval-2026-06-23`; score.py + research-goal.md + held-out gate all on branch. Demo is UNBLOCKED. Only task left: hit record.
-  - **Option B locked 2026-06-12** — recording on `fable-judge-v1` (κ=0.677), narrated as "any logged run." Champion κ=0.820 is referenced in narration, not on screen. See `Evals/regeval/DEMO.md` for the full run sheet (pre-flight + 5 beats + honesty flags).
+- [ ] **Resolve the 5-minute RegEval demo artifact status** #p0 #flagship — STATUS RESOLUTION REQUIRED 2026-07-06
+  - The original Day 60 gate date, 2026-06-30, has passed. Resolve this item by linking the recorded demo, staging the gated artifact, or logging the explicit pivot/deferral decision.
+  - **Worktree merge DONE** — commit 0b2c88e on branch `claude/eval-fixes-regeval-2026-06-23`; score.py + research-goal.md + held-out gate all on branch. Demo preparation is unblocked; the remaining question is publication evidence.
+  - **Option B locked 2026-06-12** — recording on `fable-judge-v1` (κ=0.677), narrated as "any logged run." Champion κ=0.820 is referenced in narration, not on screen. See `Evals/regeval/DEMO.md` for the run sheet if present in the private working copy.
   - Recorded demo = public artifact → Riddler + Vicki Vale gates mandatory before it ships.
 
 ---
@@ -36,14 +37,14 @@
 **Day 30 target:** BruceWayneOS public + launch post; LinkedIn About/headline rewritten in Nightwing voice.
 **Day 60 target:** essay draft v1 (~4,000 words) Riddler-reviewed.
 
-- [~] **Ship BruceWayneOS publicly + launch post** #p2 #ai-pm — DEPRIORITISED 2026-06-16, gate-passed 2026-06-04, awaiting [Your Name] to publish
-  - RegEval launch README drafted (Nightwing), Riddler PASS + Vicki Vale PASS. Final staged at `Artifacts/strategy-docs/2026-06-04_regeval-readme_gate-passed.md`. Remaining: [Your Name] pushes to public repo / posts. Gate markers cleared after staging (gate re-armed).
+- [~] **Ship BruceWayneOS publicly + launch post** #p2 #ai-pm — DEPRIORITISED 2026-06-16, gate-passed 2026-06-04, awaiting manual publication
+  - RegEval launch README drafted (Nightwing), Riddler PASS + Vicki Vale PASS. Final staged at `Artifacts/strategy-docs/2026-06-04_regeval-readme_gate-passed.md`. Remaining: publish the gated artifact to the intended public surface. Gate markers cleared after staging.
 
-- [~] **Rewrite LinkedIn About + headline in Nightwing voice** #p2 #ai-pm — DEPRIORITISED 2026-06-16, gate-passed 2026-06-04, awaiting [Your Name] to publish
-  - Drafted, Riddler PASS + Vale PASS. Final staged at `Artifacts/strategy-docs/2026-06-04_linkedin-rewrite_gate-passed.md`. Remaining: [Your Name] updates LinkedIn headline + About. Prep note: have the discovery-synthesis eval suite ready if an interviewer asks to see it.
+- [~] **Rewrite LinkedIn About + headline in Nightwing voice** #p2 #ai-pm — DEPRIORITISED 2026-06-16, gate-passed 2026-06-04, awaiting manual publication
+  - Drafted, Riddler PASS + Vale PASS. Final staged at `Artifacts/strategy-docs/2026-06-04_linkedin-rewrite_gate-passed.md`. Remaining: update LinkedIn headline + About. Prep note: have the discovery-synthesis eval suite ready if an interviewer asks to see it.
 
 - [ ] **Canonical essay — draft v1 (~4,000 words), RegEval topic only** #p2 #ai-pm
-  - Day 60 milestone. No essay-writing on any other topic until v1 published (thesis constraint).
+  - Day 60 milestone follow-up. No essay-writing on any other topic until v1 is either published or explicitly descoped.
   - Dependency: RegEval substance must exist first — the essay is the artifact's companion.
 
 ---
@@ -51,10 +52,10 @@
 ## Pillar 3 — Network #p2 #ai-pm
 
 **Day 30 target:** target-contact CRM seeded; 2-degree warm-intro paths to the primary lab mapped.
-Gordon runs warm-intro path-finding only *after* the artifacts exist. The artifact is the warm intro. No cold applications, ever.
+Warm-intro path-finding starts only after the artifacts exist. The artifact is the warm intro. No cold applications, ever.
 
 - [ ] **Seed the target-contact CRM + map 2-degree warm-intro paths** #p2 #ai-pm
-  - Mapping/research only at this stage. Outreach waits for BruceWayneOS to ship.
+  - Mapping/research only at this stage. Outreach waits for the flagship proof packet to ship.
 
 ---
 
@@ -64,14 +65,14 @@ Gordon runs warm-intro path-finding only *after* the artifacts exist. The artifa
 
 - [x] **Apply gate-group remediations + re-run the suite** #p1 — closed 2026-07-06. Vale persona hardened (schema verbatim + no-naming-siblings + reader-experience-lane rule), F2 fixture inlined, eval-ci wired to auto-flag future gate-agent edits. r1 6/8 fail → one remediation round → r2 **7/8 PASS** (C2/C4 mandatory clean). One non-blocking follow-up opened: Ducard's gate-group responses prepend narrated reasoning before the JSON (C7 partial) — tracked in `Evals/failure-log.md`, not re-opening this item. See `Evals/gate-group/results/2026-07-06_post-remediation.md`.
 - [ ] **Research-synthesis suite first run** #p2 — never run; 60-day cadence clock never started.
-- [ ] **`/wiki-lint` + re-verify the 5 stale Knowledge pages** #p2 — People/Reference pages (local, private) last verified 2026-05-07 (34 days).
+- [ ] **`/wiki-lint` + re-verify the stale Knowledge pages** #p2 — People/Reference pages are local/private; latest public task evidence says they were last verified 2026-05-07.
 
 ---
 
 ## Dependencies & Risks to Watch
 
-- **Invalidation gate (2026-06-30, TOMORROW):** Can I record a 5-min RegEval demo I'd show a frontier-lab hiring manager without flinching? Yes → on track. No → pivot to BruceWayneOS-only, downshift to a B+ tier large-tech AI platform target, reassess in 30 days. ⚠️ DEMO.md v2 rewritten 2026-06-28 (binary collapse + integrity-catch story). Run Riddler + Vicki Vale re-gate TODAY (old passes void), then record. Run sheet at `Evals/regeval/DEMO.md`. **Merge is DONE** (commit 0b2c88e) — also run local git commit for repair files.
-- **Risk — RETIRED 2026-06-04:** κ gap closed. v4 KEEP at κ=0.820 via gold calibration. Residual: CI lower bound 0.720 means the result is ~2 relabels from slipping below bar on N=100 — durable demo needs the result to hold under a larger gold set. New watch: Day-60 demo now needs provenance traces + human-vs-judge CLI (abstention-as-class effectively done via the KEEP).
+- **Invalidation gate status (2026-06-30, elapsed):** Resolve the RegEval demo outcome explicitly. Either link the recorded artifact, run the public-artifact gates and stage it, or log the pivot decision. Leaving this as an open past-date item weakens the operating-discipline signal.
+- **Risk — RETIRED 2026-06-04:** κ gap closed. v4 KEEP at κ=0.820 via gold calibration. Residual: CI lower bound 0.720 means the result is about two relabels from slipping below bar on N=100 — durable demo needs the result to hold under a larger gold set.
 - **Budget discipline:** weekly budget fixed. On overrun, cut network + depth first; never cut RegEval build.
 - **Quality gate:** No public artifact ships without both Riddler + Vicki Vale passes.
 
