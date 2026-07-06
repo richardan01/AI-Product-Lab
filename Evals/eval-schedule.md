@@ -12,7 +12,7 @@ Cadence tracker for all offline eval suites. Update the "Last run" column after 
 | [[Evals/research-synthesis/research-synthesis-suite\|research-synthesis]] | 60 days | Model upgrade, research-synthesis workflow edit | _never_ | 2026-07-28 | Oracle |
 | [[Evals/discovery-synthesis/discovery-synthesis-suite\|discovery-synthesis]] | 60 days | Model upgrade, discovery workflow edit | _never_ | 2026-07-28 | Oracle |
 | [[Evals/regeval/regeval-suite\|regeval]] | per ralph run | After each experiment session | _per progress.txt_ | ongoing | Lucius Fox |
-| [[Evals/gate-group/gate-group-suite\|gate-group]] | 60 days | After any gate agent edit | _never_ | 2026-07-28 | Riddler |
+| [[Evals/gate-group/gate-group-suite\|gate-group]] | 60 days | After any gate agent edit | 2026-07-06 | 2026-09-04 | Riddler |
 
 ---
 

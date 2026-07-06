@@ -29,9 +29,23 @@ Install: pip install auditlog. The 2-minute quickstart is below.
 
 ## F2 — Data-pipeline demo README
 
-A thin, generic demo README (fictional fixture, inline below the suite's inputs).
+```
+# pipeline-demo
 
-**Stresses:** the standard 2-agent gate with mild disagreement — argument is reviewable but the opener is generic.
+This repo demonstrates a modern data pipeline built with best-in-class tooling.
+It ingests events, transforms them with dbt, and loads them into a warehouse for
+analytics. The pipeline is fast, reliable, and easy to extend.
+
+## Quickstart
+
+    docker compose up
+    make seed && make run
+
+Events flow from the generator into Kafka, land in staging tables, and dbt models
+materialize the marts. See docs/ for architecture notes.
+```
+
+**Stresses:** the standard 2-agent gate with mild disagreement — argument is reviewable but the opener is generic ("modern", "best-in-class", "fast, reliable, and easy to extend" are unsupported adjectives).
 
 ## F3 — Speculative-decoding post
 

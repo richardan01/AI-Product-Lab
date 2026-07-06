@@ -17,6 +17,13 @@ Extend this table as new suites are added. Only map source files that actually e
 | .claude/skills/research-sufficiency/SKILL.md | research-sufficiency |
 | .claude/skills/build-review/SKILL.md | build-review |
 | Evals/severity-taxonomy.md | peer-review, prd-readiness, go-nogo, research-sufficiency, build-review |
+| Agents/Gotham/Computer/riddler.md | gate-group |
+| Agents/Gotham/Computer/vicki-vale.md | gate-group |
+| Agents/Gotham/Computer/henri-ducard.md | gate-group |
+| Workflows/gate-dispatch.md | gate-group |
+| Workflows/gate-merge.md | gate-group |
+| Agents/Gotham/_shared/gate-response.schema.md | gate-group |
+| Agents/Gotham/_shared/gate-payload.schema.md | gate-group |
 
 ## Notes
 

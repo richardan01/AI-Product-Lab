@@ -62,7 +62,7 @@ Gordon runs warm-intro path-finding only *after* the artifacts exist. The artifa
 
 > Source: full OS audit 2026-06-10. Gate machinery fixed same day (markers now written by `/riddler` + `/vale`, gate-merge disarms, `disable-model-invocation` flags added). Remaining queue:
 
-- [ ] **Apply gate-group remediations + re-run the suite** #p1 — Vale persona (schema verbatim + no-naming-siblings), dispatcher-owned `verdict_file`, inline F2 fixture. First run 2026-06-10: 6/8 provisional fail; C2/C4 core passed. See `Evals/gate-group/results/2026-06-10_claude-fable-5.md`.
+- [x] **Apply gate-group remediations + re-run the suite** #p1 — closed 2026-07-06. Vale persona hardened (schema verbatim + no-naming-siblings + reader-experience-lane rule), F2 fixture inlined, eval-ci wired to auto-flag future gate-agent edits. r1 6/8 fail → one remediation round → r2 **7/8 PASS** (C2/C4 mandatory clean). One non-blocking follow-up opened: Ducard's gate-group responses prepend narrated reasoning before the JSON (C7 partial) — tracked in `Evals/failure-log.md`, not re-opening this item. See `Evals/gate-group/results/2026-07-06_post-remediation.md`.
 - [ ] **Research-synthesis suite first run** #p2 — never run; 60-day cadence clock never started.
 - [ ] **`/wiki-lint` + re-verify the 5 stale Knowledge pages** #p2 — People/Reference pages (local, private) last verified 2026-05-07 (34 days).
 
