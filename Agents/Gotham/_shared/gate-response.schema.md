@@ -35,6 +35,10 @@ Each agent uses its own verdict axis. The merger (`Workflows/gate-merge.md`) map
 | `vicki-vale` | `read` · `skim` · `bounce` | Reader attention — does the artifact earn the read |
 | `henri-ducard` | `drill-required` · `cleared` | Technical-depth gap fixability (conditional gate only) |
 
+## Output format
+
+**Return the JSON object only.** No markdown code fences (no ```` ```json ```` wrapper), no prose before or after. The response must parse directly against this schema without any preprocessing step to strip formatting.
+
 ## Field rules
 
 | Field | Rule |
@@ -43,7 +47,7 @@ Each agent uses its own verdict axis. The merger (`Workflows/gate-merge.md`) map
 | `verdict` | One value from that agent's axis above. |
 | `issues[]` | Every issue must have a **specific, actionable `fix`**. "This section is weak" is invalid; "the claim in para 4 needs the eval name + dataset + TPR or remove it" is valid. Vicki Vale's bounce issue names the **exact stop-sentence**. |
 | `depth_gap_flag` | **Riddler-only field.** Present only when `agent == "riddler"`; set `true` only when a BLOCK is driven by a technical-depth gap (the sole trigger that spawns Henri Ducard). Vicki Vale and Ducard **omit the field entirely** — they do not own the escalation signal. |
-| `verdict_file` | Path to the persisted sibling verdict file the agent wrote. Explicitly `null` for additive agents that don't persist a gate sibling: Vicki Vale may inline her verdict, and Henri Ducard logs to `drill-log.md` rather than a gate file. `null` is a valid, documented value for these agents — not a malformed response. |
+| `verdict_file` | Path to the persisted sibling verdict file the agent wrote. Must name the file matching the `verdict` actually returned **in this same response** — a `conditional` verdict must not claim `.riddler-passed` unless the CONDITIONAL fast-path (see `gate-merge.md`) already resolved it to SHIP; a `skim` verdict must not claim `.vicki-bounced`. Explicitly `null` for additive agents that don't persist a gate sibling: Vicki Vale may inline her verdict, and Henri Ducard logs to `drill-log.md` rather than a gate file. `null` is a valid, documented value for these agents — not a malformed response. |
 
 ## depth_gap_flag — the escalation trigger
 

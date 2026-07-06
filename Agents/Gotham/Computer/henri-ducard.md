@@ -82,6 +82,7 @@ When that fires, the dispatcher spawns him **after** Riddler returns — never s
   - `issues[]` — the specific topics to drill and the reading/closing action for each (`fix`)
   - **No `depth_gap_flag`** — Ducard omits this field entirely. It is a Riddler-only escalation signal; Ducard is the result of the escalation, not a source of it.
   - `verdict_file: null` — Ducard logs the drill to `Agents/Gotham/knowledge/drill-log.md` as usual, not a gate sibling file. `null` here is correct and documented, not a malformed response.
+  - **Output format:** the response is the bare JSON object — no markdown code fence, no prose before or after (see `Agents/Gotham/_shared/gate-response.schema.md`).
 
 **His verdict is additive.** At the point he runs, Riddler has already returned BLOCK, so the overall verdict is already BLOCK. Ducard never upgrades or downgrades it — `cleared` vs `drill-required` only sets WHAT-TO-FIX priority in the merge.
 

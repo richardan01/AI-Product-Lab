@@ -27,3 +27,5 @@ Each row was registered when a mapped source file changed. A row is cleared only
 | peer-review | .claude/skills/peer-review/SKILL.md (per-story AC check; narrowed degraded-mode cap) | 2026-06-22 | **cleared** (2026-06-23 r2, post-fix) | peer-review/results/2026-06-23_claude-opus-4-8_r2.md — CITABLE after adding Pass-3 cross-cutting risk checks (cross-section consistency + rollback-plan); F3/F5 now caught, no clean-control regression |
 | prd-readiness | new suite added — needs a runner/grader pass for CITABLE | 2026-06-22 | **cleared** (2026-06-23 r2, post-fix) | prd-readiness/results/2026-06-23_claude-opus-4-8_r2.md — CITABLE after D1–D4 skill remediation (r1 found defects; r2 clean: 01/02/03/04 all ✅) |
 | gate-group | Agents/Gotham/Computer/vicki-vale.md | ba4ea795d21dc26928029e75c17a7002c90b3bd6 | 2026-07-06 | pending | — |
+| gate-group | Agents/Gotham/_shared/gate-response.schema.md | 7d016e9ac4bb6219bdfd33ff1e42c76d84b481d5 | 2026-07-06 | pending | — |
+| gate-group | Agents/Gotham/Computer/henri-ducard.md | 7d016e9ac4bb6219bdfd33ff1e42c76d84b481d5 | 2026-07-06 | pending | — |
