@@ -460,3 +460,45 @@ power; baseline, not validation.
 
 **Evidence:** `onboarding/results/2026-07-05_claude-sonnet-5.md`,
 `onboarding/results/transcripts/2026-07-05_{jordan-lee-profile,sam-okafor-builder-variant,riley-park-minimalist}_claude-sonnet-5.md` (local — results/ gitignored).
+
+---
+
+### 2026-07-06 — gate-group — FIRST FULL RUN (r1 fail → remediation → r2 pass)
+
+| Field | Value |
+|-------------|-------|
+| Date | 2026-07-06 |
+| Suite | gate-group (meta-eval — grades `Workflows/gate-dispatch.md` + `gate-merge.md` orchestration; FIRST RUN — no prior full run existed since the 2026-06-10 audit) |
+| Models | Riddler = `claude-opus-4-8`, Vicki Vale = Sonnet (persona pin `claude-sonnet-4-6` unavailable in Task API tiers, substituted), Henri Ducard = `claude-opus-4-8` |
+| Commit SHA | 7d016e9 (r1) → 3b09a9a (remediation, r2 responses graded against this state) |
+| Runner | Main session executing `gate-dispatch.md` per fixture (isolated sub-agent Tasks per reviewer; author/grader separation preserved — grading done by a separate eval-grader sub-agent with no visibility into runner reasoning) |
+| Grader | eval-grader sub-agent, isolated context, transcript + `criteria.md` + `fixtures.md` + schema/merge docs only |
+| Fixture(s) | F1–F5 (`gate-group/fixtures.md`) — all 5, covering SHIP/REVISE/BLOCK, flag-discipline (F3 no-escalate, F4/F5 escalate), and disagreement paths |
+| Raw pass rate | r1: 6/8 · r2: **7/8** |
+| Bias-corrected θ̂ | N/A — rule-based/manual grading, not judge-graded |
+| Status | ✅ **PASS** (r2) — ≥7/8 bar met, C2 (escalation) and C4 (merge logic) both mandatory and both clean across r1 and r2 |
+
+**Per-eval grading method:**
+| Criterion | Method |
+|---|---|
+| C1–C8 | eval-grader sub-agent (manual, against `criteria.md`); C2 and C4 recomputed mechanically from raw agent verdicts, not trusted from the dispatcher's own merge column |
+
+**r1 failures (2026-07-06, commit 7d016e9):**
+- `C5` ❌ — Vale's F4 issue used logical-validity vocabulary ("non-sequitur," "not the same claim") instead of reader-experience framing; her axis is attention, not argument validity.
+- `C7` ❌ — 7/12 responses (all 5 Vale + both Ducard) wrapped their JSON in markdown ```` ```json ```` fences despite a no-prose instruction; 3 verdict_file/verdict mismatches logged (2 later ruled non-issues — Vale's own contract maps both `skim` and `bounce` to `.vicki-bounced`).
+
+**Remediation (commit 3b09a9a):** `gate-response.schema.md` — added explicit "bare JSON, no fences" output-format rule + verdict/verdict_file consistency rule. `vicki-vale.md` — added hard reader-experience-lane rule with banned vocabulary, and a note that her embedded JSON example is illustrative-only (not to be echoed as a fence). `henri-ducard.md` — added explicit bare-JSON output-format line.
+
+**r2 results (2026-07-06, Vale re-run on all 5 fixtures, Ducard re-run on F4/F5; Riddler's r1 responses carried forward unchanged — no C5/C7 defects to fix):**
+- `C1` ✅ · `C2` ✅ (mandatory) · `C3` ✅ · `C4` ✅ (mandatory) · `C5` ✅ (fixed — clean across all 5) · `C6` ✅ · `C7` ⚠ PARTIAL · `C8` ✅
+- `C7` residual: Vale's fence problem is fully resolved (5/5 clean). **Henri Ducard's schema-conformance did not improve** — both F4 and F5 r2 responses now prepend a multi-sentence prose reasoning paragraph before the bare JSON object instead of a fence. Same root defect (unparseable raw response), different shape. Not a mandatory criterion; suite still passes.
+
+**Introspection:**
+> Vale's remediation worked because the fix was specific and testable (banned-word list + "don't echo the fence"). Ducard's remediation ("add an explicit bare-JSON line") was too generic — it told him what to return but not to stop narrating his reasoning process in the output channel, so he moved the defect from a fence to a preamble rather than eliminating it. The grader's diagnosis: Ducard's persona reasons *about* compliance in-band rather than being silently compliant.
+
+**Remediation (recommended — not yet applied, tracked as an open follow-up in `failure-log.md`):**
+- P1: `henri-ducard.md` — add "reason silently; the first character of your output must be `{` and the last must be `}`; no narration outside the JSON object."
+- P2: `gate-dispatch.md` — add a mechanical backstop: if a raw response doesn't start with `{` and end with `}`, strip/retry once before treating it as malformed. Would have caught both the r1 fence defect and the r2 prose-preamble defect independent of prompt wording.
+- P2: `criteria.md`'s C4 wording ("BLOCK = any `block`/`bounce`/...") reads as if Vale's `bounce` alone triggers BLOCK, contradicting `gate-merge.md`'s worked example and the correctly-computed F2 REVISE. Documentation-only fix — the actual merge logic is correct.
+
+**Result file:** `gate-group/results/2026-07-06_post-remediation.md` *(full r1 + r2 verbatim transcripts and verdict matrices; local, results/ gitignored per public-template policy — this run-log entry is the durable git-tracked record)*
