@@ -31,3 +31,7 @@ Read `goal` first, then `final_output`, then skim `tool_calls[].result` only to 
 criterion 2. Do **not** penalize style, verbosity, or step count here — that is Phase 2.
 If `goal` is genuinely ambiguous, grade against the most reasonable reading and say which
 one you used.
+
+If `goal` is `null` (no qualifying user turn in the trace at all), do not attempt to grade
+any criterion — return `insufficient-evidence` for all three and say why. A null goal
+means the trace was malformed or mis-captured, not that the task was ambiguous.

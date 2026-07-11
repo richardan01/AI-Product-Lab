@@ -53,6 +53,7 @@ black box, and Phase 2 opens the box.
 | `../_schema/trace-schema.md` | The normalized trace contract every adapter emits |
 | `../../scripts/trace_adapter.py` | claude-code / codex → normalized trace |
 | `../../scripts/make_n1_fixture.py` | Truncate a trace at its first error → N-1 fixture |
+| `../../scripts/test_trace_adapter.py` | Regression coverage: `turn_index` semantics, N-1 truncation, plumbing/sidechain filtering, Codex retrieval heuristic — `python3 scripts/test_trace_adapter.py` |
 
 ## Pass bar
 
@@ -65,5 +66,8 @@ data point; grade several before quoting a rate. Any per-axis LLM judge must cle
 ## Status
 
 New suite (2026-07). Harness support: **claude-code** (verified against a real session),
-**codex** (documented format, validate against a real rollout on first use), **cowork**
-(planned — format unconfirmed). First dogfood evidence in `_public-evidence/`.
+**codex** (documented format + regression-tested against a synthetic rollout; **real
+rollout validation still blocked** — no Codex CLI available in the environment this was
+built in, see the `adapt_codex` docstring in `scripts/trace_adapter.py` for the repro
+recipe for whoever validates it next), **cowork** (planned — format unconfirmed). First
+dogfood evidence in `_public-evidence/`.

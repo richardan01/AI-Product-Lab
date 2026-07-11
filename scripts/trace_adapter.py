@@ -53,6 +53,28 @@ RETRIEVAL_TOOLS = {
     "read_file", "grep", "search", "web_search", "fetch",  # codex-ish
 }
 
+# Codex's search/read intent is usually buried in a generic shell tool's `command`
+# string, not in a dedicated tool name (unlike Claude Code's Read/Grep/Glob). These
+# names carry no retrieval-vs-write signal on their own.
+SHELL_TOOL_NAMES = {"shell", "local_shell_call", "custom_tool_call"}
+
+# Conservative allowlist: a shell call is classed as retrieval only if its FIRST
+# word is one of these read-only verbs. Deliberately excludes dual-use verbs (sed,
+# awk, ...) that can also write. Known imprecision: this doesn't inspect flags, so
+# e.g. `find . -delete` or `find . -exec rm {} \;` still matches on `find` and is
+# misclassified as retrieval — a first-token allowlist, not a flag parser.
+SHELL_RETRIEVAL_VERBS = {"grep", "rg", "find", "cat", "head", "tail", "ls"}
+
+
+def _is_shell_retrieval(tc):
+    if tc["name"] not in SHELL_TOOL_NAMES:
+        return False
+    command = tc["params"].get("command")
+    if not isinstance(command, str) or not command.strip():
+        return False
+    first_word = command.strip().split(None, 1)[0].strip("'\"")
+    return first_word in SHELL_RETRIEVAL_VERBS
+
 # Claude Code harness plumbing that arrives as `user` turns WITHOUT an isMeta
 # flag (verified against a real session: command echoes and task notifications
 # are key-identical to genuine user messages). Filtered by leading tag only —
@@ -97,12 +119,21 @@ def _stringify(content):
         parts = []
         for block in content:
             if isinstance(block, dict):
-                parts.append(block.get("text") or block.get("content") or json.dumps(block))
+                # Check key PRESENCE, not truthiness — an empty "text": "" is a
+                # real (empty) value, not "key absent, fall back to dumping the
+                # whole block." Conflating the two previously turned a genuinely
+                # empty text block into a misleading json.dumps(block) string.
+                if "text" in block:
+                    parts.append(block["text"])
+                elif "content" in block:
+                    parts.append(block["content"])
+                else:
+                    parts.append(json.dumps(block))
             else:
                 parts.append(str(block))
         return "\n".join(p for p in parts if p)
     if isinstance(content, dict):
-        return content.get("text") or json.dumps(content)
+        return content["text"] if "text" in content else json.dumps(content)
     return str(content)
 
 
@@ -127,8 +158,10 @@ def _assemble(source_harness, session_id, captured_from, goal,
     retrievals = [
         {"tool_call_index": tc["i"], "name": tc["name"],
          "query": tc["params"].get("query") or tc["params"].get("pattern")
-                  or tc["params"].get("file_path") or tc["params"].get("url")}
-        for tc in tool_calls if tc["name"] in RETRIEVAL_TOOLS
+                  or tc["params"].get("file_path") or tc["params"].get("url")
+                  or tc["params"].get("command")}
+        for tc in tool_calls
+        if tc["name"] in RETRIEVAL_TOOLS or _is_shell_retrieval(tc)
     ]
     tool_err = sum(1 for tc in tool_calls if tc["ok"] is False)
     return {
@@ -217,7 +250,7 @@ def adapt_claude_code(path):
                 if _is_plumbing(content):
                     skip("meta")
                     continue
-                if goal is None:
+                if not goal:
                     goal = content
                 turns.append({"i": len(turns), "role": "user", "text": content, "ts": ts})
             elif isinstance(content, list):
@@ -234,7 +267,7 @@ def adapt_claude_code(path):
                         if _is_plumbing(text):
                             skip("meta")
                             continue
-                        if goal is None:
+                        if not goal:
                             goal = text
                         turns.append({"i": len(turns), "role": "user",
                                       "text": text, "ts": ts})
@@ -271,9 +304,22 @@ def adapt_codex(path):
     Defensive mapping over the documented Codex item types. Codex wraps each item
     as {"type": <kind>, "payload": {...}} or emits the payload flat; we handle both.
     Known kinds: message (role/content), function_call (name/arguments), function_
-    call_output (call_id/output), reasoning (dropped). NOT yet validated against a
-    local file in this environment — run once on a real rollout and reconcile any
-    line in skipped_lines.unknown.
+    call_output (call_id/output), reasoning (dropped).
+
+    Retrieval classification: Codex's search/read intent is usually buried inside a
+    generic shell tool's `command` string (see SHELL_TOOL_NAMES/SHELL_RETRIEVAL_VERBS
+    above), not in a dedicated tool name. The heuristic is a first-token allowlist,
+    not a flag parser — it will misclassify a destructive invocation like
+    `find . -delete` as retrieval since it only looks at the leading verb.
+
+    Codex real-rollout validation: NOT yet validated against a local file — this
+    environment has no Codex CLI installed and no ~/.codex directory (confirmed via
+    `which codex` + filesystem search), so no real rollout was available to test
+    against. Repro recipe for a future session with Codex CLI access: (1) install
+    Codex CLI, (2) run one real session (`codex exec "<simple task>"`), (3) locate
+    ~/.codex/sessions/YYYY/MM/DD/rollout-*.jsonl, (4) run this adapter against it,
+    (5) confirm skipped_lines.unknown == 0, reconciling any nonzero bucket by
+    updating the kind-matching branches below.
     """
     turns, tool_calls, results_by_id = [], [], {}
     goal, final_output = None, ""
@@ -301,7 +347,7 @@ def adapt_codex(path):
         if kind == "message":
             role = payload.get("role", "assistant")
             text = _stringify(payload.get("content"))
-            if role == "user" and goal is None:
+            if role == "user" and not goal:
                 goal = text
             turns.append({"i": len(turns), "role": role, "text": text, "ts": ts})
             if role == "assistant" and text.strip():

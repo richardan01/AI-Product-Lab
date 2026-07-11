@@ -532,3 +532,60 @@ power; baseline, not validation.
 **Remediation:** answer key reconciled (`samples/coding-retry.answer-key.md`); refinements logged as follow-ups in the worked example. Adapter verified against a real Claude Code session (`~/.claude/projects/.../*.jsonl`: 40 tool calls, params+results, 0 unknown skipped) and a synthetic Codex rollout (unknown line types bucketed, no crash). `make_n1_fixture.py` verified (truncates before first error).
 
 **Result file:** `agent-harness/_public-evidence/2026-07-11_sample-coding-retry.md` *(synthetic — safe to ship in full; the worked run is public evidence, not gitignored)*
+
+---
+
+### 2026-07-11 — agent-harness — hardening pass (regression coverage)
+
+| Field | Value |
+|-------------|-------|
+| Date | 2026-07-11 |
+| Suite | agent-harness (hardening pass — no new eval criteria, adapter internals only) |
+| Model | `claude-sonnet-5` |
+| Scope | `scripts/trace_adapter.py`, `scripts/make_n1_fixture.py`, new `scripts/test_trace_adapter.py` |
+| Status | ✅ 16/16 regression cases pass |
+
+**What was added:** `scripts/test_trace_adapter.py` — stdlib-only, assert-based regression
+suite (repo has no test framework; matches the existing informal-`assert` convention in
+`Evals/regeval/*.py`). Covers `tool_calls[].turn_index` semantics (same-index-for-
+simultaneous-calls, forward-pointing-past-a-preceding-text-turn, legitimate
+one-past-the-end at trace end), `goal` handling, meta/plumbing/sidechain filtering,
+degenerate traces (zero tool_calls, zero turns), `make_n1_fixture` truncation edge cases
+(`error_index==0`, dangling `turn_index`, regression-locks the committed `coding-retry.json`
+fixture's known cut point), and the new Codex shell-retrieval heuristic (positive + negative
+case). Run: `python3 scripts/test_trace_adapter.py`.
+
+**Bugs found and fixed while building the suite:**
+- **Goal-lock bug** — `if goal is None:` (3 call sites) let an empty-string first user
+  turn permanently hide the real goal in later turns. Fixed to `if not goal:`.
+- **`_stringify` empty-text bug** (found by the regression suite itself, not anticipated
+  in the original review) — `.get("text") or .get("content") or json.dumps(block)`
+  conflated "key absent" with "key present but empty," so a genuinely empty `"text": ""`
+  block silently became a `json.dumps(block)` dump instead of an empty string. Fixed to
+  check key presence instead of truthiness. Verified no regression against the real
+  dogfooded Claude Code session (85 turns, 187 tool_calls, still 0 meta-polluted turns,
+  goal unchanged) and the committed `codex-rollout-sample.jsonl`.
+- **Codex retrieval undercount** — confirmed empirically that Codex's shell-mediated
+  search/read calls (`name: "shell"`, intent buried in `params.command`) never appeared in
+  `retrievals[]`. Confirmed this is cosmetic today (no `01`–`06` criterion reads
+  `retrievals[]`). Added a conservative first-word allowlist heuristic
+  (`SHELL_RETRIEVAL_VERBS`), documented as imprecise (doesn't inspect flags — e.g.
+  `find . -delete` still matches `find`).
+
+**Attempted and honestly blocked:** real-Codex-rollout validation. Re-confirmed at
+execution time: no Codex CLI installed (`which codex` → not found), no `~/.codex`
+directory anywhere on this machine. No real rollout file could be produced or validated
+against in this environment. A repro recipe for a future session with Codex CLI access is
+recorded in the `adapt_codex` docstring (`scripts/trace_adapter.py`) and
+`Evals/agent-harness/README.md`'s Status section — this is logged as an open follow-up,
+not silently dropped or faked.
+
+**Doc fixes:** `Evals/_schema/trace-schema.md` — corrected the `turn_index` comment (was
+factually wrong: "which assistant turn issued it" → actually forward-pointing), added a
+`turn_index` semantics explainer, documented `goal: null` as a valid/expected case, updated
+the `retrievals` field-rule to name the new heuristic and its limits. `00-task-success/
+criteria.md` + `protocol.md` — null-`goal` handling instructions for graders/runners.
+
+**Result files:** none new under `results/` (this pass touched adapter internals and test
+coverage, not a graded run) — the regression suite itself is the durable, re-runnable
+evidence; its pass/fail state is what this entry records.

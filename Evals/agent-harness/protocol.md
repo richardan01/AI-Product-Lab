@@ -19,8 +19,10 @@ Use when you already have a Claude Code / Codex / Cowork session to evaluate.
    This writes `Evals/agent-harness/_traces/files/<trace_id>.json` and prints a one-line
    summary. Confirm `skipped_lines.unknown == 0`; if not, the harness format drifted —
    update the adapter mapping before trusting the trace.
-2. **Sanity-check the trace**: `goal` is populated, `tool_calls` is non-empty, `metrics`
-   look right. Garbage in → garbage grade.
+2. **Sanity-check the trace**: `goal` is populated (not `null`), `tool_calls` is
+   non-empty, `metrics` look right. Garbage in → garbage grade. A null `goal` means no
+   qualifying user turn was found at all — don't proceed to grading; that's a malformed
+   or mis-captured trace, not a real Phase-1 input.
 3. **Grade** — launch one `eval-grader` sub-agent per eval (`00`–`06`), passing
    `transcript_path = <trace>.json` and `criteria_path = <eval>/criteria.md`. Graders run
    read-only and in parallel. `03-error-recovery` returns `n/a` when
