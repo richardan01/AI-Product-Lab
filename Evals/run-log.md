@@ -502,3 +502,33 @@ power; baseline, not validation.
 - P2: `criteria.md`'s C4 wording ("BLOCK = any `block`/`bounce`/...") reads as if Vale's `bounce` alone triggers BLOCK, contradicting `gate-merge.md`'s worked example and the correctly-computed F2 REVISE. Documentation-only fix — the actual merge logic is correct.
 
 **Result file:** `gate-group/results/2026-07-06_post-remediation.md` *(full r1 + r2 verbatim transcripts and verdict matrices; local, results/ gitignored per public-template policy — this run-log entry is the durable git-tracked record)*
+
+---
+
+### 2026-07-11 — agent-harness — claude-sonnet-5 (grader)
+
+| Field | Value |
+|-------------|-------|
+| Date | 2026-07-11 |
+| Suite | agent-harness (NEW — two-phase agentic eval) |
+| Model | grader `claude-sonnet-5` (7× eval-grader sub-agent) |
+| Commit SHA | branch `claude/agentic-evals-framework-gaps-j3j270` (suite introduced in this change) |
+| Runner | `scripts/trace_adapter.py` (Mode A — normalized a session; sample graded is synthetic) |
+| Grader | eval-grader sub-agent, one per eval, read-only on (trace + one criteria.md) |
+| Fixture(s) | `samples/coding-retry.json` (synthetic reference trace) |
+| Raw pass rate | Phase 1 (`00`): 1/1 ✅. Phase 2: 4/6 axes clean; `01`+`05` ❌ (`sad`), `02` ⚠ partial (`sad`) |
+| Status | ✅ pass (00 ✅ + no `bad`) — suite bootstrapped and demonstrated |
+
+**Per-eval grading method:**
+| Eval | Method | Judge TPR/TNR |
+|---|---|---|
+| 00–06 | eval-grader sub-agent (manual, against `criteria.md`) | — (no calibrated judge yet; manual bar) |
+
+**Findings (introspection loop — the graders out-found the author's answer key):**
+- `01-C3` ❌ and `05-C1` ❌ both flag the same redundant `Read` (`sad`) → **axis overlap**; refinement: narrow `01-C3` to need-for-a-tool, leave redundancy to `05`.
+- `02-C2` ⚠ — the pytest path was invoked without any prior step grounding it (correct by luck). A real, unplanted catch of the "guessed identifier" mode.
+- `00` grader spotted a latent code bug (bare `raise`) but correctly held it out of the black-box phase — two-phase split working.
+
+**Remediation:** answer key reconciled (`samples/coding-retry.answer-key.md`); refinements logged as follow-ups in the worked example. Adapter verified against a real Claude Code session (`~/.claude/projects/.../*.jsonl`: 40 tool calls, params+results, 0 unknown skipped) and a synthetic Codex rollout (unknown line types bucketed, no crash). `make_n1_fixture.py` verified (truncates before first error).
+
+**Result file:** `agent-harness/_public-evidence/2026-07-11_sample-coding-retry.md` *(synthetic — safe to ship in full; the worked run is public evidence, not gitignored)*

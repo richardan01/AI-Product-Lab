@@ -13,6 +13,7 @@ Two kinds of suite live here:
 
 | Suite | Kind | Criteria | What it catches | Pass threshold |
 |---|---|---|---|---|
+| [`agent-harness/`](agent-harness/) | agentic trajectory | 7 (1+6) | Two-phase agentic eval of a real Claude Code / Codex / chatbot session: task success + tool choice, parameter extraction, error recovery, context retention, efficiency, goal drift | `00` ✅ + no `bad` axis |
 | [`onboarding/`](onboarding/) | workflow | 12 | Placeholder residue, persona-routing bugs, batch-write violations, invented identity, polite-ack-as-authorization | ≥ 10 / 12 per fixture |
 | [`research-synthesis/`](research-synthesis/) | workflow | 7 | Invented quotes, generic synthesis, missing conflicting signals, unactionable open questions | ≥ 6 / 7 per fixture |
 | [`discovery-synthesis/`](discovery-synthesis/) | workflow | in progress | Discovery synthesis structure, evidence retention, and product-insight quality | in progress |

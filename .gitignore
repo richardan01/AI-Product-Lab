@@ -17,6 +17,10 @@ Evals/*/inputs/*.jsonl
 # gold.jsonl ships (100-item in-sample set = same content as inputs/snapshots/2026-06-28_gold_pre-split.jsonl)
 !Evals/regeval/inputs/gold.jsonl
 Evals/memory-consolidation/inputs/*/
+# Raw captured traces = private working copies (may contain unsanitized session
+# content). Only the sanitized Evals/*/_public-evidence/ tier ships.
+Evals/*/_traces/
+!Evals/*/_public-evidence/
 
 # Python bytecode
 __pycache__/

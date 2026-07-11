@@ -1,0 +1,38 @@
+{
+  "trace_id": "ah-sample-coding-retry",
+  "source_harness": "claude-code",
+  "session_id": "synthetic-sample-001",
+  "captured_from": "synthetic — safe to ship; hand-authored reference trace",
+  "adapter_version": "1",
+  "goal": "Add a 3-attempt retry with exponential backoff to the upload() function in src/api.py, and do not touch the auth module.",
+  "turns": [
+    { "i": 0, "role": "user", "text": "Add a 3-attempt retry with exponential backoff to the upload() function in src/api.py, and do not touch the auth module.", "ts": "2026-07-11T09:00:00Z" },
+    { "i": 1, "role": "assistant", "text": "I'll locate upload(), read it, add the retry, and run the test. I won't modify anything under the auth module.", "ts": "2026-07-11T09:00:02Z" },
+    { "i": 2, "role": "assistant", "text": "Found it in src/api.py. Reading the function.", "ts": "2026-07-11T09:00:05Z" },
+    { "i": 3, "role": "assistant", "text": "The test env is missing the requests dep; the retry logic itself is correct. Installing the dep and re-running the test.", "ts": "2026-07-11T09:00:20Z" },
+    { "i": 4, "role": "assistant", "text": "Added a 3-attempt retry with exponential backoff to upload() in src/api.py; the test passes. I left the auth module untouched as requested.", "ts": "2026-07-11T09:00:35Z" }
+  ],
+  "tool_calls": [
+    { "i": 0, "name": "Grep", "params": { "pattern": "def upload", "path": "src/" }, "result": "src/api.py:42: def upload(path, data):", "ok": true, "ts": "2026-07-11T09:00:03Z", "turn_index": 2 },
+    { "i": 1, "name": "Read", "params": { "file_path": "src/api.py" }, "result": "42: def upload(path, data):\n43:     resp = _post(path, data)\n44:     return resp", "ok": true, "ts": "2026-07-11T09:00:04Z", "turn_index": 2 },
+    { "i": 2, "name": "Read", "params": { "file_path": "src/api.py" }, "result": "42: def upload(path, data):\n43:     resp = _post(path, data)\n44:     return resp", "ok": true, "ts": "2026-07-11T09:00:06Z", "turn_index": 2 },
+    { "i": 3, "name": "Edit", "params": { "file_path": "src/api.py", "old_string": "    resp = _post(path, data)\n    return resp", "new_string": "    for attempt in range(3):\n        try:\n            return _post(path, data)\n        except TransientError:\n            time.sleep(2 ** attempt)\n    raise" }, "result": "edited src/api.py", "ok": true, "ts": "2026-07-11T09:00:10Z", "turn_index": 2 },
+    { "i": 4, "name": "Bash", "params": { "command": "python -m pytest tests/test_api.py::test_upload_retry -q" }, "result": "ModuleNotFoundError: No module named 'requests'", "ok": false, "ts": "2026-07-11T09:00:15Z", "turn_index": 3 },
+    { "i": 5, "name": "Bash", "params": { "command": "pip install requests && python -m pytest tests/test_api.py::test_upload_retry -q" }, "result": "1 passed in 0.42s", "ok": true, "ts": "2026-07-11T09:00:30Z", "turn_index": 3 }
+  ],
+  "retrievals": [
+    { "tool_call_index": 0, "name": "Grep", "query": "def upload" },
+    { "tool_call_index": 1, "name": "Read", "query": "src/api.py" },
+    { "tool_call_index": 2, "name": "Read", "query": "src/api.py" }
+  ],
+  "final_output": "Added a 3-attempt retry with exponential backoff to upload() in src/api.py; the test passes. I left the auth module untouched as requested.",
+  "metrics": {
+    "turn_count": 5,
+    "tool_call_count": 6,
+    "tool_error_count": 1,
+    "input_tokens": 4200,
+    "output_tokens": 900,
+    "wall_seconds": 35.0
+  },
+  "skipped_lines": { "unknown": 0 }
+}

@@ -1,8 +1,23 @@
-# AI Product Lab — the agentic eval loop framework
+# The Glass-Box Eval Loop
 
-AI Product Lab runs on a reviewed agentic eval system for product work. It turns recurring product work into workflows that can be run, reviewed, evaluated, monitored, and improved over time — with the eval loop, not the workflows, as the point. The lab's flagship project (RegEval) and public artifacts run on top as the application domain.
+**An agentic eval framework that grades the agent *and* audits the grader.**
 
-The goal is not to make AI write more documents. The goal is to make AI-assisted product work measurable, reviewable, and continuously improvable.
+Most eval systems are black boxes twice over: they judge an agent only by its final answer,
+and they never check whether the judge itself is trustworthy. The Glass-Box Eval Loop makes
+both transparent — it grades the agent's full **trajectory** (two-phase agentic evaluation)
+and subjects its own quality gates to **planted-flaw meta-evals**, so the evaluators are held
+to the same bar as the thing they evaluate.
+
+It is a faithful implementation of Shankar & Husain's **Analyze → Measure → Improve**
+lifecycle (_Evals for AI Engineers_, O'Reilly 2026; [evals FAQ](https://hamel.dev/blog/posts/evals-faq/)),
+**extended with a fourth concern — Audit the evaluators** — grounded in Shankar et al.,
+[*Who Validates the Validators?*](https://arxiv.org/abs/2404.12272) (UIST 2024).
+
+AI Product Lab is the reference implementation: a PM operating system is the application
+domain, but the loop applies to any agentic product — a chatbot, a coding harness, a
+multi-step agent. The goal is not to make AI write more documents. It is to make
+AI-assisted work **measurable, reviewable, and continuously improvable** — and to make the
+measurement itself inspectable.
 
 ## 1. Problem
 
@@ -43,6 +58,20 @@ Each step has a job:
 | Human review | The PM makes the judgment call and approves, revises, or rejects the output. |
 | Online monitoring | Real artifacts are sampled after the fact and graded for failure trends. |
 | Improvement | Recurring failures become new fixtures, rubrics, workflow edits, or knowledge updates. |
+
+### The three gulfs (why the loop is shaped this way)
+
+Shankar & Husain frame LLM development as crossing **three gulfs**. The loop's steps map
+directly onto them:
+
+| Gulf | The problem | Where the loop addresses it |
+|---|---|---|
+| **Comprehension** | You don't actually know what your system does on real inputs. | Trace capture + error analysis (open/axial coding on real trajectories). |
+| **Specification** | You can't turn intent into precise instructions the model follows. | Quality gates + the introspection loop — every failure asks "what in the prompt misled it?" |
+| **Generalization** | The system works on your examples but not on the long tail. | Offline suites + online monitoring — new failures in real usage become new fixtures. |
+
+The framework's own addition sits on top: **who audits the evaluators that police these
+gulfs?** — answered by the planted-flaw meta-evals in §4.
 
 ## 3. Architecture
 
@@ -88,7 +117,7 @@ Offline evals preserve author/grader separation. The runner creates the artifact
 known flawed artifact + clean control -> gate under test -> grader -> pass/fail
 ```
 
-The lab does not only evaluate PM artifacts. It evaluates the gates themselves. A reviewer gate must catch known blockers, avoid hallucinated findings, and avoid flunking clean work.
+The lab does not only evaluate PM artifacts. It evaluates the gates themselves. A reviewer gate must catch known blockers, avoid hallucinated findings, and avoid flunking clean work. This is the framework's answer to Shankar et al.'s *Who Validates the Validators?* — an LLM-assisted evaluator inherits the failure modes of the model it evaluates, so it must itself be validated against ground truth before it is trusted.
 
 ### Online Monitoring Loop
 
@@ -120,6 +149,7 @@ The core portfolio metric is not output volume. It is whether the lab lowers the
 
 | Use case | Workflow/gate | Eval or monitoring path |
 |---|---|---|
+| **Evaluate an agent trajectory** (chatbot, coding harness, agent) | `scripts/trace_adapter.py` (attach to Claude Code / Codex) | `Evals/agent-harness/` — two-phase agentic eval |
 | AI feature PRD review | `/prd-readiness`, `/peer-review` | `Evals/prd-readiness/`, `Evals/peer-review/` |
 | Research synthesis | `Workflows/user-research-synthesis/`, `/research-sufficiency` | `Evals/research-synthesis/`, `Evals/research-sufficiency/` |
 | Launch readiness | `/go-nogo`, `/launch-plan` | `Evals/go-nogo/` |
@@ -127,6 +157,24 @@ The core portfolio metric is not output volume. It is whether the lab lowers the
 | LLM-as-judge reliability | `Evals/regeval/` (RegEval flagship) | `Evals/regeval/regeval-suite.md`, `Evals/run-log.md` |
 | Onboarding a PM into the OS | `Workflows/interactive-onboarding.md` | `Evals/onboarding/` |
 | Weekly operating review | `/weekly-update`, `Evals/monitoring/` | Sample real artifacts, grade asynchronously, and feed new failures back into fixtures. |
+
+### How this differs from commercial eval tooling
+
+Trajectory tracing is not the differentiator — **LangSmith and Braintrust already do it, and
+better**, for engineers instrumenting their own stack. This framework bets on four things
+those tools are not built to provide:
+
+| | Commercial eval platforms | The Glass-Box Eval Loop |
+|---|---|---|
+| Primary form | A hosted dashboard + SDK | A method, expressed as files in a repo |
+| Evaluator trust | You write the judge; trusting it is on you | Judges are calibrated (TPR/TNR ≥ 0.9) **and** gates are meta-eval'd against planted flaws |
+| Getting traces in | Instrument your code with the SDK | Read the JSONL your harness already writes (`trace_adapter.py`) |
+| Audience | ML/AI engineers | PMs evaluating an agentic product they don't own the code for |
+| Where it runs | Their cloud | Local, Markdown-native, nothing sent anywhere |
+
+Use LangSmith/Braintrust when you own the code and want production observability. Use this
+when you want the *discipline* — and when the honest question is "can I even trust my
+evaluator?"
 
 ## 7. Why This Matters
 

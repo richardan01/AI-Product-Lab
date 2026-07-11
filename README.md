@@ -2,105 +2,147 @@
 
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 ![Flagship](https://img.shields.io/badge/flagship-RegEval-green)
+![Grounding](https://img.shields.io/badge/grounded_in-Shankar_%26_Husain-blue)
 
-AI Product Lab is a personal workshop for building small AI projects and finding out whether they actually work — not just whether they look impressive at first glance.
-
-The real work starts after that first impression: measuring how often it gets things right, catching where it fails, and keeping an honest record of what broke and how it got fixed.
-
-New to this kind of repo? No problem. This page explains what it is and how it fits together, in plain language — no code required.
+**A grounded way to evaluate agentic products — point it at a real Claude Code, Codex, or
+chatbot session and get a graded read on whether the *agent* did the right thing, not just
+whether its final answer looked good.**
 
 ---
 
-## What this is, in one minute
+## The problem
 
-Most AI demos look amazing for five minutes and then fall apart the moment you trust them with something real. The interesting part isn't the demo. It's everything after: *Is it right? How often is it wrong? Can it be proven? And what happens when it fails?*
+Product managers are shipping agentic products — chatbots, copilots, coding harnesses,
+multi-step agents — with no practical way to tell if they actually work. The demo looks
+great for five minutes; then the agent picks the wrong tool, hallucinates an argument, drops
+a constraint the user gave three turns ago, or quietly drifts off the task. **A check that
+only reads the final answer can't see any of that** — agents graded on final output alone
+pass far more cases than a look at the full trajectory reveals.
 
-This lab is where those questions get answered on real projects. Three things happen here, over and over:
+The engineering tools that measure this (LangSmith, Braintrust) assume you're an engineer
+instrumenting your own SDK. The academic agent benchmarks don't touch your product. So most
+PM teams fall back on vibes.
 
-- **Build** — make a small AI tool or workflow.
-- **Measure** — check whether it actually works, with numbers rather than gut feel. (These checks are called *evals*, short for evaluations.)
-- **Log** — write down what was learned, failures included, so the knowledge adds up over time.
+AI Product Lab is the answer to *"okay, but how do I actually evaluate my agent?"* — a
+method a PM can run, grounded in the field's most-cited applied-eval work.
 
-Build, measure, learn, repeat — and never quietly delete the parts that didn't work.
+## What it does
 
-## How it works
+Two things, one loop:
 
-Everything runs on one simple loop. A project goes around it again and again, becoming a little more trustworthy each lap:
+1. **Grades agent trajectories.** The [`agent-harness`](Evals/agent-harness/) suite takes a
+   real session and scores it in two phases — **(1)** did it accomplish the task (black
+   box), and **(2)** six step-level axes: tool choice, parameter extraction, error recovery,
+   context retention, efficiency, and goal alignment. Every criterion is binary; every
+   failure is tagged `bad` (blocks) or `sad` (recoverable).
+2. **Runs the full eval lifecycle around it** — error analysis on real traces, calibrated
+   LLM-as-judge, offline suites, meta-evals that grade the graders, and weekly monitoring —
+   so a workflow moves from "seems fine" to "measured."
+
+## The 15-minute quickstart
+
+Attach to a session you already have and grade it:
+
+```bash
+# 1. Normalize a real agent session into a trace
+#    Claude Code sessions live at ~/.claude/projects/<proj>/<session>.jsonl
+python3 scripts/trace_adapter.py claude-code --latest --suite agent-harness
+#    Codex: python3 scripts/trace_adapter.py codex --input ~/.codex/sessions/YYYY/MM/DD/rollout-*.jsonl --suite agent-harness
+
+# 2. See what got captured (turns, tool_calls, retrievals, metrics)
+#    Evals/_schema/trace-schema.md
+
+# 3. Grade it — one eval-grader per criterion, author/grader separation enforced
+#    Follow Evals/agent-harness/protocol.md (Mode A)
+```
+
+A fully worked run (seven verdicts + aggregate) is in
+[`Evals/agent-harness/_public-evidence/`](Evals/agent-harness/_public-evidence/).
+
+## What it's grounded in
+
+The methodology is a faithful implementation of **Shreya Shankar & Hamel Husain,
+_Evals for AI Engineers_** (O'Reilly, 2026) and their widely-read
+[evals FAQ](https://hamel.dev/blog/posts/evals-faq/) — error-analysis-first, binary metrics,
+application-specific (not generic) failure modes, calibrated judges (TPR/TNR ≥ 0.9), and the
+two-phase agentic-evaluation split. The meta-eval layer ("who grades the graders?") is
+grounded in Shankar et al., [*Who Validates the Validators?*](https://arxiv.org/abs/2404.12272)
+(UIST 2024).
+
+## What's different here
+
+This is **not** another trajectory-tracing tool — LangSmith and Braintrust already do that,
+and better, for engineers. The bet is different:
+
+- **Methodology-first, not dashboard-first.** The value is the discipline (error analysis →
+  calibrated judge → meta-eval → monitoring), not a UI.
+- **Meta-evals that grade the graders.** The lab's own quality gates are themselves eval'd
+  with planted-flaw fixtures and answer keys. A gate that misses a known blocker, or flunks
+  clean work, fails its own suite.
+- **Attach to the harness you already use.** No SDK instrumentation — read the JSONL Claude
+  Code and Codex already write to disk.
+- **Local and Markdown-native.** The whole operating surface is files in a repo. Nothing to
+  host, nothing to send anywhere.
+
+Full architecture and the loop diagram: **[`AGENTIC-EVAL-FRAMEWORK.md`](AGENTIC-EVAL-FRAMEWORK.md)**.
+
+## The loop
 
 ```mermaid
 flowchart LR
-    A["1 · Build<br/>a small AI tool"] --> B["2 · Measure<br/>does it actually work?"]
-    B --> C["3 · Review<br/>is it correct? is it clear?"]
-    C --> D["4 · Log<br/>what worked, what broke"]
-    D --> E["5 · Improve"]
-    E -->|"go around again"| A
+    A["1 · Build<br/>an AI workflow or agent"] --> B["2 · Capture<br/>real traces"]
+    B --> C["3 · Measure<br/>two-phase eval + gates"]
+    C --> D["4 · Review<br/>correct? clear?"]
+    D --> E["5 · Log<br/>what worked, what broke"]
+    E --> F["6 · Improve<br/>failures become fixtures"]
+    F -->|"go around again"| A
 ```
 
-A few rules turn this from a to-do list into something you can trust:
+Three rules turn this from a to-do list into something trustworthy:
 
-- **The numbers decide** — a project only counts as "working" when the measurements say so, not when someone declares it good enough.
-- **Nothing gets erased** — every result, especially the failures, is written down and kept. You can scroll back and watch the work actually improve, instead of seeing only a polished ending.
-- **Anything published is checked first** — before a write-up goes public, two automatic reviewers read it. One hunts for anything wrong or overstated; the other reads it like a stranger would and flags where it gets confusing. Both have to approve it.
+- **The numbers decide** — a workflow counts as "working" only when the measurements say so.
+- **Nothing gets erased** — every result, especially failures, is kept, so you can watch the
+  work actually improve.
+- **Anything published is checked first** — two automated reviewers (adversarial + reader-voice)
+  must both approve before a public artifact ships.
 
-### Under the hood
+## The flagship: RegEval
 
-If you like structure, the lab is built in three layers that stack on top of each other:
+**Can you trust an AI to check whether something follows the rules?** RegEval is an
+LLM-as-judge framework for regulated-domain compliance classification, scored with Cohen's κ
+(agreement between the AI and a human expert). It also carries an honesty story on purpose:
+early on it hit the classic contamination trap — graded on examples it had effectively
+already seen — and that incident is written up and kept in the repo as a permanent reminder.
+Methodology and results: [`Evals/regeval/regeval-suite.md`](Evals/regeval/regeval-suite.md).
 
-| Layer | What it does | Where it lives |
+## How the repo is organized
+
+Three layers (full tour in [`HOW-IT-WORKS.md`](HOW-IT-WORKS.md)):
+
+| Layer | What it does | Where |
 |---|---|---|
-| **1. Strategy** | Decides what to work on and why | `Agents/` |
-| **2. Execution** | The actual building and testing | `Projects/`, `Evals/` |
-| **3. Enforcement** | The quality checks that run automatically | `Workflows/`, `Tools/` |
+| **Strategy** | Decides what to work on and why | `Agents/` |
+| **Execution** | The building and the measuring | `Projects/`, `Evals/` |
+| **Enforcement** | Quality checks wired in as Git hooks, not habits | `Workflows/`, `Tools/` |
 
-The enforcement layer is the interesting one. The quality checks aren't a promise someone makes and then forgets — they're wired in so they *have* to run before anything ships. (For the technically curious: it's a Git hook that physically blocks publishing until both reviews pass.)
+> **Why the Batman names?** The helper agents that run the lab are named after Batman
+> characters (Bruce Wayne = strategy, Lucius Fox = building, Oracle = research, the Riddler
+> and Vicki Vale = the two pre-publish reviewers, …). It's a memory trick — each is a focused
+> helper with one job — not a gimmick. See [`HOW-IT-WORKS.md`](HOW-IT-WORKS.md).
 
-The full architecture, folder by folder, is in **[`HOW-IT-WORKS.md`](HOW-IT-WORKS.md)**.
+## Where to start
 
-## Why the Batman theme?
-
-Fair question. Look around and you'll notice the "assistants" that help run the lab are all named after Batman characters. It's a memory trick, not a gimmick: each one is a focused helper with a single clear job, and the names make it easy to remember who does what.
-
-| Assistant | What they handle |
+| Curious about | Go to |
 |---|---|
-| **Bruce Wayne** | The big-picture strategy and direction |
-| **Alfred** | Day-to-day planning and prep |
-| **Lucius Fox** | Building and prototyping |
-| **Oracle** | Research and digging things up |
-| **Nightwing** | Writing — posts, essays, talks |
-| **The Riddler** | Poking holes in things before they go public |
-| **Henri Ducard** | Sharpening the technical depth |
-| **Vicki Vale** | Reading drafts the way a real reader would |
+| The framework and the loop | [`AGENTIC-EVAL-FRAMEWORK.md`](AGENTIC-EVAL-FRAMEWORK.md) |
+| Grading an agent session | [`Evals/agent-harness/`](Evals/agent-harness/) |
+| What it's actually produced | [`Evals/run-log.md`](Evals/run-log.md) — the dated logbook |
+| The flagship build | [`Projects/ralph/brief.md`](Projects/ralph/brief.md) |
 
-The last two — the Riddler and Vicki Vale — are the "two automatic reviewers" from the loop above.
+## Honest status
 
-## The main project: RegEval
-
-If there's only time for one thing, make it this.
-
-RegEval asks a simple but important question: **can you trust an AI to check whether something follows the rules?** Picture a compliance officer at a bank, reading documents to spot anything that breaks regulations — slow, expensive, easy to get wrong. Could an AI handle the first pass?
-
-Hoping the AI is right isn't good enough, so RegEval measures it. The AI makes its calls, those calls are compared against a human expert's answers, and it all boils down to one score: how often the two agree. If they almost always agree, the AI might be trustworthy. If they don't, that's worth knowing — before anyone gets hurt.
-
-There's an honesty story baked in, too. Early on, the project hit a classic trap: the AI got graded on examples it had effectively already seen, which makes any score look better than it really is. That slip-up is written up and kept in the repo on purpose, as a permanent reminder. Catching mistakes like that is the whole point.
-
-*Technical version: an LLM-as-judge framework for regulated-domain compliance classification, scored with Cohen's κ (agreement between the AI and human labels). Methodology and results are in [`Evals/regeval/regeval-suite.md`](Evals/regeval/regeval-suite.md).*
-
-## Want to look around?
-
-No need to read any code. Pick a starting point based on what you're curious about:
-
-- **"Show me the big picture."** → [`HOW-IT-WORKS.md`](HOW-IT-WORKS.md)
-- **"What has this actually produced?"** → [`Evals/run-log.md`](Evals/run-log.md), the dated logbook of every test run
-- **"Tell me about the main project."** → [`Projects/ralph/brief.md`](Projects/ralph/brief.md)
-
-And here's what lives in each main folder:
-
-| Folder | What's inside |
-|---|---|
-| `Agents/` | The Batman-themed assistants and the overall strategy |
-| `Projects/` | The flagship build (RegEval, run by a loop called "Ralph") |
-| `Evals/` | All the tests, the scores, and the logbook |
-| `Workflows/` | Step-by-step recipes, including the publishing checks |
-| `Tools/` | The script that enforces those checks |
-| `Knowledge/` | Notes and research collected along the way |
-| `Templates/` | Reusable document skeletons |
+This is a faithful implementation of Shankar & Husain's eval lifecycle, **extended for
+agentic harnesses** — not a finished product and not "the most grounded evals tool." Harness
+support today: **claude-code** (verified against a real session), **codex** (documented
+format, validate on first real rollout), **cowork** (planned). The claim the repo will earn,
+not assert, is measured in public evidence — which is why the worked runs live in the repo.

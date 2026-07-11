@@ -117,6 +117,6 @@ Two files written to `Evals/<suite>/_traces/`:
 Plus a short summary to the user with the proposed eval changes from Step 6.
 
 ## References
-- Hamel & Shankar, Ch. 3 (`Application-Centric AI Evals for Engineers and Technical PMs`)
+- Shankar & Husain, _Evals for AI Engineers_ (O'Reilly, 2026) — the error-analysis chapter; companion course "AI Evals for Engineers & PMs" (Maven). FAQ: <https://hamel.dev/blog/posts/evals-faq/>
 - The Analyze phase of Analyze-Measure-Improve (lifecycle in `/evals` skill)
 - `trace-collector` agent — upstream dependency
