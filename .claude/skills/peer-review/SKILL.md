@@ -18,6 +18,10 @@ Example: `peer-review Projects/[YOUR_ANCHOR_PROJECT]/vendor-scorecard.md`
 
 ---
 
+## Step 0 — Eval Staleness Check
+
+If the target file cites an eval suite's pass rate or result (e.g. "onboarding suite: 10/12", "gate-group PASS"), invoke `/eval-ci check <suite>` for each suite cited. If any returns `BLOCK`, do not proceed to Step 1 — return a Conditional Pass with the required fix: "Re-run `<suite>` via `/evals` before this artifact can ship (stale since `<source file>` changed, SHA `<sha>`)." If all cited suites return `OK` (or no suite is cited), proceed.
+
 ## Step 1 — Read the Target File
 
 Read the file the user specified. Identify:

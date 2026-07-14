@@ -29,3 +29,5 @@ Each row was registered when a mapped source file changed. A row is cleared only
 | gate-group | Agents/Gotham/Computer/vicki-vale.md | ba4ea795d21dc26928029e75c17a7002c90b3bd6 | 2026-07-06 | **cleared** | gate-group/results/2026-07-06_post-remediation.md (r2, 7/8, C2+C4 clean) |
 | gate-group | Agents/Gotham/_shared/gate-response.schema.md | 7d016e9ac4bb6219bdfd33ff1e42c76d84b481d5 | 2026-07-06 | **cleared** | gate-group/results/2026-07-06_post-remediation.md (r2, 7/8, C2+C4 clean) |
 | gate-group | Agents/Gotham/Computer/henri-ducard.md | 7d016e9ac4bb6219bdfd33ff1e42c76d84b481d5 | 2026-07-06 | **cleared** | gate-group/results/2026-07-06_post-remediation.md (r2, 7/8, C2+C4 clean) — C7 residual: Ducard prose-preamble before JSON not yet fixed, tracked as follow-up in failure-log.md |
+| go-nogo | .claude/skills/go-nogo/SKILL.md | de4a9d4dd2df103a8622a56312ca34c177db510e | 2026-07-14 | pending | — |
+| peer-review | .claude/skills/peer-review/SKILL.md | de4a9d4dd2df103a8622a56312ca34c177db510e | 2026-07-14 | pending | — |

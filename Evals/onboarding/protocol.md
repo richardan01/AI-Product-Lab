@@ -55,11 +55,13 @@ Capture the answer — it is the harness bug report.
 
 ## 4. Aggregate across fixtures
 
-A single fixture is a data point, not a signal. Run every eval against **all three fixtures**:
+A single fixture is a data point, not a signal. Run every eval against **all three core fixtures**:
 
 - `inputs/jordan-lee-profile.md` (Executive operator)
 - `inputs/sam-okafor-builder-variant.md` (Builder / AI PM)
 - `inputs/riley-park-minimalist.md` (Minimalist, with many deferred fields)
+
+Additionally, run `inputs/dev-rerun-persona-switch.md` (Scenario A + B: same identity, re-run with a different persona) against eval 03 and eval 07 criterion 7 (C7 — re-run re-asks persona/tone/gates). This fixture is the only one that exercises D9 (re-run behavior); without it, C7 stays unexercised regardless of how the three core fixtures score.
 
 Report per-fixture results and a per-eval pass rate. Compute a 95% confidence interval where N ≥ 30; below that, report the raw count and flag low statistical power.
 
