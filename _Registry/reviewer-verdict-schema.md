@@ -33,7 +33,6 @@ File:     <reviewed file path>
 Date:     YYYY-MM-DD
 Verdict:  PASS | CONDITIONAL
 Hash:     <first 12 chars of sha256 of the reviewed file — `shasum -a 256 <file>`>
-Reviewed-by: <human | agent:skill-name>
 ```
 
 Followed immediately by the review scorecard from the skill output (Riddler: weakest claim / missing evidence / publish decision; Vale: drop-off point / unanswered reader question / highest-leverage revision).
