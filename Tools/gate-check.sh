@@ -11,10 +11,13 @@
 #   _Registry/.vicki-passed     (written by /vale on PASS/CONDITIONAL)
 #
 # Marker validity (per _Registry/reviewer-verdict-schema.md): the marker must
-# be non-empty, carry `Verdict: PASS` or `Verdict: CONDITIONAL`, and its
-# `File:` line must name the same basename as the file being written — so a
-# review of artifact A can never ship artifact B, and an empty forged marker
-# never arms the gate. The staged artifact must keep the reviewed filename.
+# be non-empty, carry `Verdict: PASS` or `Verdict: CONDITIONAL`, include a
+# `Reviewed-by:` field (human | agent:skill-name), and its `File:` line must
+# name the same basename as the file being written — so a review of artifact A
+# can never ship artifact B, and an empty forged marker never arms the gate.
+# The staged artifact must keep the reviewed filename. If the artifact file
+# exists on disk, its hash (sha256, first 12 chars) must match the marker's
+# Hash field — if not, the artifact changed after review and gates must re-run.
 #
 # Bash coverage: commands that combine a write indicator (redirection, tee,
 # cp, mv, touch, sed -i, …) with a gated path are held to the same marker
@@ -67,9 +70,10 @@ import json, os, re, sys
 root = sys.argv[1]
 WRITE_TOOLS = ("Write", "Edit", "MultiEdit", "NotebookEdit")
 
-def out(decision, extra=""):
+def out(decision, extra="", target_abs=""):
     print(decision)
     print(extra)
+    print(target_abs)
     sys.exit(0)
 
 try:
@@ -124,11 +128,12 @@ names = (os.path.basename(norm_path), os.path.basename(real_path))
 publishable_name = any(tag in b for b in names for tag in ("-essay", "-post", "-thread"))
 
 if under_artifacts or publishable_name:
-    out("GATE", os.path.basename(norm_path))
+    out("GATE", os.path.basename(norm_path), real_path)
 out("ALLOW")
 ' "$ROOT")"
   DECISION="$(printf '%s\n' "$PARSED" | sed -n '1p')"
   DETAIL="$(printf '%s\n' "$PARSED" | sed -n '2p')"
+  TARGET_ABS="$(printf '%s\n' "$PARSED" | sed -n '3p')"
 else
   # Fail-closed shell fallback for environments without python3. Coarser than
   # the python path: no realpath canonicalization, pattern checks run over the
@@ -145,6 +150,7 @@ else
 
   DECISION="ALLOW"
   DETAIL=""
+  TARGET_ABS=""
   # Match write indicators against the extracted command string (not the raw
   # JSON): in JSON a leading `touch`/`cp`/… is preceded by a `"` quote, which
   # is not a shell word boundary, so matching the raw payload misses them.
@@ -212,7 +218,7 @@ TARGET_BASE="$DETAIL"
 
 marker_status() {
   # $1 = marker path, $2 = target basename ("" = skip file binding)
-  # Prints: missing | expired | empty | no-pass-verdict | file-mismatch | ok
+  # Prints: missing | expired | empty | no-pass-verdict | file-mismatch | hash-mismatch | no-reviewed-by | ok
   local marker="$1" target_base="$2"
 
   if [ ! -f "$marker" ]; then
@@ -242,6 +248,10 @@ marker_status() {
     echo "no-pass-verdict"
     return
   fi
+  if ! grep -Eq '^Reviewed-by:[[:space:]]+(human|agent:)' "$marker"; then
+    echo "no-reviewed-by"
+    return
+  fi
   if [ -n "$target_base" ]; then
     local file_line reviewed_base
     file_line="$(sed -n 's/^File:[[:space:]]*//p' "$marker" | sed -n '1p')"
@@ -257,6 +267,28 @@ marker_status() {
 
 RIDDLER_STATUS="$(marker_status "$ROOT/_Registry/.riddler-passed" "$TARGET_BASE")"
 VALE_STATUS="$(marker_status "$ROOT/_Registry/.vicki-passed" "$TARGET_BASE")"
+
+# Hash verification: if the artifact file exists on disk, verify marker hash matches.
+# Skip if file doesn't exist (new artifact case).
+if [ "$RIDDLER_STATUS" = "ok" ] && [ -n "${TARGET_ABS:-}" ] && [ -f "$TARGET_ABS" ]; then
+  if command -v shasum >/dev/null 2>&1; then
+    actual_hash="$(shasum -a 256 "$TARGET_ABS" | cut -d' ' -f1 | cut -c1-12)"
+  elif command -v sha256sum >/dev/null 2>&1; then
+    actual_hash="$(sha256sum "$TARGET_ABS" | cut -d' ' -f1 | cut -c1-12)"
+  else
+    # Skip hash verification if neither shasum nor sha256sum available
+    actual_hash=""
+  fi
+
+  if [ -n "$actual_hash" ]; then
+    marker_hash="$(sed -n 's/^Hash:[[:space:]]*\([0-9a-f]*\).*/\1/p' "$ROOT/_Registry/.riddler-passed" | sed -n '1p')"
+    if [ -n "$marker_hash" ] && [ "$marker_hash" != "$actual_hash" ]; then
+      echo "PUBLISH GATE BLOCKED: artifact hash mismatch. Reviewed hash ($marker_hash) does not match current file ($actual_hash)." >&2
+      echo "This means the artifact changed after review. Re-run /riddler and /vale to update the markers." >&2
+      exit 2
+    fi
+  fi
+fi
 
 if [ "$RIDDLER_STATUS" != "ok" ] || [ "$VALE_STATUS" != "ok" ]; then
   echo "PUBLISH GATE BLOCKED: this write requires both gate markers present, fresh (TTL ${TTL_SECONDS}s), and valid for this artifact." >&2

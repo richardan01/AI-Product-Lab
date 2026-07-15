@@ -28,6 +28,7 @@ After delivering the review, persist the verdict so the publish gate (`Tools/gat
    Date:     YYYY-MM-DD
    Verdict:  PASS | CONDITIONAL
    Hash:     <first 12 chars of sha256 of the reviewed file — `shasum -a 256 <file>`>
+   Reviewed-by: agent:vicki-vale
    ```
    followed by the review scorecard (drop-off point / unanswered question / revision).
 2. Arm the gate: write the same header block to `_Registry/.vicki-passed`. This is what unblocks Write to `Artifacts/`. It is cleared by `Workflows/gate-merge.md` after the artifact is staged — never leave it armed across artifacts.

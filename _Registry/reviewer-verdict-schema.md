@@ -33,9 +33,12 @@ File:     <reviewed file path>
 Date:     YYYY-MM-DD
 Verdict:  PASS | CONDITIONAL
 Hash:     <first 12 chars of sha256 of the reviewed file — `shasum -a 256 <file>`>
+Reviewed-by: <human | agent:skill-name>
 ```
 
 Followed immediately by the review scorecard from the skill output (Riddler: weakest claim / missing evidence / publish decision; Vale: drop-off point / unanswered reader question / highest-leverage revision).
+
+`Reviewed-by:` records who conducted the review — `human` for a manual sign-off, or `agent:<skill-name>` (e.g. `agent:riddler`, `agent:vicki-vale`) when an agent ran the gate. `Tools/gate-check.sh` requires the field to be present and well-formed; it records provenance and does not by itself mandate a human — a human-in-the-loop publish policy would additionally require `Reviewed-by: human`.
 
 On CONDITIONAL, every condition and its resolution must be listed in the marker before the artifact ships (see the CONDITIONAL fast-path in `Workflows/gate-merge.md`).
 
