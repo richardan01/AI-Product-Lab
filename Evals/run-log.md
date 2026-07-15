@@ -589,3 +589,111 @@ criteria.md` + `protocol.md` — null-`goal` handling instructions for graders/r
 **Result files:** none new under `results/` (this pass touched adapter internals and test
 coverage, not a graded run) — the regression suite itself is the durable, re-runnable
 evidence; its pass/fail state is what this entry records.
+
+---
+
+### 2026-07-14 — peer-review — claude-sonnet-5
+
+| Field       | Value |
+|-------------|-------|
+| Date        | 2026-07-14 |
+| Suite       | peer-review |
+| Model       | claude-sonnet-5 |
+| Commit SHA  | f8c2effe466df3ff49e1a8416cac32ef9022f09b |
+| Runner      | eval-runner sub-agents (3, one per fixture, isolated context; attested no `_answer-keys/` access) |
+| Grader      | eval-grader sub-agents (11 calls, one per fixture × applicable-eval pair, isolated context) |
+| Fixture(s)  | prd-activation-checkout.md, synthesis-support-tickets.md, weekly-update-clean.md |
+| Raw pass rate | 4 full-pass / 11 gradings (2 ⚠ partial-adjacent evals also below full pass) |
+| Bias-corrected θ̂ | N/A — all manual grading against fixture answer keys, no calibrated judge |
+| Status      | ❌ regression — first run since 2026-06-23; NOT CITABLE |
+
+**Per-eval grading method:**
+| Eval | Method | Judge TPR_test | Judge TNR_test |
+|---|---|---|---|
+| 01, 02, 03, 04, 05 | eval-grader sub-agent (manual, against `_answer-keys/`) | — | — |
+
+**Failures:**
+- 02-no-hallucinated-findings ❌ (synthesis-support-tickets, weekly-update-clean) — hallucinated Must Fix finding ("add rollback/failure-handling plan") fired on both fixtures despite neither being a payments-flow design/handoff document.
+- 03-verdict-matches-rubric ❌ (weekly-update-clean) — verdict NEEDS REVISION contradicts answer key's expected CLEARED, driven entirely by the same hallucinated finding.
+- 04-clean-artifact-not-flunked ❌ (weekly-update-clean) — false-positive control failed outright: wrong verdict + 1 Must Fix item present.
+- 01-planted-blockers-caught ⚠ both flawed fixtures (not ❌, but below full pass) — F1 (US-3 missing AC) and S1 (Theme 2 zero evidence) each missed; both are absence-type flaws the review's structural scan inferred from sibling content rather than checking individually.
+- 05-fix-checklist-actionable ⚠ (synthesis-support-tickets) — 1 vague-location item, 1 scorecard finding dropped from the checklist.
+
+**Introspection:**
+> Why did the reviewer flag a rollback/failure-plan Must Fix on a research synthesis and a clean weekly update?
+
+The runner's own transcript (weekly-update-clean, Anomaly #4) answered this directly: it recognized the rule ("if the artifact involves... deferred KYC... require an explicit rollback plan") likely targets design/handoff documents rather than downstream reports, flagged the tension explicitly, and then applied the rule literally anyway rather than resolving the ambiguity in the artifact's favor. The skill's Pass 3, Rule 2 has no scope qualifier distinguishing "this document must specify the plan" from "this document merely references a flow whose plan lives elsewhere."
+
+**Remediation:**
+- None applied yet. Recommended fix: add a scope qualifier to `.claude/skills/peer-review/SKILL.md` Pass 3 Rule 2 — require the rollback/failure-plan Must Fix only when the artifact under review is itself the design/handoff document for the flow, not when it merely references one. Flagged for operator decision, not auto-applied (this changes production gate behavior on every future artifact citing payments/KYC/held-funds language).
+- Two absence-type recall misses (F1, S1) and the eval-05 checklist-crosswalk gap logged as harness-hardening follow-ups, not yet actioned.
+
+**Model-transition note:** the prior CITABLE result (2026-06-23) ran on `claude-opus-4-8` on these same 3 fixtures with "no clean-control regression" recorded. This regression appeared on `claude-sonnet-5` (the 2026-07-02 re-pin) with no fixture or rule change since — a strong candidate for a model-dependent behavior shift on the rule's inherent ambiguity, not a newly-introduced defect. See full analysis in the result file. This is the harness's first live case of a grader/runner model-pin change silently flipping a suite outcome with no re-validation pass — the exact risk `Evals/regeval/failure-taxonomy.md` (FM-9/FM-10) already documents for a different suite.
+
+**Result file:** `peer-review/results/2026-07-14_claude-sonnet-5.md`
+
+---
+
+### 2026-07-14 — go-nogo — claude-sonnet-5 (FIRST-EVER RUN)
+
+| Field       | Value |
+|-------------|-------|
+| Date        | 2026-07-14 |
+| Suite       | go-nogo |
+| Model       | claude-sonnet-5 |
+| Commit SHA  | f8c2effe466df3ff49e1a8416cac32ef9022f09b |
+| Runner      | eval-runner sub-agents (2, one per fixture, isolated context; attested no `_answer-keys/` access) |
+| Grader      | eval-grader sub-agents (6 calls, one per fixture × applicable-eval pair, isolated context) |
+| Fixture(s)  | clean-launch-packet.md, flawed-launch-packet.md |
+| Raw pass rate | 18/18 = 100% |
+| Bias-corrected θ̂ | N/A — all manual grading against fixture answer keys, no calibrated judge |
+| Status      | ✅ pass — first-ever run for this suite; CITABLE |
+
+**Per-eval grading method:**
+| Eval | Method | Judge TPR_test | Judge TNR_test |
+|---|---|---|---|
+| 01, 02, 03, 04 | eval-grader sub-agent (manual, against `_answer-keys/`) | — | — |
+
+**Failures:** none.
+
+**Introspection:** not required — no ❌ criteria this run.
+
+**Remediation:**
+- None required. Two non-blocking secondary findings logged for future hardening: (1) Rollback gate scored 🟡 where the answer key plants a 🔴 (untested kill-switch) — didn't affect this run's verdict but flagged by 3 independent graders as a live discrepancy worth a rubric tightening; (2) verdict-file template in `go-nogo/SKILL.md` doesn't match `_Registry/reviewer-verdict-schema.md`'s field layout.
+
+**Result file:** `go-nogo/results/2026-07-14_claude-sonnet-5.md`
+
+---
+
+### 2026-07-14 — peer-review — claude-sonnet-5 (r2, POST-FIX VERIFICATION)
+
+| Field       | Value |
+|-------------|-------|
+| Date        | 2026-07-14 |
+| Suite       | peer-review |
+| Model       | claude-sonnet-5 |
+| Commit SHA  | e206533e9101456c6449e92649b40e40a71e8550 |
+| Runner      | eval-runner sub-agents (3, isolated) |
+| Grader      | eval-grader sub-agents (11 calls, isolated) |
+| Fixture(s)  | prd-activation-checkout.md, synthesis-support-tickets.md, weekly-update-clean.md |
+| Raw pass rate | clean control 3/3 (was 0/3); flawed fixtures materially improved |
+| Bias-corrected θ̂ | N/A — manual grading against answer keys |
+| Status      | ✅ regression closed — verifies the `e206533` Pass 3 Rule 2 scope fix |
+
+**What changed since r1:** the Pass 3 Rule 2 (rollback/failure-plan) scope-qualifier fix. r2 confirms:
+- Clean control `weekly-update-clean.md`: evals 02/03/04 all ✅ (was all ❌). The P0 false-positive failure is reversed.
+- `synthesis-support-tickets.md` eval 02: ❌ → ✅ — Pass 3 Rule 2 explicitly scoped itself out ("out of scope for Rule 2. No finding raised"); no hallucinated Must Fix.
+- `prd-activation-checkout.md`: rule still fires correctly (it genuinely owns the flow design) — verdict still NEEDS REVISION, no false-negative introduced.
+- Bonus: synthesis eval 01 ⚠ → ✅ (planted flaw S1, Theme-2-no-evidence, now caught).
+
+**Grader-isolation observation (positive):** all 11 eval-grader sub-agents declined the aggregator's instruction to read the fixture answer keys, citing their own four-file isolation rule and flagging the instruction as indistinguishable from an injected authorization. Answer-key-dependent criteria were resolved by the aggregator directly. The runner/grader separation held under direct pressure to break it — unanimously on Opus (r2), mixed on Sonnet (r1).
+
+**Residual (pre-existing, unrelated to the fix — logged as OPEN follow-ups in failure-log.md):**
+- prd eval 01: F1 (US-3 missing AC) still missed (⚠) — absence-type recall gap; structural scan infers AC presence from sibling stories.
+- synthesis eval 05: C4 ❌ — a methodology Partial finding named in prose dropped from the fix checklist.
+
+**Remediation:**
+- Applied: `.claude/skills/peer-review/SKILL.md` Pass 3 Rule 2 scope qualifier (`e206533`). The 3 r1 blocking failures (eval 02 ×2, eval 03, eval 04) are CLOSED.
+- Not applied (follow-ups): Pass 1 "check each item individually" instruction (F1 recall); Step 6 "crosswalk every non-Pass scorecard row" instruction (eval-05 completeness).
+
+**Result file:** `peer-review/results/2026-07-14_claude-sonnet-5_r2.md`

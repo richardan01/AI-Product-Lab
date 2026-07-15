@@ -36,7 +36,7 @@ REASON: <one or two sentences citing the specific outcome(s) that did or did not
 
 ---
 
-## Few-shot anchors (train split — calibration 2026-06-22)
+## Few-shot anchors (hand-authored candidate examples — pre-calibration, not drawn from a labeled train split)
 
 **Example 1 — label: PASS** (borderline; operational restatement, substance matches)
 ```

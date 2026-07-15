@@ -24,6 +24,9 @@ Extend this table as new suites are added. Only map source files that actually e
 | Workflows/gate-merge.md | gate-group |
 | Agents/Gotham/_shared/gate-response.schema.md | gate-group |
 | Agents/Gotham/_shared/gate-payload.schema.md | gate-group |
+| scripts/trace_adapter.py | agent-harness |
+| .claude/agents/trace-collector.md | agent-harness |
+| Evals/agent-harness/*/criteria.md | agent-harness |
 
 ## Notes
 

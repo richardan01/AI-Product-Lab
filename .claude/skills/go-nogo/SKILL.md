@@ -9,6 +9,10 @@ disable-model-invocation: true
 
 Run a structured go/no-go decision for [project]. Use this 24–48 hours before planned launch.
 
+## Step 0 — Eval Staleness Check
+
+If any launch-plan or UAT input cites an eval suite's pass rate, invoke `/eval-ci check <suite>` for each cited suite before scoring gates. If any returns `BLOCK`, the Product gate cannot score 🟢 — mark it 🔴 with the finding "stale eval: re-run `<suite>` before this decision cites it (changed `<source file>`, SHA `<sha>`)." If all cited suites return `OK` (or none is cited), proceed to Step 1.
+
 ## Steps
 
 1. **Read:**

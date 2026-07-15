@@ -18,6 +18,10 @@ Example: `peer-review Projects/[YOUR_ANCHOR_PROJECT]/vendor-scorecard.md`
 
 ---
 
+## Step 0 — Eval Staleness Check
+
+If the target file cites an eval suite's pass rate or result (e.g. "onboarding suite: 10/12", "gate-group PASS"), invoke `/eval-ci check <suite>` for each suite cited. If any returns `BLOCK`, do not proceed to Step 1 — return a Conditional Pass with the required fix: "Re-run `<suite>` via `/evals` before this artifact can ship (stale since `<source file>` changed, SHA `<sha>`)." If all cited suites return `OK` (or no suite is cited), proceed.
+
 ## Step 1 — Read the Target File
 
 Read the file the user specified. Identify:
@@ -62,7 +66,7 @@ Layer 1 Score: [n Pass] / [n total checks]
 **Pass 3 — Cross-cutting risk checks** (apply to every artifact, regardless of producing agent — these catch the flaws whole-document reasoning misses):
 
 1. **Cross-section consistency.** Scan for claims that must agree across sections and verify they do — dates/timelines (e.g. an exec summary "GA Q3" vs a timeline "GA 2026-10-30 / Q4"), quantities and denominators (e.g. "412 tickets" in one place, "380" in another), metrics vs targets, and capability claims vs scope. Any contradiction between two sections is a **Must Fix** — name both locations and the conflicting values. This is distinct from a single vague claim; it is two statements that cannot both be true.
-2. **Rollback / failure plan for high-risk flows.** If the artifact involves payments, held or escrowed funds, money movement, auth/identity, deferred KYC, irreversible deletes, or data migration, require an explicit rollback / failure-handling / recovery plan. Its absence is a **Must Fix** — a high-risk flow with no failure plan is not handoff-ready, regardless of how complete the happy path is.
+2. **Rollback / failure plan for high-risk flows.** First check scope: does *this artifact* need to specify the rollback/failure-handling plan, or does it just need to point at where that plan lives (a separately-cited design/handoff document that owns the flow)? Only design/handoff artifacts (PRDs, technical design docs, runbooks) that introduce or define a high-risk flow — payments, held or escrowed funds, money movement, auth/identity, deferred KYC, irreversible deletes, or data migration — are in scope. A status update, synthesis, or other artifact that merely *references* a high-risk flow whose design is owned elsewhere is out of scope for this rule, even if it names the same risk keywords. For in-scope artifacts, require an explicit rollback / failure-handling / recovery plan; its absence is a **Must Fix** — a high-risk flow with no failure plan is not handoff-ready, regardless of how complete the happy path is.
 
 Record any Pass-3 finding in the Fix Checklist at the severity stated above; these feed the verdict like any other Layer-1 Fail.
 
