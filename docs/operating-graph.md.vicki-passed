@@ -1,0 +1,23 @@
+Gate:         vicki-vale
+File:         docs/operating-graph.md
+Content-hash: sha256:1a466a5db99620e5f2de4956c45fcfb3c0dd6be1b67ba408bc0d71e35a206e3b
+Date:         2026-07-31
+Verdict:      PASS (read)
+
+Pass 1: SKIM — 1 major (uncited "distribution-first" foil read as an invented
+strawman), 2 minor (undefined "N-1 fixture" jargon at first encounter; opening
+line pointed elsewhere before landing its own claim).
+
+Pass 2: READ — all three fixed. Foil paragraph removed entirely. Opening line
+now leads with the doc's own claim, architecture.md cross-reference pushed to
+Related. "N-1 fixture" defined in prose immediately after the diagram.
+
+The one optional stylistic note left open in pass 2 (opening sentence stacked
+two clauses on an em-dash) was resolved by Riddler's pass-2 fast-path edit,
+which split it into two sentences — the same substance, not re-verified by a
+4th Vale pass since it only affects sentence mechanics she had already flagged
+as non-gating. A trailing synonym swap ("a grader" → "grading", line 3) landed
+after this verdict; it does not touch content this review assessed.
+
+Reviewed by: vicki-vale (Sonnet), 2 passes · Cross-checked against: README.md,
+architecture.md

@@ -33,7 +33,9 @@ friction). One trace is one data point, not a success rate.
 ## See the evidence in three minutes
 
 1. [Controlled real-session report](evals/agent-harness/evidence/controlled-real-run/aggregate.md)
-   — a real Codex tool-use run on a public toy task, reviewed across all seven axes.
+   — a real Codex tool-use run on a public toy task, reviewed across all seven axes. The seven
+   verdicts were produced as a structured Codex review, not by the shipped Claude Code command;
+   the report states this directly.
 2. [Synthetic tutorial report](evals/agent-harness/evidence/2026-07-11_sample-coding-retry.md)
    — the deterministic example used to teach the scorecard.
 3. [RegEval integrity case study](evals/regeval/discovery-pass-2026-06-28.md) — the lab found
@@ -106,7 +108,7 @@ The design combines two compounding patterns:
   and an append-only record.
 
 See [architecture and method](docs/architecture.md) for the Karpathy-inspired design and its
-limits.
+limits, or the [operating graph](docs/operating-graph.md) for the same loop as a diagram.
 
 ## The flagship case study: RegEval
 
@@ -124,7 +126,7 @@ is **not independently reproducible from this repository**. Start with the
 | Capability | Status |
 |---|---|
 | Normalize Claude Code sessions | Adapter regression-tested against the committed format |
-| Normalize Codex rollouts | Verified against a controlled real run and sample format |
+| Normalize Codex rollouts | Regression-tested against the committed Codex sample format; not yet validated against a raw Codex rollout |
 | Grade through one Claude Code command | Shipped |
 | Run the grader directly in Codex | Not shipped |
 | Cowork trace support | Planned; format unconfirmed |
@@ -141,8 +143,7 @@ for LLM grading is still processed by your chosen inference provider. Read the f
 
 ## What this is not
 
-- It is not a reusable personal PM workspace; use
-  [PM Command Center](https://github.com/richardan01/PM-Command-Center) for that.
+- It is not a reusable personal PM workspace.
 - It is not a replacement for production observability platforms such as LangSmith or
   Braintrust.
 - It is not evidence that one clean trace proves an agent is reliable.

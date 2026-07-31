@@ -1,0 +1,47 @@
+ff6f5d18d3395c6d0083f4ec76123a9a651914a1ea28dad035a7fb41847ef0ea  README.md
+Gate:         riddler
+File:         README.md
+Date:         2026-07-31
+Verdict:      CONDITIONAL PASS (fast-path, gate-merge.md Step 3)
+
+Full-file gate (not diff-scoped) — the only change from the prior live file is
+one added clause in "Learn the method" linking docs/operating-graph.md, but
+the pre-publish hook certifies the whole artifact, so the full file was read.
+
+Pass 1: BLOCK — 3 blocking, 1 major, unrelated to the new clause and
+pre-existing in the file: (1) dead link to archived richardan01/PM-Command-
+Center (verified 404), (2) overclaimed capability-table row on Codex-rollout
+normalization contradicted by scripts/trace_adapter.py:298's own comment and
+the hand-authored controlled-run trace.json, (3) docs/operating-graph.md
+un-pushed (expected — nothing has been pushed this session), (4) a buried
+caveat: the flagship "controlled real-session report" verdicts were produced
+via Codex review, not the shipped Claude Code command (aggregate.md discloses
+this one level down).
+
+Pass 2: CONDITIONAL PASS — all three sourced issues fixed and re-verified
+against the cited files (trace_adapter.py, test_trace_adapter.py, the sample
+fixture, aggregate.md, trace.json). The docs/operating-graph.md item was
+downgraded from blocking to a release condition: the target exists in the
+working tree and the claim is true of the current state; it becomes a real
+defect only if README.md and docs/operating-graph.md are pushed apart. Release
+condition, not a text defect — recorded below, not gating this marker.
+
+Release condition (Rich's action at push time, not a gate defect): commit
+README.md and docs/operating-graph.md in the same push; after pushing, open
+the RENDERED link on the published default branch (not just check git log)
+to confirm it resolves. Push is CorpLink-DLP-blocked from this machine — see
+memory topic aipm-os-public-launch — so this file stays on a local branch
+until Rich pushes from another device.
+
+Deferred, non-gating, flagged for a separate cleanup pass (NOT applied here,
+out of scope for this session): "Phase" vs "Axis" column header drift, "Goal
+alignment" vs shipped eval id "goal-checkpoints" naming drift, CHANGELOG.md
+missing from the repo-organization table, Obsidian wikilinks rendering as
+literal text in evals/regeval/discovery-pass-2026-06-28.md:148.
+
+Reviewed by: riddler (Opus), 2 full-file passes + 1 dead-link/citation
+verification via WebFetch · Cross-checked against: scripts/trace_adapter.py,
+scripts/test_trace_adapter.py, evals/agent-harness/samples/codex-rollout-
+sample.jsonl, evals/agent-harness/evidence/controlled-real-run/aggregate.md
++ trace.json, docs/operating-graph.md, docs/architecture.md, LICENSE,
+.claude/skills/evaluate-agent-session/SKILL.md

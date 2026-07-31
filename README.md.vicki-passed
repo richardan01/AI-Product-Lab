@@ -1,0 +1,23 @@
+ff6f5d18d3395c6d0083f4ec76123a9a651914a1ea28dad035a7fb41847ef0ea  README.md
+Gate:         vicki-vale
+File:         README.md
+Date:         2026-07-31
+Verdict:      PASS (read)
+
+Full cold-read, top to bottom, twice (pass 1 and pass 2 after fixes).
+
+Pass 1: SKIM — 1 major (the new clause ended on an undefined-jargon dangling
+teaser, "including why it has no publishing node," with no payoff on the
+page), 1 minor ("Gotham agents" unexplained proper noun in the historical-OS
+paragraph).
+
+Pass 2: READ — the dangling clause was deleted (not rewritten into a new
+version of the same problem); the sentence now reads as a plain either/or
+pointer. Opener still earns the read; the self-disclosed Codex-review caveat
+on the flagship evidence bullet reinforces trust rather than undermining it.
+
+"Gotham agents" was left unaddressed on purpose (deep in an archival aside,
+not in the decision path a reader takes to try the tool) — flagged for a
+separate cleanup pass, not gating this verdict.
+
+Reviewed by: vicki-vale (Sonnet), 2 full-file passes

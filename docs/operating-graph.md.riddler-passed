@@ -1,0 +1,26 @@
+Gate:         riddler
+File:         docs/operating-graph.md
+Content-hash: sha256:1a466a5db99620e5f2de4956c45fcfb3c0dd6be1b67ba408bc0d71e35a206e3b
+Date:         2026-07-31
+Verdict:      PASS
+
+Pass 1 (BLOCK, 4 blocking/3 major/2 minor) → Pass 2 (REVISE/conditional, 2
+major + 1 minor remaining, exact fix text supplied for each) → Pass 3
+(narrow verification of the 3 specified edits only) → PASS.
+
+Pass-3 agent verdict, verbatim excerpt: "PASS... All three fixes are applied
+as specified, the one new citation was checked against its target file rather
+than assumed, and the suite name was confirmed against a real directory... Yes
+— I regard this as verified enough for `.riddler-passed`." depth_gap_flag:
+false.
+
+One non-blocking nit the pass-3 agent surfaced (singular "a grader" vs. "seven
+graders" twenty lines apart) was applied after this verdict (grader →
+grading, line 3) — a synonym-level word swap the same agent had already
+pre-cleared as optional ("ship without it if you'd rather not touch the file
+again"). Content-hash above is computed on the file AFTER that swap.
+
+Reviewed by: riddler (Opus), 3 passes · Cross-checked against: README.md,
+architecture.md, evals/regeval/README.md, evals/agent-harness/README.md,
+docs/privacy.md, docs/learn.md
+Private-content scan: clean (no KPay/CDP/Gotham/persona/real-name references)
