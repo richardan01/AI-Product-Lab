@@ -20,9 +20,26 @@ claim is backed by visible proof instead of a private log.
 - [ ] Keep `goal` only if it is safe to publish; otherwise paraphrase it.
 - [ ] Re-read the whole file before committing — sanitization is manual and easy to get wrong.
 
+## Provenance is mandatory
+
+Every report here must satisfy the provenance block in `../report-schema.json` (v1.1): run
+date, repo commit, grader model, and whether author/grader separation held. Unknown provenance
+is recorded as an explicit `null` and explained in `provenance_note` — never omitted, and
+never invented. `scripts/validate_agent_report.py` enforces this.
+
+A run whose `author_grader_separation` is `false` is a worked example of the scorecard, not
+evidence of agent behaviour, and must not be cited as a reliability claim.
+
 ## Status
 
-The directory contains a synthetic tutorial and one controlled real Codex tool-use run against
-a public toy task. The controlled trace was reviewed across the same seven criteria; it is not
-evidence that Codex can execute the shipped Claude Code orchestration command. Neither run is
-production evidence or supports a population-level reliability claim.
+| Run | Date | Separation | Class |
+|---|---|---|---|
+| [`2026-09-19_sample-coding-retry.md`](2026-09-19_sample-coding-retry.md) | 2026-09-19 | ✅ held (7 isolated graders) | Synthetic worked example |
+| [`2026-07-11_sample-coding-retry.md`](2026-07-11_sample-coding-retry.md) | 2026-07-11 | ✅ held (7 isolated graders) | Synthetic worked example |
+| [`controlled-real-run/`](controlled-real-run/) | 2026-07-21 (commit date; capture date not recorded) | ❌ did not hold | Controlled real trajectory, not citable |
+
+The controlled trace was reviewed against the same seven criteria, but in the context that
+authored it; it is not evidence that Codex can execute the shipped Claude Code orchestration
+command. **No run here is production evidence or supports a population-level reliability
+claim.** A real, redacted Claude Code session graded by seven isolated contexts is still
+pending — that is the gap this directory has not yet closed.

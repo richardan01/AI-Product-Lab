@@ -1,5 +1,10 @@
 # Controlled real run: dependency-free slugify fix
 
+> **Not citable evidence.** Author/grader separation did **not** hold on this run — the seven
+> verdicts were produced in the same context that authored the session — and the grader model
+> was never recorded. Read [README.md](README.md) before quoting anything below. For a run
+> where separation held, see [2026-09-19](../2026-09-19_sample-coding-retry.md).
+
 **Verdict:** Pass
 
 **Task success:** Pass

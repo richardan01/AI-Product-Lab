@@ -2,6 +2,7 @@
 """Validate the public/private agent-evaluation report contract."""
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -19,14 +20,33 @@ def main():
         raise SystemExit("usage: validate_agent_report.py <report.json>")
     report = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
     required = {
-        "schema_version", "trace_id", "run_kind", "grader_runner", "source_harness",
-        "task_success", "overall_verdict", "bad_count", "sad_count", "axes",
-        "recommendation",
+        "schema_version", "trace_id", "run_kind", "run_date", "repo_commit",
+        "grader_runner", "grader_model", "author_grader_separation", "provenance_note",
+        "source_harness", "task_success", "overall_verdict", "bad_count", "sad_count",
+        "axes", "recommendation",
     }
     missing = sorted(required - report.keys())
     assert not missing, f"missing report fields: {missing}"
-    assert report["schema_version"] == "1"
+    assert report["schema_version"] == "1.1"
     assert report["grader_runner"] in {"claude-code", "codex-review"}
+
+    # Provenance block. A published verdict must be able to say when it ran, against which
+    # commit, on which model, and whether author/grader separation held. Unknown provenance
+    # is recorded as an explicit null and explained — never omitted, never invented.
+    assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", report["run_date"] or ""), \
+        f"run_date must be YYYY-MM-DD, got {report['run_date']!r}"
+    assert isinstance(report["repo_commit"], str) and len(report["repo_commit"]) >= 7, \
+        "repo_commit must be a commit SHA of at least 7 characters"
+    grader_model = report["grader_model"]
+    assert grader_model is None or (isinstance(grader_model, str) and grader_model.strip()), \
+        "grader_model must be a non-empty string or an explicit null"
+    assert isinstance(report["author_grader_separation"], bool), \
+        "author_grader_separation must be a boolean"
+    note = report["provenance_note"]
+    assert isinstance(note, str) and note.strip(), "provenance_note must be a non-empty string"
+    if grader_model is None:
+        assert "not recorded" in note.lower(), \
+            "grader_model is null, so provenance_note must say the model was not recorded"
     assert report["task_success"] in ALLOWED_VERDICTS
     assert report["overall_verdict"] in ALLOWED_VERDICTS
     assert [axis.get("eval_id") for axis in report["axes"]] == EXPECTED_IDS

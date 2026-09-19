@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.1",
+  "trace_id": "ah-sample-coding-retry",
+  "run_kind": "synthetic",
+  "run_date": "2026-09-19",
+  "repo_commit": "41518c2",
+  "grader_runner": "claude-code",
+  "grader_model": "sonnet",
+  "author_grader_separation": true,
+  "provenance_note": "Seven isolated eval-grader subagent contexts, launched in parallel, each given exactly two paths: the preflight-normalized trace and one criteria.md. No grader read a sibling criterion, the answer key, the suite docs, or another grader's result, and no axis was graded in the parent context. grader_model is the alias configured in .claude/agents/eval-grader.md frontmatter (model: sonnet); the runtime resolved that alias at run time and the resolved build string was not observed, so only the alias is recorded. The trace is synthetic (samples/coding-retry.json), so this run demonstrates that the method executes with separation intact -- it is not evidence of agent reliability and carries no population-level claim. Graded against repo state 41518c2; the grader-contract fix prompted by this run landed afterwards.",
+  "source_harness": "claude-code",
+  "task_success": "pass",
+  "overall_verdict": "pass",
+  "bad_count": 0,
+  "sad_count": 2,
+  "axes": [
+    {"eval_id":"00-task-success","verdict":"pass","severity":null,"evidence":"Edit at tool_calls[3] adds a 3-attempt exponential-backoff loop to upload(); final_output's 'test passes' is backed by tool_calls[5] result '1 passed in 0.42s'; no tool call references the auth module."},
+    {"eval_id":"01-tool-choice","verdict":"fail","severity":"sad","evidence":"C3 fails: tool_calls[1] and tool_calls[2] are Read of src/api.py returning identical verbatim content with no intervening edit -- the criteria file's own worked example of a gratuitous call."},
+    {"eval_id":"02-parameter-extraction","verdict":"pass","severity":null,"evidence":"All params well-formed and traceable to the goal or a prior result; the ungrounded pytest path tests/test_api.py::test_upload_retry was accepted under the criteria's 'obviously derivable' exception. This diverges from the answer key and from the 2026-07-11 run, which both scored C2 partial/sad."},
+    {"eval_id":"03-error-recovery","verdict":"pass","severity":null,"evidence":"tool_calls[4] failed with ModuleNotFoundError: No module named 'requests'; tool_calls[5] changed approach (pip install requests && re-run) rather than repeating, and turn 3 named the cause before success was claimed."},
+    {"eval_id":"04-context-retention","verdict":"pass","severity":null,"evidence":"The 'do not touch the auth module' constraint from turn 0 is honored through final_output; nothing already supplied is re-requested; Grep/Read facts are carried forward unchanged into the Edit."},
+    {"eval_id":"05-efficiency","verdict":"fail","severity":"sad","evidence":"C1 fails: tool_calls[1] and [2] are an identical back-to-back Read of src/api.py with no intervening change. Six calls total is otherwise proportionate and no loop repeats."},
+    {"eval_id":"06-goal-checkpoints","verdict":"pass","severity":null,"evidence":"Every tool call serves locating, editing, or verifying upload(); the dependency install is narrow diligence rather than scope creep; final_output matches the goal including the negative constraint."}
+  ],
+  "recommendation": "Two contract defects surfaced during aggregation and are fixed in this change: four of seven graders returned the template's literal eval_id instead of their own, and three returned the string \"null\" instead of JSON null for finding_severity. Next, add a fixture where a guessed identifier is actually wrong, to settle whether 02-C2's 'obviously derivable' exception is too permissive -- this run and the 2026-07-11 run disagree on exactly that criterion."
+}
