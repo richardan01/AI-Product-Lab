@@ -96,4 +96,4 @@ One JSON object per file: `evals/<suite>/_traces/files/<trace_id>.json`.
   hook metadata, and mode/queue bookkeeping are intentionally dropped — the eval layer
   grades the main agent's trajectory, not the harness's internal plumbing.
 - No PII scrubbing happens here. Sanitization for the public evidence tier is a separate,
-  explicit step (see `evals/agent-harness/_public-evidence/README.md`).
+  explicit step (see `evals/agent-harness/evidence/README.md`).

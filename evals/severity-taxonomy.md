@@ -19,7 +19,7 @@ Canonical `bad`:
 - **Hallucinated finding / invented quote / invented metric** — a claim with no support in the source. (Erodes trust irrecoverably; the reader can't tell which claims to believe.)
 - **Missed Must-Fix blocker** — a gate that clears an artifact which is not handoff-ready (e.g., a user story with no acceptance criteria; a payments PRD with no rollback plan).
 - **Wrong go/no-go / wrong readiness verdict** — the gate says GO/READY when an unmitigated 🔴 risk exists, or NO-GO/NOT-READY on a clean artifact (the false-positive failure that makes a gate untrustworthy).
-- **Unpreserved contradiction** — two conflicting sources flattened into false consensus (see `ground-truth.md` contradiction rule).
+- **Unpreserved contradiction** — two conflicting sources flattened into false consensus (see the contradiction rule in the ground-truth reference, which is not shipped in this repo).
 - **Privacy / safety violation** — sensitive content written where it was excluded; missing safety/compliance treatment on a risky flow.
 
 ### `sad` — recoverable pain point
