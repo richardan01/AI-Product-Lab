@@ -32,13 +32,24 @@ friction). One trace is one data point, not a success rate.
 
 ## See the evidence in three minutes
 
-1. [Controlled real-session report](evals/agent-harness/evidence/controlled-real-run/aggregate.md)
-   — a real Codex tool-use run on a public toy task, reviewed across all seven axes.
+1. [Latest suite run (2026-09-19)](evals/agent-harness/evidence/2026-09-19_sample-coding-retry.md)
+   — the method end to end on a synthetic trace, with author/grader separation held across
+   seven isolated graders. Six of seven axes reproduced a run from 70 days earlier; the one
+   that diverged is written up rather than smoothed over.
 2. [Synthetic tutorial report](evals/agent-harness/evidence/2026-07-11_sample-coding-retry.md)
    — the deterministic example used to teach the scorecard.
-3. [RegEval integrity case study](evals/regeval/discovery-pass-2026-06-28.md) — the lab found
+3. [Controlled real-session report](evals/agent-harness/evidence/controlled-real-run/aggregate.md)
+   — a real Codex tool-use run on a public toy task. Read the
+   [provenance note](evals/agent-harness/evidence/controlled-real-run/README.md) first: its
+   grader model was never recorded and author/grader separation did **not** hold, so it is a
+   worked example, not citable evidence.
+4. [RegEval integrity case study](evals/regeval/discovery-pass-2026-06-28.md) — the lab found
    that its supposed held-out set was contaminated, invalidated the claim, and rebuilt the
    measurement approach.
+
+Every published report carries a provenance block — run date, repo commit, grader model, and
+whether separation held. Unknown provenance is recorded as an explicit `null` and explained,
+never omitted and never invented.
 
 ## Try it in 15 minutes
 
@@ -125,7 +136,7 @@ is **not independently reproducible from this repository**. Start with the
 |---|---|
 | Normalize Claude Code sessions | Adapter regression-tested against the committed format |
 | Normalize Codex rollouts | Verified against a controlled real run and sample format |
-| Grade through one Claude Code command | Shipped |
+| Grade through one Claude Code command | Shipped; last run 2026-09-19 with separation held |
 | Run the grader directly in Codex | Not shipped |
 | Cowork trace support | Planned; format unconfirmed |
 | Hosted dashboard or production monitoring | Not provided |

@@ -8,6 +8,28 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). This pr
 
 ## [Unreleased]
 
+### 2026-09-19 — Report provenance is now mandatory and enforced
+
+Published agent-harness reports must state when they ran, against which commit, on which
+grader model, and whether author/grader separation held. Provenance that was not captured is
+recorded as an explicit `null` and explained in `provenance_note` — never omitted, and never
+invented.
+
+- `report-schema.json` → **v1.1**: adds required `run_date`, `repo_commit`, `grader_model`,
+  `author_grader_separation`, and `provenance_note`.
+- `scripts/validate_agent_report.py` enforces the block, including that a null `grader_model`
+  is explained rather than left silent.
+- `evidence/controlled-real-run/` backfilled from verifiable git facts only. Its grader model
+  is `null` (never recorded) and `author_grader_separation` is `false`. It is relabelled a
+  worked example, not citable evidence, in its README, its aggregate, and the root README.
+- New run: `evidence/2026-09-19_sample-coding-retry.md` — the suite executed through the
+  shipped path with separation held across seven isolated graders. Six of seven axes
+  reproduced the 2026-07-11 verdicts; `02-parameter-extraction` diverged, and the criterion's
+  over-broad "obviously derivable" exception is logged as the cause.
+- `.claude/agents/eval-grader.md`: fixed two contract defects the run exposed — graders copied
+  the template's literal `eval_id` (4 of 7) and returned the string `"null"` for
+  `finding_severity` (3 of 7). Either would corrupt an unattended aggregation.
+
 ### 2026-07-21 — First-timer simplification
 
 AI Product Lab now presents one usable product (`agent-harness`) and one flagship case study

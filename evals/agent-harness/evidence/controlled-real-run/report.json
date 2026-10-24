@@ -1,21 +1,61 @@
 {
-  "schema_version": "1",
+  "schema_version": "1.1",
   "trace_id": "ah-controlled-slugify-001",
   "run_kind": "controlled-real",
+  "run_date": "2026-07-21",
+  "repo_commit": "da41917",
   "grader_runner": "codex-review",
+  "grader_model": null,
+  "author_grader_separation": false,
+  "provenance_note": "Provenance reconstructed after the fact, 2026-09-19. The grader model was NOT RECORDED at capture time and cannot be recovered, so it is stated as null rather than guessed. run_date is not the capture date: sanitization stripped all timestamps from this run, so the date shown is the commit date of da41917, which first published these files. author_grader_separation is false -- the seven verdicts were produced as a single structured Codex review in the same context that authored the session, because Claude Code was unauthenticated in the capture environment. That violates protocol.md's 'never grade in the context that authored the session'. This run is a worked example of the scorecard, NOT citable evidence of agent reliability or of the shipped seven-isolated-grader method. See evidence/2026-09-19_sample-coding-retry.md for a run where separation held.",
   "source_harness": "codex",
   "task_success": "pass",
   "overall_verdict": "pass",
   "bad_count": 0,
   "sad_count": 0,
   "axes": [
-    {"eval_id":"00-task-success","verdict":"pass","severity":null,"evidence":"All three tests passed after the one-file dependency-free fix."},
-    {"eval_id":"01-tool-choice","verdict":"pass","severity":null,"evidence":"Execution grounded inspection/tests; apply_patch made the edit."},
-    {"eval_id":"02-parameter-extraction","verdict":"pass","severity":null,"evidence":"Paths and commands came from the toy repository and observed failure."},
-    {"eval_id":"03-error-recovery","verdict":"pass","severity":null,"evidence":"The accented-test failure led directly to Unicode normalization and a passing rerun."},
-    {"eval_id":"04-context-retention","verdict":"pass","severity":null,"evidence":"The dependency-free and one-file scope constraints were preserved."},
-    {"eval_id":"05-efficiency","verdict":"pass","severity":null,"evidence":"Three calls formed a compact reproduce-fix-verify sequence."},
-    {"eval_id":"06-goal-checkpoints","verdict":"pass","severity":null,"evidence":"Every action served the slugify task and its verification requirements."}
+    {
+      "eval_id": "00-task-success",
+      "verdict": "pass",
+      "severity": null,
+      "evidence": "All three tests passed after the one-file dependency-free fix."
+    },
+    {
+      "eval_id": "01-tool-choice",
+      "verdict": "pass",
+      "severity": null,
+      "evidence": "Execution grounded inspection/tests; apply_patch made the edit."
+    },
+    {
+      "eval_id": "02-parameter-extraction",
+      "verdict": "pass",
+      "severity": null,
+      "evidence": "Paths and commands came from the toy repository and observed failure."
+    },
+    {
+      "eval_id": "03-error-recovery",
+      "verdict": "pass",
+      "severity": null,
+      "evidence": "The accented-test failure led directly to Unicode normalization and a passing rerun."
+    },
+    {
+      "eval_id": "04-context-retention",
+      "verdict": "pass",
+      "severity": null,
+      "evidence": "The dependency-free and one-file scope constraints were preserved."
+    },
+    {
+      "eval_id": "05-efficiency",
+      "verdict": "pass",
+      "severity": null,
+      "evidence": "Three calls formed a compact reproduce-fix-verify sequence."
+    },
+    {
+      "eval_id": "06-goal-checkpoints",
+      "verdict": "pass",
+      "severity": null,
+      "evidence": "Every action served the slugify task and its verification requirements."
+    }
   ],
   "recommendation": "Run the shipped Claude Code workflow on a larger controlled trace containing a recoverable tool error, then add an N-1 fixture for the first observed failure mode."
 }

@@ -32,13 +32,20 @@ paths: `trace_path` and `criteria_path`.
 
 ## Output
 
-Return exactly one JSON object with no Markdown fence:
+Return exactly one JSON object with no Markdown fence.
+
+`eval_id` must be the id of the criterion you were actually given: the directory name of
+your `criteria_path`, such as `04-context-retention`. Never copy the id from this template —
+a wrong `eval_id` silently misfiles your verdict during aggregation.
+
+`finding_severity` is the JSON literal `null` when there is no finding, never the string
+`"null"`. Use the quoted forms only for `"bad"` and `"sad"`.
 
 ```json
 {
-  "eval_id": "00-task-success",
+  "eval_id": "<the directory name of your criteria_path>",
   "axis_verdict": "pass|fail|partial|insufficient-evidence",
-  "finding_severity": "bad|sad|null",
+  "finding_severity": "bad" | "sad" | null,
   "results": [
     {
       "criterion_id": "C1",

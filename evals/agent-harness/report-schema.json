@@ -1,12 +1,18 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "AI Product Lab agent evaluation report",
+  "description": "Schema v1.1 adds a required provenance block. A published verdict that cannot state when it ran, against which commit, on which grader model, and whether author/grader separation held is not citable evidence. Unknown provenance must be recorded as an explicit null plus an explanation in provenance_note — never omitted and never invented.",
   "type": "object",
   "required": [
     "schema_version",
     "trace_id",
     "run_kind",
+    "run_date",
+    "repo_commit",
     "grader_runner",
+    "grader_model",
+    "author_grader_separation",
+    "provenance_note",
     "source_harness",
     "task_success",
     "overall_verdict",
@@ -16,10 +22,34 @@
     "recommendation"
   ],
   "properties": {
-    "schema_version": { "const": "1" },
+    "schema_version": { "const": "1.1" },
     "trace_id": { "type": "string", "minLength": 1 },
     "run_kind": { "enum": ["synthetic", "controlled-real", "private"] },
+    "run_date": {
+      "description": "UTC date the grading run was performed, YYYY-MM-DD. For a run reconstructed after the fact, use the commit date that published it and say so in provenance_note.",
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "repo_commit": {
+      "description": "Short or full SHA of the repository state the run was graded against.",
+      "type": "string",
+      "minLength": 7
+    },
     "grader_runner": { "enum": ["claude-code", "codex-review"] },
+    "grader_model": {
+      "description": "Model identifier that produced the per-axis verdicts, or the alias configured for the grader subagent. Explicit null means the model was not recorded at capture time; provenance_note must then say so, and the run must not be cited as a reliability claim.",
+      "type": ["string", "null"],
+      "minLength": 1
+    },
+    "author_grader_separation": {
+      "description": "True only when every axis was graded in a context isolated from the one that authored the session, per protocol.md. False means separation did not hold and the run is a worked example, not evidence.",
+      "type": "boolean"
+    },
+    "provenance_note": {
+      "description": "Plain-language statement of how the run was produced and what its provenance does not establish. Required, and must explain any null above.",
+      "type": "string",
+      "minLength": 1
+    },
     "source_harness": { "enum": ["claude-code", "codex"] },
     "task_success": { "enum": ["pass", "fail", "partial", "insufficient-evidence"] },
     "overall_verdict": { "enum": ["pass", "fail", "partial", "insufficient-evidence"] },
