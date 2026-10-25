@@ -50,6 +50,17 @@ Added the `/evaluate-agent-session` Claude Code interface, private-trace confirm
 strict normalization preflight, seven-grader report schema, controlled real evidence,
 synthetic RegEval demo, MIT license, and first-timer CI checks.
 
+Root layout, before and after: [before](docs/assets/before-os-root.png) ·
+[after](docs/assets/after-simplified-root.png).
+
+## Pre-simplification history (OS era)
+
+Everything in this section describes the personal PM operating system as it was after 1.1.0 and
+before the 2026-07-21 simplification. The files, skills, hooks, and paths it names are **not on
+`main`**; they exist only at the immutable tag
+[`ai-product-lab-os-v1`](https://github.com/richardan01/AI-Product-Lab/tree/ai-product-lab-os-v1).
+The text below is preserved unedited as a historical record.
+
 ### Added
 - `AGENTIC-EVAL-FRAMEWORK.md` — the eval-loop framework manifesto: problem, loop design, architecture layers, metrics, and portfolio framing (consolidated from PM Command Center)
 - `GEMINI.md` — harness-neutral entry point for Gemini CLI; the lab now routes Claude Code and Gemini CLI to the same configuration surface
