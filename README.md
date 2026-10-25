@@ -131,8 +131,9 @@ documented discovery that an early held-out claim was invalid.
 
 The public clone includes the scorer, historical experiment lineage, and a small synthetic
 demo dataset. The later private 36-item held-out set is not published, so its historical score
-is **not independently reproducible from this repository**. Start with the
-[RegEval case-study guide](evals/regeval/README.md).
+is **not independently reproducible from this repository**. RegEval's last run was
+2026-06-28; it is a frozen historical case study, not a suite that is re-run on a schedule.
+Start with the [RegEval case-study guide](evals/regeval/README.md).
 
 ## Capability and limitation table
 
@@ -156,8 +157,7 @@ for LLM grading is still processed by your chosen inference provider. Read the f
 
 ## What this is not
 
-- It is not a reusable personal PM workspace; use
-  [PM Command Center](https://github.com/richardan01/PM-Command-Center) for that.
+- It is not a reusable personal PM workspace.
 - It is not a replacement for production observability platforms such as LangSmith or
   Braintrust.
 - It is not evidence that one clean trace proves an agent is reliable.

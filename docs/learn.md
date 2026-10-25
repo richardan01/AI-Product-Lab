@@ -5,7 +5,8 @@ This path is designed for a reader who has never seen the repository.
 ## 10 minutes: understand the scorecard
 
 1. Read the seven questions in the root README.
-2. Open the [controlled real-run aggregate](../evals/agent-harness/evidence/controlled-real-run/aggregate.md).
+2. Open the [latest suite run](../evals/agent-harness/evidence/2026-09-19_sample-coding-retry.md)
+   (synthetic trace, seven isolated graders).
 3. Compare task success with the six trajectory axes.
 4. Notice that a successful final answer can still contain recoverable `sad` friction or a
    blocking `bad` trajectory failure.
@@ -18,7 +19,8 @@ Outcome: you can explain why final-answer-only evaluation misses important agent
 2. Run `/evaluate-agent-session sample`.
 3. Inspect the seven isolated grades and aggregate.
 4. Compare the generated report with the committed
-   [synthetic tutorial](../evals/agent-harness/evidence/2026-07-11_sample-coding-retry.md).
+   [2026-09-19 run](../evals/agent-harness/evidence/2026-09-19_sample-coding-retry.md) and the
+   earlier [2026-07-11 synthetic tutorial](../evals/agent-harness/evidence/2026-07-11_sample-coding-retry.md).
 
 Outcome: you understand the input, criteria, evidence, severity, and aggregate decision.
 
@@ -32,10 +34,14 @@ Read the files in
 3. the aggregate report;
 4. the sanitization and provenance note.
 
-Then read the [run protocol](../evals/agent-harness/protocol.md). Focus on the separation
-between the session being evaluated and the fresh grader contexts.
+Start with the provenance note (item 4): this run is a worked example, **not citable
+evidence**, because author/grader separation did not hold. Then read the
+[run protocol](../evals/agent-harness/protocol.md). Focus on the separation between the
+session being evaluated and the fresh grader contexts, and on exactly where this run falls
+short of it.
 
-Outcome: you can distinguish a designed fixture from a real, controlled harness run.
+Outcome: you can distinguish a designed fixture from a real, controlled harness run, and a
+run that meets the separation rule from one that does not.
 
 ## Two hours: study the full learning loop
 
