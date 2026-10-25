@@ -11,6 +11,10 @@ AI Product Lab reads a real Claude Code or Codex session, turns it into a normal
 and grades both task success and the trajectory that produced it. The method is local and
 Markdown-native; Claude Code is the current grading runner.
 
+## Human-data product direction
+
+[From agent traces to defensible human judgments](docs/case-studies/human-data-quality-loop.md) describes the proposed sampling, independent labeling, disagreement adjudication, and research-to-product decision loop. It is a roadmap, **not** a claim that researcher-facing annotation operations are already deployed.
+
 ## What the lab evaluates
 
 An agent can produce a plausible answer while choosing the wrong tool, guessing parameters,
